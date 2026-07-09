@@ -92,6 +92,28 @@ addEventListener('scroll', () => {
 }, { passive: true });
 focusRow();
 
+// deep-dive: reveal the accordion, then each section expands on click
+(function () {
+  const btn = document.querySelector('.deepdive-btn');
+  const panel = document.getElementById('oum-deepdive');
+  if (!btn || !panel) return;
+  const row = document.querySelector('.deepdive-row');
+  btn.addEventListener('click', () => {
+    const opening = panel.classList.toggle('open');
+    if (row) row.classList.toggle('diving', opening); // dolphin dives in / resurfaces
+    btn.setAttribute('aria-expanded', String(opening));
+    btn.querySelector('.dd-label').textContent = opening ? 'Hide details' : 'Deep dive';
+  });
+
+  panel.querySelectorAll('.dd-head').forEach((head) => {
+    head.addEventListener('click', () => {
+      // each section toggles independently — multiple can be open at once
+      const isOpen = head.getAttribute('aria-expanded') === 'true';
+      head.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+})();
+
 // magnetic buttons
 if (!reduce && fine) {
   document.querySelectorAll('[data-magnet]').forEach((btn) => {

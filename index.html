@@ -287,11 +287,110 @@
           <span class="case-tag">Live · public platform</span>
         </div>
         <div class="case-grid">
-          <div class="case-cell"><div class="h">Problem</div><p>Applying to Ontario universities with no idea what grades actually get people in.</p></div>
-          <div class="case-cell"><div class="h">What I built</div><p>A public analytics platform — 600+ programs, 21 universities — fed by TypeScript ETL pipelines into PostgreSQL.</p></div>
-          <div class="case-cell"><div class="h">Outcome</div><p>10,000+ users. Fuzzy matching took program match rate from 75% → 95%.</p></div>
+          <div class="case-cell"><div class="h">Problem</div><p>Applying to Ontario universities with no reliable way to know what grades actually get people in.</p></div>
+          <div class="case-cell"><div class="h">What I built</div><p>A public analytics platform covering 600+ programs and 21 universities, fed by TypeScript ETL pipelines into PostgreSQL.</p></div>
+          <div class="case-cell"><div class="h">Outcome</div><p>1,500+ users in 24 hours, 10,000+ total. Match accuracy improved from 75% to 95% using token-set similarity.</p></div>
         </div>
         <div class="tags"><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">ETL</span></div>
+
+        <div class="deepdive-row">
+          <button class="deepdive-btn" aria-expanded="false" aria-controls="oum-deepdive">
+            <span class="dd-label">Deep dive</span>
+            <span class="dd-arrow">↓</span>
+          </button>
+          <span class="dive-scene" aria-hidden="true">
+            <svg class="dive-stage" viewBox="0 0 64 46" width="64">
+              <!-- pier -->
+              <rect x="0" y="22" width="25" height="4" rx="1.5" fill="#9a8f84"/>
+              <rect x="5" y="25" width="3.4" height="14" rx="1" fill="#7d7269"/>
+              <rect x="16.5" y="25" width="3.4" height="14" rx="1" fill="#7d7269"/>
+              <!-- diver (streamline, arms overhead) -->
+              <g class="diver">
+                <path class="diver-arms" d="M9.8 11.5 L12.5 1 L15.2 11.5" fill="none" stroke="#f4d3b3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="10.4" y="17" width="2.1" height="5.4" rx="1" fill="#f4d3b3"/>
+                <rect x="12.5" y="17" width="2.1" height="5.4" rx="1" fill="#f4d3b3"/>
+                <rect x="9.4" y="9.5" width="6.2" height="9" rx="3.1" fill="#c96b78"/>
+                <circle cx="12.5" cy="8" r="3.2" fill="#f4d3b3"/>
+              </g>
+            </svg>
+            <span class="dive-water">
+              <svg viewBox="0 0 180 22" preserveAspectRatio="none">
+                <path class="wave wave-back" d="M0 11 q15 -5 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 L180 22 L0 22 Z"/>
+                <path class="wave wave-front" d="M0 13 q15 5 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 L180 22 L0 22 Z"/>
+              </svg>
+            </span>
+            <span class="dive-splash"><i></i><i></i><i></i></span>
+          </span>
+        </div>
+        <div class="deepdive" id="oum-deepdive">
+          <div class="deepdive-inner">
+
+          <div class="dd-item">
+            <button class="dd-head" aria-expanded="false">
+              <span class="dd-num">01</span><span class="dd-title">The Problem</span><span class="dd-chevron">›</span>
+            </button>
+            <div class="dd-body">
+              <p>High school students applying to Ontario universities have almost no reliable way to know what grades actually get someone into a program. The best available resource is often a crowdsourced Reddit spreadsheet, but entries are frequently missing a program code, missing a program name, or otherwise incomplete, making it hard for students to search for their program and get accurate results. There is also no historical view and no fast way to compare data across programs or years. On top of that, university pages often publish their own estimated minimum cutoff, which does not always reflect what students are actually getting in with. Students are left manually cross-referencing scattered spreadsheets and official pages to guess their odds.</p>
+            </div>
+          </div>
+
+          <div class="dd-item">
+            <button class="dd-head" aria-expanded="false">
+              <span class="dd-num">02</span><span class="dd-title">Approach</span><span class="dd-chevron">›</span>
+            </button>
+            <div class="dd-body">
+              <p>The underlying data was sourced from two places: crowdsourced admissions spreadsheets, which track real self-reported admission results and feed the core data and visualizations, and official university pages, which publish targeted averages representing each program's estimated minimum cutoff. These served as a benchmark, allowing the platform to show how far official estimates were from actual admitted grades. Both sources came in inconsistent formats with no shared structure across schools or years. Before any analytics could be built, this raw data had to be reconciled into a single consistent dataset and cross-referenced, so the platform could show reported admission averages alongside official published ranges.</p>
+              <p>The pipeline runs in three stages:</p>
+              <ol class="dd-steps">
+                <li>Scrape raw admissions data from crowdsourced spreadsheets and official university pages</li>
+                <li>Clean the data to standardize formatting, remove duplicates, and handle missing values</li>
+                <li>Normalize program names and codes so the same program could be matched correctly across all 21 universities and both data sources, even when naming conventions differed</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="dd-item">
+            <button class="dd-head" aria-expanded="false">
+              <span class="dd-num">03</span><span class="dd-title">Key Challenge: Program Matching Accuracy</span><span class="dd-chevron">›</span>
+            </button>
+            <div class="dd-body">
+              <p>The hardest problem was matching the data correctly. The same program could appear under different names depending on the source: flipped word order, abbreviations, added specializations, or inconsistent formatting, plus records that were missing a code, missing a name, or misspelled. An exact string match against a canonical program list only worked about 75% of the time, dropping or mismatching 25% of data.</p>
+              <p>To fix this, program and university names were normalized and broken into word tokens, then matched using token-set similarity, which scores overlap regardless of word order, so entries like "Engineering, Computer" and "Computer Engineering" were correctly identified as the same program. Matches above a high-confidence threshold were accepted automatically, with override logic handling the rest. This raised match accuracy from 75% to 95%.</p>
+            </div>
+          </div>
+
+          <div class="dd-item">
+            <button class="dd-head" aria-expanded="false">
+              <span class="dd-num">04</span><span class="dd-title">Outcome</span><span class="dd-chevron">›</span>
+            </button>
+            <div class="dd-body">
+              <ul class="dd-stats">
+                <li>1,500+ users within 24 hours of launch</li>
+                <li>10,000+ users total</li>
+                <li>10,000+ records, 600+ programs, 21 universities tracked</li>
+              </ul>
+              <p>The platform launched on Reddit and quickly gained traction among students researching admissions. Feedback highlighted a limitation: since the data is self-reported, students with higher grades are more likely to post their results, which can skew average admitted grades higher than reality. This is a known bias in crowdsourced admissions data, and future versions could address it by weighting or flagging self-reported entries differently from verified sources.</p>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+        <div class="project-links">
+          <span class="pl-label">View my project</span>
+          <a class="pl-link" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.7 4 6 4 9.5s-1.4 6.8-4 9.5c-2.6-2.7-4-6-4-9.5s1.4-6.8 4-9.5z"/></svg>
+            Live site
+          </a>
+          <a class="pl-link" href="https://github.com/rachaelchan1102" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            GitHub
+          </a>
+          <a class="pl-link" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+            Watch demo
+          </a>
+        </div>
       </article>
 
       <article class="work-card a-sage reveal" data-tilt>
