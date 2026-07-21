@@ -43,15 +43,15 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
   const stored = localStorage.getItem('theme');
   if (stored) root.setAttribute('data-theme', stored);
   const current = () => root.getAttribute('data-theme') || (prefersDark.matches ? 'dark' : 'light');
-  const paint = () => { if (btn) btn.textContent = current() === 'dark' ? '☀' : '☾'; };
-  paint();
-  if (btn) btn.addEventListener('click', () => {
-    const next = current() === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    paint();
-  });
-  prefersDark.addEventListener('change', () => { if (!localStorage.getItem('theme')) paint(); });
+  if (btn) {
+    btn.setAttribute('aria-pressed', String(current() === 'dark'));
+    btn.addEventListener('click', () => {
+      const next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      btn.setAttribute('aria-pressed', String(next === 'dark'));
+    });
+  }
 })();
 
 // restart preview videos from the start each time they scroll into view
