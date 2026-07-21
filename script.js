@@ -1,141 +1,106 @@
-const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const fine = window.matchMedia('(pointer:fine)').matches;
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// scroll reveals
-const io = new IntersectionObserver((es) => {
-  es.forEach((e) => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
-// scroll progress thread
-const bar = document.getElementById('progress');
-addEventListener('scroll', () => {
-  const h = document.documentElement;
-  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
-}, { passive: true });
-
-// the toolbox — toolbox by default (click to open, never auto), plain list as fallback
+// rotating intro line
 (function () {
-  const listView = document.getElementById('tbListView');
-  const scene = document.getElementById('tbScene');
-  const box = document.getElementById('tbBox');
-  const tools = document.getElementById('tbTools');
-  const hint = document.getElementById('tbHint');
-  const showBox = document.getElementById('tbShowBox');
-  const showList = document.getElementById('tbShowList');
-  if (!scene || !box || !listView) return;
-
-  const setOpen = (open) => {
-    scene.classList.toggle('open', open);
-    box.setAttribute('aria-expanded', open);
-    tools.setAttribute('aria-hidden', !open);
-    hint.innerHTML = open
-      ? '<span class="spark">✦</span> click to pack it up'
-      : '<span class="spark">✦</span> click the toolbox';
-  };
-
-  let userTouched = false;
-  box.addEventListener('click', () => {
-    userTouched = true;
-    scene.classList.remove('beg'); // they clicked — no more begging
-    setOpen(!scene.classList.contains('open'));
-  });
-
-  // if someone is about to scroll past without ever clicking, don't open it
-  // for them — just bounce HARDER to beg for the click
-  let begFired = false;
-  const almostPast = () => {
-    if (begFired || userTouched || scene.hidden) return;
-    const r = scene.getBoundingClientRect();
-    if (r.bottom > 0 && r.bottom < innerHeight * 0.45) {
-      begFired = true;
-      scene.classList.add('beg');
-      removeEventListener('scroll', almostPast);
-    }
-  };
-  addEventListener('scroll', almostPast, { passive: true });
-
-  showBox.addEventListener('click', () => {
-    listView.hidden = true;
-    scene.hidden = false;
-  });
-
-  showList.addEventListener('click', () => {
-    setOpen(false);
+  const el = document.getElementById('rotator');
+  if (!el) return;
+  const phrases = [
+    'at Teaspresso trying tea samples',
+    'at Eaton Centre window shopping',
+    'on the 28th floor of Chestnut Residence',
+    'playing piano',
+    'petting cats',
+    'plane watching',
+    'in bed sleeping',
+    'in line for BOGO HeyTea deals',
+    'watching plane crash documentaries',
+    'baking mini 4-inch cakes',
+    'baking toffee chocolate chip cookies',
+    'trying to replicate Scaddabush pasta recipes',
+    'binging singing competition shows',
+    'back in Markham',
+  ];
+  if (reduceMotion) { el.textContent = phrases[0]; return; }
+  let i = 0;
+  el.textContent = phrases[0];
+  setInterval(() => {
+    el.classList.add('out');
     setTimeout(() => {
-      scene.hidden = true;
-      listView.hidden = false;
-    }, reduce ? 0 : 350);
-  });
+      let j;
+      do { j = Math.floor(Math.random() * phrases.length); } while (j === i && phrases.length > 1);
+      i = j;
+      el.textContent = phrases[i];
+      el.classList.remove('out');
+    }, 400);
+  }, 2900);
 })();
 
-// one experience card at a time gets the full "hovered" focus state:
-// whichever is closest to the middle of the viewport. Hover works too.
-const expRows = [...document.querySelectorAll('.exp-row')];
-let focusRaf = null;
-function focusRow() {
-  focusRaf = null;
-  const mid = innerHeight / 2;
-  let best = null, bestDist = Infinity;
-  expRows.forEach((r) => {
-    const rect = r.getBoundingClientRect();
-    if (rect.bottom < 100 || rect.top > innerHeight - 100) return; // barely/not visible
-    const d = Math.abs((rect.top + rect.bottom) / 2 - mid);
-    if (d < bestDist) { bestDist = d; best = r; }
+// theme toggle (follows system until the user picks)
+(function () {
+  const root = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const stored = localStorage.getItem('theme');
+  if (stored) root.setAttribute('data-theme', stored);
+  const current = () => root.getAttribute('data-theme') || (prefersDark.matches ? 'dark' : 'light');
+  const paint = () => { if (btn) btn.textContent = current() === 'dark' ? '☀' : '☾'; };
+  paint();
+  if (btn) btn.addEventListener('click', () => {
+    const next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    paint();
   });
-  expRows.forEach((r) => r.classList.toggle('live', r === best));
-}
-addEventListener('scroll', () => {
-  if (!focusRaf) focusRaf = requestAnimationFrame(focusRow);
-}, { passive: true });
-focusRow();
+  prefersDark.addEventListener('change', () => { if (!localStorage.getItem('theme')) paint(); });
+})();
 
-// deep-dive: reveal the accordion, then each section expands on click
+// restart preview videos from the start each time they scroll into view
+(function () {
+  const vids = document.querySelectorAll('.work-thumb video');
+  if (!vids.length) return;
+  const vObs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      const v = e.target;
+      if (e.isIntersecting) { try { v.currentTime = 0; } catch (_) {} v.play().catch(() => {}); }
+      else { v.pause(); }
+    });
+  }, { threshold: 0.4 });
+  vids.forEach((v) => vObs.observe(v));
+})();
+
+// scroll reveals
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+// per-project "Why?" toggles
+document.querySelectorAll('.why-btn').forEach((btn) => {
+  const panel = document.getElementById(btn.getAttribute('aria-controls'));
+  if (!panel) return;
+  btn.addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+    btn.querySelector('.why-label').textContent = open ? 'Hide' : 'Why?';
+  });
+});
+
+// deep-dive accordion (full case study)
 (function () {
   const btn = document.querySelector('.deepdive-btn');
   const panel = document.getElementById('oum-deepdive');
   if (!btn || !panel) return;
-  const row = document.querySelector('.deepdive-row');
   btn.addEventListener('click', () => {
     const opening = panel.classList.toggle('open');
-    if (row) row.classList.toggle('diving', opening); // dolphin dives in / resurfaces
     btn.setAttribute('aria-expanded', String(opening));
-    btn.querySelector('.dd-label').textContent = opening ? 'Hide details' : 'Deep dive';
+    btn.querySelector('.dd-label').textContent = opening ? 'Hide case study' : 'Full case study';
   });
-
   panel.querySelectorAll('.dd-head').forEach((head) => {
     head.addEventListener('click', () => {
-      // each section toggles independently — multiple can be open at once
       const isOpen = head.getAttribute('aria-expanded') === 'true';
       head.setAttribute('aria-expanded', String(!isOpen));
     });
   });
 })();
-
-// magnetic buttons
-if (!reduce && fine) {
-  document.querySelectorAll('[data-magnet]').forEach((btn) => {
-    btn.addEventListener('pointermove', (e) => {
-      const r = btn.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width / 2;
-      const y = e.clientY - r.top - r.height / 2;
-      btn.style.transform = `translate(${x * 0.18}px, ${y * 0.3}px)`;
-    });
-    btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
-  });
-}
-
-// gentle 3D tilt on project cards
-if (!reduce && fine) {
-  document.querySelectorAll('[data-tilt]').forEach((card) => {
-    card.addEventListener('pointermove', (e) => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `perspective(1100px) rotateX(${(-y * 2).toFixed(2)}deg) rotateY(${(x * 2).toFixed(2)}deg)`;
-    });
-    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
-  });
-}
