@@ -99,8 +99,8 @@
           <div class="role-line"><span class="work-title">Ontario University Metrics</span><span class="role-date">Live</span></div>
           <p class="work-sub">A public web app where students compare the grades people actually got in with against official cutoffs, across 600+ Ontario programs.</p>
           <div class="work-links">
-            <a class="text-link" href="#" target="_blank" rel="noopener">Live site &#8599;</a>
-            <a class="text-link" href="https://github.com/rachaelchan1102" target="_blank" rel="noopener">GitHub &#8599;</a>
+            <a class="text-link" href="https://www.ontariouniversitymetrics.com/" target="_blank" rel="noopener">Live site &#8599;</a>
+            <a class="text-link" href="https://github.com/rachaelchan1102/OntarioUniversityMetrics" target="_blank" rel="noopener">GitHub &#8599;</a>
             <button class="why-btn" aria-expanded="false" aria-controls="spec-oum"><span class="why-label">Why?</span><span class="why-arrow" aria-hidden="true">&#8595;</span></button>
             <button class="deepdive-btn" aria-expanded="false" aria-controls="oum-deepdive"><span class="dd-label">Full case study</span><span class="dd-arrow" aria-hidden="true">&#8595;</span></button>
           </div>
@@ -116,37 +116,69 @@
               <div class="dd-item">
                 <button class="dd-head" aria-expanded="false"><span class="dd-title">The Problem</span><span class="dd-chevron" aria-hidden="true">+</span></button>
                 <div class="dd-body">
-                  <p>High school students applying to Ontario universities have almost no reliable way to know what grades actually get someone into a program. The best available resource is often a crowdsourced Reddit spreadsheet, but entries are frequently missing a program code, missing a program name, or otherwise incomplete, making it hard for students to search for their program and get accurate results. There is also no historical view and no fast way to compare data across programs or years. On top of that, university pages often publish their own estimated minimum cutoff, which does not always reflect what students are actually getting in with. Students are left manually cross-referencing scattered spreadsheets and official pages to guess their odds.</p>
+                  <p>High school students applying to Ontario universities have almost no reliable way to know what grades actually get someone into a program.</p>
+                  <ul class="dd-stats">
+                    <li>Crowdsourced Reddit spreadsheets are the best available resource, but entries are often missing a program code or name, making it hard to search and get accurate results, with no historical view or fast way to compare across programs or years.</li>
+                    <li>University pages publish their own estimated minimum cutoffs, but these don't always reflect what students are actually getting in with.</li>
+                  </ul>
+                  <p>Students are left manually cross-referencing scattered spreadsheets and official pages just to guess their odds.</p>
                 </div>
               </div>
               <div class="dd-item">
                 <button class="dd-head" aria-expanded="false"><span class="dd-title">Approach</span><span class="dd-chevron" aria-hidden="true">+</span></button>
                 <div class="dd-body">
                   <p>The underlying data was sourced from two places: crowdsourced admissions spreadsheets, which track real self-reported admission results and feed the core data and visualizations, and official university pages, which publish targeted averages representing each program's estimated minimum cutoff. These served as a benchmark, allowing the platform to show how far official estimates were from actual admitted grades. Both sources came in inconsistent formats with no shared structure across schools or years. Before any analytics could be built, this raw data had to be reconciled into a single consistent dataset and cross-referenced, so the platform could show reported admission averages alongside official published ranges.</p>
-                  <p>The pipeline runs in three stages:</p>
-                  <ol class="dd-steps">
-                    <li>Scrape raw admissions data from crowdsourced spreadsheets and official university pages</li>
-                    <li>Clean the data to standardize formatting, remove duplicates, and handle missing values</li>
-                    <li>Normalize program names and codes so the same program could be matched correctly across all 21 universities and both data sources, even when naming conventions differed</li>
-                  </ol>
+                  <p>The pipeline runs in three stages, scrape, clean, and normalize:</p>
+                  <figure class="dd-figure"><img src="assets/oum_pipeline_diagram.svg" alt="Ontario University Metrics data pipeline diagram: scrape, clean, normalize" /></figure>
                 </div>
               </div>
               <div class="dd-item">
                 <button class="dd-head" aria-expanded="false"><span class="dd-title">Key Challenge: Program Matching Accuracy</span><span class="dd-chevron" aria-hidden="true">+</span></button>
                 <div class="dd-body">
-                  <p>The hardest problem was matching the data correctly. The same program could appear under different names depending on the source: flipped word order, abbreviations, added specializations, or inconsistent formatting, plus records that were missing a code, missing a name, or misspelled. An exact string match against a canonical program list only worked about 75% of the time, dropping or mismatching 25% of data.</p>
-                  <p>To fix this, program and university names were normalized and broken into word tokens, then matched using token-set similarity, which scores overlap regardless of word order, so entries like "Engineering, Computer" and "Computer Engineering" were correctly identified as the same program. Matches above a high-confidence threshold were accepted automatically, with override logic handling the rest. This raised match accuracy from 75% to 95%.</p>
+                  <p>The hardest problem was matching the data correctly. The same program could appear under different names depending on the source:</p>
+                  <ul class="dd-stats">
+                    <li>Flipped word order (e.g. "Computer Engineering" vs. "Engineering, Computer")</li>
+                    <li>Abbreviations or added specializations</li>
+                    <li>Inconsistent formatting</li>
+                    <li>Missing codes, missing names, or misspellings</li>
+                  </ul>
+                  <p>An exact string match against a canonical program list only worked about 75% of the time, dropping or mismatching a quarter of the data.</p>
+                  <p>To fix this, program and university names were normalized and broken into word tokens, then matched using token-set similarity, which scores overlap regardless of word order. Matches above a high-confidence threshold were accepted automatically, with override logic handling the rest. This raised match accuracy from 75% to 95%.</p>
                 </div>
               </div>
               <div class="dd-item">
                 <button class="dd-head" aria-expanded="false"><span class="dd-title">Outcome</span><span class="dd-chevron" aria-hidden="true">+</span></button>
                 <div class="dd-body">
-                  <ul class="dd-stats">
-                    <li>1,500+ users within 24 hours of launch</li>
-                    <li>10,000+ users total</li>
-                    <li>10,000+ records, 600+ programs, 21 universities tracked</li>
-                  </ul>
+                  <div class="kpi-grid">
+                    <div class="kpi"><span class="kpi-num">10,000+</span><span class="kpi-label">users total</span></div>
+                    <div class="kpi"><span class="kpi-num">1,500+</span><span class="kpi-label">users in the first 24 hours</span></div>
+                    <div class="kpi"><span class="kpi-num">600+</span><span class="kpi-label">programs tracked</span></div>
+                    <div class="kpi"><span class="kpi-num">21</span><span class="kpi-label">universities</span></div>
+                  </div>
                   <p>The platform launched on Reddit and quickly gained traction among students researching admissions. Feedback highlighted a limitation: since the data is self-reported, students with higher grades are more likely to post their results, which can skew average admitted grades higher than reality. This is a known bias in crowdsourced admissions data, and future versions could address it by weighting or flagging self-reported entries differently from verified sources.</p>
+                </div>
+              </div>
+
+              <div class="dd-item">
+                <button class="dd-head" aria-expanded="false"><span class="dd-title">Personal Takeaways</span><span class="dd-chevron" aria-hidden="true">+</span></button>
+                <div class="dd-body">
+                  <div class="tk-grid">
+                    <div class="tk-card">
+                      <svg class="tk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+                      <h4 class="tk-title">First live deploy</h4>
+                      <p>Learned to ship to the real public and keep it reliable, not just demo-ready.</p>
+                    </div>
+                    <div class="tk-card">
+                      <svg class="tk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                      <h4 class="tk-title">Users shape products</h4>
+                      <p>Users surfaced issues I'd missed, like self-reporting bias, and kept me iterating.</p>
+                    </div>
+                    <div class="tk-card">
+                      <svg class="tk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+                      <h4 class="tk-title">Solved a problem I had</h4>
+                      <p>Built the admissions tool I'd wished for in high school, which hooked me on fixing problems.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -155,19 +187,109 @@
       </li>
 
       <li class="work">
-        <span class="work-thumb"><!-- <img src="ai-agents.png" alt="AI report agents screenshot"> -->AI report agents screenshot</span>
+        <span class="work-thumb"><!-- <img src="assets/convospark.png" alt="ConvoSpark AI"> -->ConvoSpark AI screenshot</span>
         <div class="work-body">
-          <div class="role-line"><span class="work-title">AI Report-Generation Agents</span><span class="role-date">Shipped</span></div>
-          <p class="work-sub">Agents that turn a plain-language request into a complete, schema-valid Power BI report or dashboard, ready to ship.</p>
+          <div class="role-line"><span class="work-title">ConvoSpark AI</span></div>
+          <p class="work-sub">An AI conversational tool that helps people with Alzheimer's recall details from past conversations.</p>
           <div class="work-links">
-            <button class="why-btn" aria-expanded="false" aria-controls="spec-ai"><span class="why-label">Why?</span><span class="why-arrow" aria-hidden="true">&#8595;</span></button>
+            <a class="text-link" href="https://github.com/rachaelchan1102/ConvoSparkAI" target="_blank" rel="noopener">GitHub &#8599;</a>
+            <button class="why-btn" aria-expanded="false" aria-controls="spec-convospark"><span class="why-label">Why?</span><span class="why-arrow" aria-hidden="true">&#8595;</span></button>
+            <button class="deepdive-btn" aria-expanded="false" aria-controls="convospark-deepdive"><span class="dd-label">Full case study</span><span class="dd-arrow" aria-hidden="true">&#8595;</span></button>
           </div>
-          <div class="spec" id="spec-ai"><div class="spec-inner">
-            <div class="spec-cell"><span class="sh">Problem</span><p>Paginated Power BI reports are slow, specialized work, so every request funneled through a few people.</p></div>
-            <div class="spec-cell"><span class="sh">Built</span><p>Agents that take a plain-language ask and produce a complete report or dashboard, validated against the real data schema.</p></div>
-            <div class="spec-cell"><span class="sh">Outcome</span><p>Turned a multi-day task into minutes and multiplied report output roughly 5×.</p></div>
-            <div class="spec-cell stack"><span class="sh">Stack</span><p>Power BI, MCP, OpenAI API</p></div>
+          <div class="spec" id="spec-convospark"><div class="spec-inner">
+            <div class="spec-cell"><span class="sh">Problem</span><p>People with Alzheimer's lose conversational details, and recall has to stay accurate and cheap even as history grows unbounded.</p></div>
+            <div class="spec-cell"><span class="sh">Built</span><p>A simple, senior-friendly web app backed by a RAG pipeline over live speech-to-text, using OpenAI embeddings, cosine-similarity search, and gpt-4o-mini to answer.</p></div>
+            <div class="spec-cell"><span class="sh">Outcome</span><p>94% answer accuracy, using only what was actually said. Won the YRSTF Cournoyea/Paz-Soldan Award, top of 78 nominees.</p></div>
+            <div class="spec-cell stack"><span class="sh">Stack</span><p>Python, Flask, Socket.IO, Google Web Speech API, OpenAI embeddings + gpt-4o-mini, NumPy, SQLite</p></div>
           </div></div>
+
+          <div class="deepdive" id="convospark-deepdive">
+            <div class="deepdive-inner">
+
+              <div class="dd-item">
+                <button class="dd-head" aria-expanded="false"><span class="dd-title">The Problem</span><span class="dd-chevron" aria-hidden="true">+</span></button>
+                <div class="dd-body">
+                  <p>People with Alzheimer's often lose track of a conversation within minutes: appointment times, who visited, what was said. Notebooks and reminder apps don't help much, since they require the user to remember to write things down and remember to look them up later. We wanted a tool that needed neither: something that listens to a conversation and lets the person or their caregiver ask about it afterward in plain language.</p>
+                  <p>This created two problems at once. Usability had to work for seniors with little tech experience, so the interface needed large text, few buttons, and nothing to configure. Accuracy had to be higher than usual, since a confident wrong answer, like an invented appointment time, is worse than no answer in a memory-care setting.</p>
+                  <p class="dd-note"><strong>Note:</strong> this was built as a science fair prototype and tested with volunteer users, not deployed to real patients. You can also think of it as an automatic note-taker you can talk to that doesn't interfere with your conversation, though that wasn't the original intent.</p>
+                </div>
+              </div>
+
+              <div class="dd-item">
+                <button class="dd-head" aria-expanded="false"><span class="dd-title">Initial Approach</span><span class="dd-chevron" aria-hidden="true">+</span></button>
+                <div class="dd-body">
+                  <p>The app had three core responsibilities:</p>
+                  <ol class="dd-steps">
+                    <li><strong>Listen:</strong> a Flask and Socket.IO backend streams microphone audio through the Google Web Speech API, transcribing live and pushing updates to the browser over websocket.</li>
+                    <li><strong>Understand:</strong> OpenAI GPT models turn the conversation into short, readable notes shown on screen during the session.</li>
+                    <li><strong>Recall:</strong> a separate page lets the user ask a question and get an answer based on what was actually said.</li>
+                  </ol>
+                  <p>The interface stayed deliberately simple: a large transcript panel, a few clearly labelled buttons, nothing to configure. In testing with volunteer users, this version retrieved key details from past conversations with 94% accuracy.</p>
+                </div>
+              </div>
+
+              <div class="dd-item">
+                <button class="dd-head" aria-expanded="false"><span class="dd-title">Idea Evolution</span><span class="dd-chevron" aria-hidden="true">+</span></button>
+                <div class="dd-body">
+                  <p>The original award-winning version proved the concept, but its recall logic was severely limited. It kept the full conversation in memory, and for every question, sent the entire history to the model to search through. That works in a demo, but not as a product: data is lost on restart, it eventually exceeds the model's input limit, and it gets slower, costlier, and less accurate the more someone talks.</p>
+                  <p>After the competition, I rebuilt the recall engine as a Retrieval-Augmented Generation (RAG) pipeline:</p>
+                  <figure class="dd-figure"><img src="assets/rag_pipeline_diagram_convosparkai.svg" alt="ConvoSpark AI RAG pipeline diagram" /></figure>
+                  <p>This keeps answers more accurate and keeps cost roughly constant no matter how large the history gets.</p>
+                </div>
+              </div>
+
+              <div class="dd-item">
+                <button class="dd-head" aria-expanded="false"><span class="dd-title">Key Challenge: Reliable Speech Recall</span><span class="dd-chevron" aria-hidden="true">+</span></button>
+                <div class="dd-body">
+                  <p>The central challenge in the rebuild was turning live speech into something the app could answer questions about accurately later.</p>
+                  <p><strong>Listening and storing.</strong> Natural speech comes in bursts with pauses, and elderly or hesitant speakers pause a lot. Storing whatever the speech recognizer returned produced short, broken fragments that meant nothing on their own. To fix this, a two-timer system was used to group speech into complete units:</p>
+                  <figure class="dd-figure"><img src="assets/speech_segmentation_diagram.svg" alt="Speech segmentation diagram" /></figure>
+                  <p><strong>Recalling.</strong> The original in-memory approach broke down as history grew. Rebuilding recall as a retrieval step, shown in the diagram in Idea Evolution, meant only the most relevant stored pieces are pulled for any given question, keeping answers accurate regardless of how much has been said.</p>
+                </div>
+              </div>
+
+              <div class="dd-item">
+                <button class="dd-head" aria-expanded="false"><span class="dd-title">Outcome</span><span class="dd-chevron" aria-hidden="true">+</span></button>
+                <div class="dd-body">
+                  <div class="kpi-grid k2">
+                    <div class="kpi"><span class="kpi-num">94%</span><span class="kpi-label">recall accuracy</span></div>
+                    <div class="kpi"><span class="kpi-num">1st</span><span class="kpi-label">of 78 nominees, peer-voted as the best project at YRSTF (Cournoyea/Paz-Soldan Award)</span></div>
+                  </div>
+                  <p>Beyond the numbers, it delivered a working real-time app usable by non-technical seniors.</p>
+                  <p>After the competition, the recall system was rebuilt into an embedding-based RAG pipeline that stays accurate and affordable as history grows, with added error handling and on-demand session summaries, all while staying accessible for its users.</p>
+                  <p><strong>Possible next steps:</strong></p>
+                  <ul class="dd-stats">
+                    <li>Per-user accounts with private histories.</li>
+                    <li>Extending the idea into an in-meeting notetaker or general conversation recall tool.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="dd-item">
+                <button class="dd-head" aria-expanded="false"><span class="dd-title">Personal Takeaways</span><span class="dd-chevron" aria-hidden="true">+</span></button>
+                <div class="dd-body">
+                  <div class="tk-grid">
+                    <div class="tk-card">
+                      <svg class="tk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                      <h4 class="tk-title">Human factors first</h4>
+                      <p>Designing for seniors with Alzheimer's taught me to think deeply about the intention behind every aesthetic choice.</p>
+                    </div>
+                    <div class="tk-card">
+                      <svg class="tk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="m3 7 9 5 9-5"/><path d="M12 22V12"/></svg>
+                      <h4 class="tk-title">Prototype vs production</h4>
+                      <p>Winning proved the idea, but the recall logic wouldn't survive real use. Rebuilding it taught me the difference between a good idea and a good product.</p>
+                    </div>
+                    <div class="tk-card">
+                      <svg class="tk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                      <h4 class="tk-title">Back with new skills</h4>
+                      <p>Returning after three years, I could finally fix what the original couldn't, and saw how stepping away and coming back improves both skills and judgment.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </li>
 
@@ -195,9 +317,9 @@
     <h2 class="block-label">Toolkit</h2>
     <div class="toolkit">
       <div class="tk-row"><span class="tk-label">Languages</span><p>Python, TypeScript, JavaScript, SQL, Java, MATLAB, VBA</p></div>
-      <div class="tk-row"><span class="tk-label">Frameworks</span><p>React &amp; Next.js, Pandas</p></div>
-      <div class="tk-row"><span class="tk-label">AI &amp; ML</span><p>OpenAI, Anthropic, MCP</p></div>
-      <div class="tk-row"><span class="tk-label">Cloud &amp; Tools</span><p>Power BI, Microsoft Fabric, PostgreSQL, Supabase, Tableau, SSRS, Excel</p></div>
+      <div class="tk-row"><span class="tk-label">Frameworks</span><p>React &amp; Next.js, Flask, Socket.IO, Pandas, NumPy</p></div>
+      <div class="tk-row"><span class="tk-label">AI &amp; ML</span><p>OpenAI, Anthropic, MCP, RAG</p></div>
+      <div class="tk-row"><span class="tk-label">Cloud &amp; Tools</span><p>Power BI, Microsoft Fabric, PostgreSQL, SQLite, Supabase, Tableau, SSRS, Excel</p></div>
     </div>
   </section>
 

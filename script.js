@@ -87,20 +87,19 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
   });
 });
 
-// deep-dive accordion (full case study)
-(function () {
-  const btn = document.querySelector('.deepdive-btn');
-  const panel = document.getElementById('oum-deepdive');
-  if (!btn || !panel) return;
+// deep-dive accordions (full case studies)
+document.querySelectorAll('.deepdive-btn').forEach((btn) => {
+  const panel = document.getElementById(btn.getAttribute('aria-controls'));
+  if (!panel) return;
   btn.addEventListener('click', () => {
     const opening = panel.classList.toggle('open');
     btn.setAttribute('aria-expanded', String(opening));
     btn.querySelector('.dd-label').textContent = opening ? 'Hide case study' : 'Full case study';
   });
-  panel.querySelectorAll('.dd-head').forEach((head) => {
-    head.addEventListener('click', () => {
-      const isOpen = head.getAttribute('aria-expanded') === 'true';
-      head.setAttribute('aria-expanded', String(!isOpen));
-    });
+});
+document.querySelectorAll('.dd-head').forEach((head) => {
+  head.addEventListener('click', () => {
+    const isOpen = head.getAttribute('aria-expanded') === 'true';
+    head.setAttribute('aria-expanded', String(!isOpen));
   });
-})();
+});
