@@ -95,6 +95,12 @@ document.querySelectorAll('.deepdive-btn').forEach((btn) => {
     const opening = panel.classList.toggle('open');
     btn.setAttribute('aria-expanded', String(opening));
     btn.querySelector('.dd-label').textContent = opening ? 'Hide case study' : 'Full case study';
+    // when closing, reset every inner accordion so it reopens fully collapsed
+    if (!opening) {
+      panel.querySelectorAll('.dd-head[aria-expanded="true"]').forEach((head) => {
+        head.setAttribute('aria-expanded', 'false');
+      });
+    }
   });
 });
 document.querySelectorAll('.dd-head').forEach((head) => {
