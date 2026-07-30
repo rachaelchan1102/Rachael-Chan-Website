@@ -128,8 +128,8 @@ a { color: inherit; }
   transition: background .3s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
 }
 .role:hover { background: var(--chip); transform: translateX(6px); box-shadow: 0 8px 24px rgba(24,26,30,.07); }
-.role-head { flex: 1; min-width: 0; line-height: 1.4; font-size: 14px; letter-spacing: -.012em; }
-.role-head .role-title { font-size: 14px; }
+.role-head { flex: 1; min-width: 0; line-height: 1.4; font-size: 13px; letter-spacing: -.012em; }
+.role-head .role-title { font-size: 13px; }
 .role-at { color: var(--accent); font-weight: 500; }
 /* shine sweep on hover */
 .role::after {
@@ -158,16 +158,22 @@ a { color: inherit; }
 .role-title, .work-title { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
 .role-date { flex: none; font-family: var(--mono); font-size: 12px; color: var(--faint); }
 .role-co { font-size: 14px; color: var(--accent); font-weight: 500; margin-top: 2px; }
-.role-note { font-size: 14px; color: var(--stone); line-height: 1.5; margin-top: 5px; }
+.role-note { font-size: 13px; font-weight: 500; color: var(--stone); line-height: 1.55; letter-spacing: .01em; margin-top: 5px; }
 
 /* ---- work: contained project cards ---- */
 .works { list-style: none; display: flex; flex-direction: column; gap: clamp(20px, 3vw, 30px); }
 .work {
   display: flex; flex-direction: column; gap: 16px;
-  background: var(--work-card); border-radius: 22px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-brd); border-radius: 22px;
   padding: clamp(12px, 1.4vw, 16px);
   box-shadow: 0 1px 2px rgba(24,26,30,.03), 0 12px 30px rgba(24,26,30,.05);
   transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .work { background: var(--work-card); backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
 .work:hover { transform: translateY(-3px); box-shadow: 0 5px 12px rgba(24,26,30,.09), 0 22px 50px rgba(24,26,30,.17); }
 .work-thumb {
@@ -309,4 +315,14 @@ a { color: inherit; }
 }
 @media (max-width: 380px) {
   .name { display: none; }
+}
+
+/* ---- desktop: wide two-column layout ---- */
+@media (min-width: 900px) {
+  .page { max-width: 1500px; padding-inline: clamp(44px, 6vw, 104px); }
+  .intro { max-width: 780px; margin-bottom: clamp(20px, 2.5vw, 34px); }
+  .intro p { font-size: clamp(28px, 2.7vw, 37px); line-height: 1.28; }
+  .exp-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(48px, 7vw, 120px); align-items: start; margin-bottom: clamp(30px, 4vw, 52px); }
+  .exp-row .block { margin-bottom: 0; }
+  .works { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(22px, 2.2vw, 32px); align-items: start; }
 }
