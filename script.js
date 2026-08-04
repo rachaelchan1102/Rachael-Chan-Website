@@ -61,13 +61,8 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
   const vObs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       const v = e.target;
-      if (e.isIntersecting) {
-        const p = v.play();
-        if (p) p.catch(() => {});
-      } else {
-        v.pause();
-        try { v.currentTime = 0; } catch (_) {} // reset on exit so it restarts fresh next time, without interrupting playback
-      }
+      if (e.isIntersecting) { try { v.currentTime = 0; } catch (_) {} v.play().catch(() => {}); }
+      else { v.pause(); }
     });
   }, { threshold: 0.2 });
   vids.forEach((v) => vObs.observe(v));

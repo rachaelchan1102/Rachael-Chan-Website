@@ -7,11 +7,13 @@
   <meta name="description" content="Rachael Chan. Industrial Engineering student at the University of Toronto and aspiring product data analyst who builds data products people rely on." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..700&family=Geist+Mono:wght@400;500&family=Caveat:wght@600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%233f6d89'/><text x='50' y='72' font-size='60' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>R</text></svg>" />
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="paper-rip"><feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
 
 <div class="page">
 
@@ -45,8 +47,16 @@
   </header>
 
   <section class="intro reveal">
-    <p>Rachael Chan is a <strong>product data analyst</strong> and Industrial Engineering student at the University of Toronto.</p>
-    <p class="intro-line">If you can't find her, statistically, she's probably <span class="rotator" id="rotator">at Teaspresso trying tea samples</span>.</p>
+    <div class="intro-text">
+      <p class="intro-hi">Hi, I'm</p>
+      <h1 class="intro-name">Rachael Chan</h1>
+      <p class="intro-desc"><strong>Product data analyst</strong> and Industrial Engineering student at the University of Toronto.</p>
+      <p class="intro-line">If you can't find her, statistically, she's probably <span class="rotator" id="rotator">at Teaspresso trying tea samples</span>.</p>
+    </div>
+    <figure class="intro-snap">
+      <span class="snap-img"><img src="assets/profile/rachael%20chan.png" alt="Rachael Chan" /></span>
+      <figcaption>hi, I'm Rachael</figcaption>
+    </figure>
   </section>
 
   <div class="exp-row">
@@ -298,38 +308,33 @@
         </div>
       </li>
 
-      <li class="work">
-        <span class="work-thumb"><!-- <img src="delivery.png" alt="Automated delivery screenshot"> -->Automated data delivery screenshot</span>
-        <div class="work-body">
-          <div class="role-line"><span class="work-title">Automated Client Data Delivery</span></div>
-          <p class="work-metric"><b>~8 hours</b> saved monthly, fully hands-off</p>
-          <p class="work-sub">A pipeline that validates, formats, and delivers recurring client data files to Dropbox on its own, with full audit logs.</p>
-          <div class="work-links">
-            <button class="why-btn" aria-expanded="false" aria-controls="spec-cd"><span class="why-label">Why?</span><span class="why-arrow" aria-hidden="true">&#8595;</span></button>
-          </div>
-          <div class="spec" id="spec-cd"><div class="spec-inner">
-            <div class="spec-cell"><span class="sh">Problem</span><p>Recurring client deliveries were done by hand, slow and one missed check from sending bad data.</p></div>
-            <div class="spec-cell"><span class="sh">Built</span><p>A pipeline that validates the data, generates the Excel outputs, and delivers to Dropbox with full audit logs.</p></div>
-            <div class="spec-cell"><span class="sh">Outcome</span><p>Fully hands-off delivery, saving about 8 hours a month and removing the manual risk.</p></div>
-            <div class="spec-cell stack"><span class="sh">Stack</span><p>Python, Excel, Dropbox API</p></div>
-          </div></div>
-        </div>
-      </li>
-
     </ul>
   </section>
 
   <section class="block reveal">
     <h2 class="block-label">Technical Skills</h2>
+    <div class="toolkit-wrap">
     <div class="toolkit">
       <div class="tk-row"><span class="tk-label">Languages</span><p>Python, TypeScript, JavaScript, SQL, Java, MATLAB, VBA</p></div>
       <div class="tk-row"><span class="tk-label">Frameworks</span><p>React &amp; Next.js, Flask, Socket.IO, Pandas, NumPy</p></div>
       <div class="tk-row"><span class="tk-label">AI &amp; ML</span><p>OpenAI, Anthropic, MCP, RAG</p></div>
       <div class="tk-row"><span class="tk-label">Cloud &amp; Tools</span><p>Power BI, Microsoft Fabric, PostgreSQL, SQLite, Supabase, Tableau, SSRS, Excel</p></div>
     </div>
+    </div>
+  </section>
+
+  <section class="block reveal">
+    <h2 class="block-label">Off the Clock</h2>
+    <div class="snaps">
+      <div class="snap-lift"><figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-baking/500/500" alt="" /></span><figcaption>4-inch cakes</figcaption></figure></div>
+      <div class="snap-lift"><figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-piano/500/500" alt="" /></span><figcaption>piano nights</figcaption></figure></div>
+      <div class="snap-lift"><figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-planes/500/500" alt="" /></span><figcaption>plane watching</figcaption></figure></div>
+      <div class="snap-lift"><figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-tea/500/500" alt="" /></span><figcaption>tea sampling</figcaption></figure></div>
+    </div>
   </section>
 
   <footer class="foot reveal">
+    <p class="signature" aria-hidden="true">Rachael</p>
     <div class="foot-links">
       <a href="mailto:rachaelchan1102@gmail.com">rachaelchan1102@gmail.com</a>
       <a href="https://github.com/rachaelchan1102" target="_blank" rel="noopener">GitHub</a>
