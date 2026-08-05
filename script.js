@@ -24,20 +24,20 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
   const el = document.getElementById('rotator');
   if (!el) return;
   const phrases = [
-    'in bed sleeping',
-    'at Teaspresso trying tea samples',
-    'at Eaton Centre window shopping',
-    'on the 28th floor of Chestnut Residence',
     'playing piano',
+    'sleeping in',
+    'trying tea samples at Teaspresso',
+    'window shopping at Eaton Centre',
+    'hiding out on the 28th floor of Chestnut Residence',
     'petting cats',
     'plane watching',
-    'in line for BOGO HeyTea deals',
+    'lining up for BOGO HeyTea deals',
     'watching plane crash documentaries',
     'baking mini 4-inch cakes',
     'baking toffee chocolate chip cookies',
     'trying to replicate Scaddabush pasta recipes',
     'binging singing competition shows',
-    'back in Markham',
+    'escaping back to Markham',
   ];
   el.textContent = phrases[0];
   if (reduceMotion) return;
