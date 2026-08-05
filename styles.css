@@ -356,6 +356,9 @@ img, video { max-width: 100%; }
 .top-nav { display: flex; gap: 6px; align-items: center; }
 
 .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: 'Courier Prime', monospace;
   font-size: 10.5px;
   letter-spacing: .06em;
@@ -377,6 +380,8 @@ img, video { max-width: 100%; }
   color: var(--solid-fg);
 }
 .chip--solid:hover { color: var(--solid-fg); }
+
+.ci { width: 12px; height: 12px; flex: none; display: block; }
 
 .r1 { transform: rotate(.8deg); }
 .r2 { transform: rotate(-.9deg); }
@@ -1223,9 +1228,10 @@ img, video { max-width: 100%; }
   .brand .tape { display: none; }
   .avatar { width: 22px; height: 22px; }
   .brand .name { font-size: 16px; }
-  .top-nav { gap: 4px; }
-  .chip { font-size: 9px; padding: 4px 6px; }
-  .chip.hide-sm { display: none; }
+  .top-nav { gap: 5px; }
+  .chip { font-size: 9px; padding: 6px; gap: 0; }
+  .chip .chip-label { display: none; }
+  .ci { width: 13px; height: 13px; }
   .theme-toggle { font-size: 9px; padding: 3px 7px 4px; }
   .theme-toggle .tt-label { display: none; }
 
