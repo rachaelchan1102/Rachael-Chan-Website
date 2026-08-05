@@ -1100,9 +1100,26 @@ img, video { max-width: 100%; }
 /* ============================================================
    off the clock
    ============================================================ */
-.snaps { display: flex; gap: 22px; }
+/* ---------- the deck: a strip of polaroids you page through ---------- */
+.snap-deck { --gap: 22px; --per: 4; }
+
+.snap-viewport {
+  /* clip sideways but let the tilted cards and their shadows breathe
+     vertically; the clip margin keeps rotated corners from being shaved */
+  overflow-x: clip;
+  overflow-y: visible;
+  overflow-clip-margin: 16px;
+}
+
+.snap-track {
+  display: flex;
+  gap: var(--gap);
+  transition: transform .55s cubic-bezier(.22, .78, .3, 1);
+  will-change: transform;
+}
+
 .snap {
-  flex: 1;
+  flex: 0 0 calc((100% - (var(--per) - 1) * var(--gap)) / var(--per));
   margin: 0;
   background: var(--card);
   border: 1px solid var(--line);
@@ -1112,11 +1129,13 @@ img, video { max-width: 100%; }
   box-shadow: var(--shadow-md);
   transition: transform .2s ease;
 }
-.snap:nth-child(1) { transform: rotate(-1.6deg); }
-.snap:nth-child(2) { transform: rotate(1.2deg); }
-.snap:nth-child(3) { transform: rotate(-.8deg); }
-.snap:nth-child(4) { transform: rotate(1.7deg); }
+/* a repeating set of tilts so any number of photos stays hand-placed */
+.snap:nth-child(4n + 1) { transform: rotate(-1.6deg); }
+.snap:nth-child(4n + 2) { transform: rotate(1.2deg); }
+.snap:nth-child(4n + 3) { transform: rotate(-.8deg); }
+.snap:nth-child(4n + 4) { transform: rotate(1.7deg); }
 .snap:hover { transform: rotate(0deg) translateY(-3px); }
+
 .snap-img {
   display: block;
   aspect-ratio: var(--ar, 4 / 3);
@@ -1131,6 +1150,39 @@ img, video { max-width: 100%; }
   padding: 7px 0 10px;
   color: var(--ink);
 }
+
+/* ---------- paging controls, in the same taped-label idiom ---------- */
+.snap-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+.snap-btn {
+  font-family: 'Courier Prime', monospace;
+  font-size: 14px;
+  line-height: 1;
+  padding: 6px 13px 7px;
+  background: var(--chip-bg);
+  border: 1px solid var(--line-2);
+  color: var(--chip-fg);
+  cursor: pointer;
+  box-shadow: var(--shadow-xs);
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.snap-btn:first-of-type { transform: rotate(-1.4deg); }
+.snap-btn:last-of-type { transform: rotate(1.4deg); }
+.snap-btn:hover { transform: rotate(0deg) translateY(-1px); box-shadow: var(--shadow-md); }
+.snap-count {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: var(--mono-mute);
+  min-width: 44px;
+  text-align: center;
+}
+.snap-count b { color: var(--ink); font-weight: 400; }
 
 /* ============================================================
    footer
@@ -1163,9 +1215,7 @@ img, video { max-width: 100%; }
   .works { grid-template-columns: 1fr; }
   .kpi-grid { grid-template-columns: 1fr 1fr; }
   .tk-grid { grid-template-columns: 1fr; }
-  .snaps { display: grid; grid-template-columns: 1fr 1fr; }
-  .snap:nth-child(3) { transform: rotate(1.1deg); }
-  .snap:nth-child(4) { transform: rotate(-1.4deg); }
+  .snap-deck { --per: 2; }
 }
 
 @media (max-width: 640px) {
@@ -1223,9 +1273,10 @@ img, video { max-width: 100%; }
   .toolkit p { font-size: 13.5px; margin-bottom: 8px; }
   .toolkit .tape { display: none; }
 
-  .snaps { gap: 14px; }
+  .snap-deck { --per: 2; --gap: 14px; }
   .snap { padding: 8px 8px 0; outline-offset: -5px; }
   .snap figcaption { font-size: 15px; padding: 6px 0 9px; }
+  .snap-nav { justify-content: center; margin-top: 14px; }
 
   .foot { margin: 28px 20px 0; padding-top: 16px; display: block; }
   .foot-links { gap: 12px; margin: 6px 0 10px; font-size: 12.5px; }

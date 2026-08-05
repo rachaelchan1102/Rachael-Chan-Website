@@ -25,6 +25,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
   if (!el) return;
   const phrases = [
     'playing piano',
+    'scrapbooking',
     'sleeping in',
     'trying tea samples at Teaspresso',
     'window shopping at Eaton Centre',
@@ -111,6 +112,78 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
     btn.querySelector('.why-label').textContent = open ? 'HIDE' : 'WHY?';
   });
 });
+
+/* ---------- Off the Clock: page through the photo deck ---------- */
+(function () {
+  const track = document.getElementById('snapTrack');
+  if (!track) return;
+  const deck = track.closest('.snap-deck');
+  const viewport = track.parentElement;
+  const slides = [...track.children];
+  const pageEl = document.getElementById('snapPage');
+  const pagesEl = document.getElementById('snapPages');
+  let page = 0;
+
+  const perPage = () =>
+    Math.max(1, parseInt(getComputedStyle(deck).getPropertyValue('--per'), 10) || 1);
+  const gap = () => parseFloat(getComputedStyle(track).gap) || 0;
+  const pageCount = () => Math.max(1, Math.ceil(slides.length / perPage()));
+
+  function render() {
+    const total = pageCount();
+    page = ((page % total) + total) % total;           // wrap both ways
+    track.style.transform = `translateX(${-page * (viewport.clientWidth + gap())}px)`;
+    if (pageEl) pageEl.textContent = String(page + 1);
+    if (pagesEl) pagesEl.textContent = String(total);
+    // keep off-screen photos out of the tab order
+    const per = perPage();
+    slides.forEach((s, i) => {
+      const onPage = Math.floor(i / per) === page;
+      s.inert = !onPage;
+      s.setAttribute('aria-hidden', String(!onPage));
+    });
+  }
+
+  deck.querySelectorAll('[data-snap-dir]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      page += Number(btn.dataset.snapDir);
+      render();
+    });
+  });
+
+  // arrow keys when the deck has focus, and swipe on touch
+  deck.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { page += 1; render(); }
+    else if (e.key === 'ArrowLeft') { page -= 1; render(); }
+    else return;
+    e.preventDefault();
+  });
+
+  let startX = null;
+  viewport.addEventListener('pointerdown', (e) => { startX = e.clientX; });
+  viewport.addEventListener('pointerup', (e) => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    if (Math.abs(dx) > 45) { page += dx < 0 ? 1 : -1; render(); }
+  });
+  viewport.addEventListener('pointercancel', () => { startX = null; });
+
+  // re-measure when the column width or the per-page count changes
+  let raf = 0;
+  new ResizeObserver(() => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const prev = track.style.transition;
+      track.style.transition = 'none';   // resize shouldn't animate
+      render();
+      void track.offsetWidth;
+      track.style.transition = prev;
+    });
+  }).observe(viewport);
+
+  render();
+})();
 
 /* ============================================================
    case-study notebooks

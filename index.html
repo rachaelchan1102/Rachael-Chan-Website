@@ -182,11 +182,24 @@
   <!-- ======================= off the clock ======================= -->
   <section class="block reveal">
     <h2 class="block-label t4">Off the Clock</h2>
-    <div class="snaps">
-      <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-baking/600/450" alt="" /></span><figcaption>4-inch cakes</figcaption></figure>
-      <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-piano/600/450" alt="" /></span><figcaption>piano nights</figcaption></figure>
-      <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-planes/600/450" alt="" /></span><figcaption>plane watching</figcaption></figure>
-      <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-tea/600/450" alt="" /></span><figcaption>tea sampling</figcaption></figure>
+    <div class="snap-deck">
+      <div class="snap-viewport">
+        <div class="snap-track" id="snapTrack">
+          <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-baking/600/450" alt="" loading="lazy" /></span><figcaption>4-inch cakes</figcaption></figure>
+          <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-piano/600/450" alt="" loading="lazy" /></span><figcaption>piano nights</figcaption></figure>
+          <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-planes/600/450" alt="" loading="lazy" /></span><figcaption>plane watching</figcaption></figure>
+          <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-tea/600/450" alt="" loading="lazy" /></span><figcaption>tea sampling</figcaption></figure>
+          <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-cookies/600/450" alt="" loading="lazy" /></span><figcaption>toffee cookies</figcaption></figure>
+          <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-cats/600/450" alt="" loading="lazy" /></span><figcaption>cat visits</figcaption></figure>
+          <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-docs/600/450" alt="" loading="lazy" /></span><figcaption>documentary nights</figcaption></figure>
+          <figure class="snap"><span class="snap-img"><img src="https://picsum.photos/seed/rc-markham/600/450" alt="" loading="lazy" /></span><figcaption>back in Markham</figcaption></figure>
+        </div>
+      </div>
+      <div class="snap-nav">
+        <button class="snap-btn" type="button" data-snap-dir="-1" aria-label="Previous photos">&#8592;</button>
+        <span class="snap-count" aria-live="polite"><b id="snapPage">1</b> / <span id="snapPages">2</span></span>
+        <button class="snap-btn" type="button" data-snap-dir="1" aria-label="More photos">&#8594;</button>
+      </div>
     </div>
   </section>
 
