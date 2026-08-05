@@ -58,6 +58,8 @@
   --hole: #161c22;
   --hole-ring: #414c57;
   --scrim: rgba(6, 9, 12, .72);
+  --well: inset 0 0 0 1px rgba(0, 0, 0, .3), inset 0 3px 12px rgba(0, 0, 0, .5), inset 0 -2px 8px rgba(0, 0, 0, .32);
+  --well-sheen: linear-gradient(180deg, rgba(0, 0, 0, .18) 0, rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 84%, rgba(0, 0, 0, .12) 100%);
   --paper-veil: rgba(35, 43, 51, .78);
   --paper-line: rgba(255, 255, 255, .055);
   --margin-rule: rgba(190, 120, 110, .38);
@@ -134,6 +136,8 @@
   --hole: #e9e2d4;
   --hole-ring: #d6cbb8;
   --scrim: rgba(58, 48, 36, .5);
+  --well: inset 0 0 0 1px rgba(60, 45, 30, .1), inset 0 3px 10px rgba(60, 45, 30, .2), inset 0 -2px 6px rgba(60, 45, 30, .1);
+  --well-sheen: linear-gradient(180deg, rgba(60, 45, 30, .1) 0, rgba(60, 45, 30, 0) 15%, rgba(60, 45, 30, 0) 85%, rgba(60, 45, 30, .06) 100%);
   --paper-veil: rgba(255, 253, 248, .78);
   --paper-line: rgba(90, 110, 140, .13);
   --margin-rule: rgba(196, 108, 96, .45);
@@ -253,6 +257,33 @@ img, video { max-width: 100%; }
     repeating-linear-gradient(90deg, var(--plaid-accent) 5px 6.5px, transparent 6.5px 13px),
     repeating-linear-gradient(0deg, var(--plaid-glint) 9px 11px, transparent 11px 13px);
 }
+
+/* ============================================================
+   photo wells — every image sits in a shallow recess in the paper
+   rather than flat on top of it
+   ============================================================ */
+.polaroid .shot,
+.work-thumb,
+.snap-img { position: relative; }
+
+.polaroid .shot::after,
+.work-thumb::after,
+.snap-img::after,
+.dd-figure::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  box-shadow: var(--well);
+  background: var(--well-sheen);
+}
+.polaroid .shot::after,
+.work-thumb::after,
+.snap-img::after { inset: 0; }
+
+/* the diagram frames are padded, so the well hugs the image inside */
+.dd-figure { position: relative; }
+.dd-figure::after { inset: 10px 10px 12px; }
 
 /* ============================================================
    header
@@ -631,6 +662,7 @@ img, video { max-width: 100%; }
   color: var(--mono-mute);
   opacity: 0;
   pointer-events: none;
+  z-index: 2;
 }
 .work-thumb.failed .thumb-note { opacity: 1; }
 
