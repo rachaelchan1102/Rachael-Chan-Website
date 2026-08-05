@@ -58,6 +58,7 @@
   --hole: #161c22;
   --hole-ring: #414c57;
   --scrim: rgba(6, 9, 12, .72);
+  --paper-veil: rgba(35, 43, 51, .78);
   --paper-line: rgba(255, 255, 255, .055);
   --margin-rule: rgba(190, 120, 110, .38);
   --frame: #232b33;
@@ -133,6 +134,7 @@
   --hole: #e9e2d4;
   --hole-ring: #d6cbb8;
   --scrim: rgba(58, 48, 36, .5);
+  --paper-veil: rgba(255, 253, 248, .78);
   --paper-line: rgba(90, 110, 140, .13);
   --margin-rule: rgba(196, 108, 96, .45);
   --frame: #fffdf8;
@@ -826,7 +828,9 @@ img, video { max-width: 100%; }
 .nb-actions a:hover { color: var(--chip-fg); transform: translateY(-1px); box-shadow: var(--shadow-xs); }
 .nb-actions a.primary { background: var(--solid-bg); border-color: var(--solid-bg); color: var(--solid-fg); }
 
-/* section tabs stuck to the top of the paper */
+/* section tabs stuck to the top of the paper — frosted, so the ruled
+   lines still read through, and stopping at the binding so the punched
+   margin runs unbroken down the page */
 .nb-tabs {
   position: sticky;
   top: -34px;
@@ -834,9 +838,11 @@ img, video { max-width: 100%; }
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  margin: 0 -40px 0 -74px;
-  padding: 12px 40px 12px 74px;
-  background: var(--frame);
+  margin: 0 -40px 0 -28px;
+  padding: 12px 40px 12px 28px;
+  background: var(--paper-veil);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
   border-bottom: 1px solid var(--line);
 }
 .nb-tabs button {
@@ -1157,8 +1163,8 @@ html.nb-lock, html.nb-lock body { overflow: hidden; }
   .nb-sub { font-size: 15px; }
   .nb-tabs {
     top: -26px;
-    margin: 0 -20px 0 -42px;
-    padding: 10px 20px 10px 42px;
+    margin: 0 -20px 0 -16px;
+    padding: 10px 20px 10px 16px;
     flex-wrap: nowrap;
     overflow-x: auto;
     scrollbar-width: none;
