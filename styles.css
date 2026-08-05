@@ -1013,7 +1013,8 @@ img, video { max-width: 100%; }
 /* ============================================================
    skills — graph paper
    ============================================================ */
-.skills-label { position: relative; z-index: 4; }
+/* sits above the corner tape, which is z-index 5 */
+.skills-label { position: relative; z-index: 6; }
 .toolkit {
   position: relative;
   background: var(--grid-bg);
