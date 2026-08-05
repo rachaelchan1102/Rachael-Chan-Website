@@ -5,10 +5,9 @@
 
 /* ---------- dark (default) ---------- */
 :root {
-  --body-bg: #0d1116;
   --paper: #171c22;
   --dot: rgba(255, 255, 255, .055);
-  --vignette: inset 0 0 140px rgba(0, 0, 0, .45);
+  --vignette: inset 0 0 240px rgba(0, 0, 0, .3);
 
   --ink: #e6dfd1;
   --ink-soft: #c5c1b5;
@@ -78,10 +77,9 @@
 
 /* ---------- light ---------- */
 [data-theme="light"] {
-  --body-bg: #e9e6e0;
   --paper: #f5f2ec;
   --dot: rgba(90, 70, 50, .075);
-  --vignette: inset 0 0 120px rgba(125, 98, 60, .1);
+  --vignette: inset 0 0 200px rgba(125, 98, 60, .1);
 
   --ink: #2b2620;
   --ink-soft: #6f6559;
@@ -156,9 +154,14 @@
 
 html { scroll-behavior: smooth; }
 
+/* the dotted paper runs the full width of the window; the content
+   column stays 1000px so it still reads like the mockup */
 body {
   margin: 0;
-  background-color: var(--body-bg);
+  min-height: 100vh;
+  background-color: var(--paper);
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 10px 10px;
   color: var(--ink);
   font-family: Newsreader, Georgia, serif;
   font-size: 16px;
@@ -166,16 +169,22 @@ body {
   transition: background-color .25s ease, color .25s ease;
 }
 
+/* soft edge shading so the sheet has depth without boxing the content in */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow: var(--vignette);
+}
+
 .page {
   position: relative;
+  z-index: 1;
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 0 44px;
-  background-color: var(--paper);
-  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
-  background-size: 10px 10px;
-  box-shadow: var(--vignette);
-  transition: background-color .25s ease;
 }
 
 a { color: var(--accent); text-decoration: none; }
