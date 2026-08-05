@@ -687,13 +687,11 @@ img, video { max-width: 100%; }
 }
 .spec.open { grid-template-rows: 1fr; margin-top: 14px; }
 .spec > .spec-inner { min-height: 0; overflow: hidden; }
+/* plain paper, not graph paper: the ruling fought with the wrapped
+   paragraphs in here. The dashed row dividers carry the structure. */
 .spec-inner {
-  background: var(--grid-bg);
+  background: var(--card-alt);
   border: 1px solid var(--line);
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 22px 22px;
 }
 /* no hairline peeking through while collapsed */
 .spec:not(.open) > .spec-inner { border-width: 0; }
