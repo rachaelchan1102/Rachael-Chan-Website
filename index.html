@@ -102,10 +102,13 @@
     <ul class="works">
 
       <!-- ---------- Ontario University Metrics ---------- -->
-      <li class="work tilt-a">
+      <li class="work tape-left">
         <span class="tape tape--green" aria-hidden="true"></span>
         <span class="work-thumb" style="--ar: 1808 / 1080">
-          <video src="assets/oum/ontario%20university%20metrics%20demo.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <video loop muted playsinline preload="none" aria-label="Ontario University Metrics demo">
+            <source data-src="assets/oum/ontario%20university%20metrics%20demo.mp4" type="video/mp4" />
+          </video>
+          <span class="thumb-note" aria-hidden="true">demo unavailable</span>
         </span>
         <div class="work-body">
           <div class="work-title">Ontario University Metrics</div>
@@ -130,10 +133,14 @@
       </li>
 
       <!-- ---------- ConvoSpark AI ---------- -->
-      <li class="work tilt-b">
+      <li class="work tape-right">
         <span class="tape tape--violet" aria-hidden="true"></span>
         <span class="work-thumb" style="--ar: 1920 / 1080">
-          <video src="assets/convospark/convospark%20ai%20demo.MOV" autoplay loop muted playsinline preload="metadata"></video>
+          <video loop muted playsinline preload="none" aria-label="ConvoSpark AI demo">
+            <source data-src="assets/convospark/convospark-ai-demo.mp4" type="video/mp4" />
+            <source data-src="assets/convospark/convospark%20ai%20demo.MOV" type="video/quicktime" />
+          </video>
+          <span class="thumb-note" aria-hidden="true">demo unavailable</span>
         </span>
         <div class="work-body">
           <div class="work-title">ConvoSpark AI</div>
@@ -209,6 +216,14 @@
     <span class="nb-rings" aria-hidden="true"></span>
     <button class="nb-close" type="button" data-nb-close aria-label="Close case study">CLOSE ✕</button>
 
+    <nav class="nb-tabs" aria-label="Jump to section">
+      <button type="button" data-goto="oum-s1">Problem</button>
+      <button type="button" data-goto="oum-s2">Approach</button>
+      <button type="button" data-goto="oum-s3">Key challenge</button>
+      <button type="button" data-goto="oum-s4">Outcome</button>
+      <button type="button" data-goto="oum-s5">Takeaways</button>
+    </nav>
+
     <div class="nb-scroll">
       <header class="nb-head">
         <p class="nb-kicker">Case study · 2025</p>
@@ -224,13 +239,6 @@
         </div>
       </header>
 
-      <nav class="nb-tabs" aria-label="Jump to section">
-        <button type="button" data-goto="oum-s1">Problem</button>
-        <button type="button" data-goto="oum-s2">Approach</button>
-        <button type="button" data-goto="oum-s3">Key challenge</button>
-        <button type="button" data-goto="oum-s4">Outcome</button>
-        <button type="button" data-goto="oum-s5">Takeaways</button>
-      </nav>
 
       <section class="nb-sec" id="oum-s1">
         <h3 class="nb-h">The Problem</h3>
@@ -310,6 +318,15 @@
     <span class="nb-rings" aria-hidden="true"></span>
     <button class="nb-close" type="button" data-nb-close aria-label="Close case study">CLOSE ✕</button>
 
+    <nav class="nb-tabs" aria-label="Jump to section">
+      <button type="button" data-goto="cs-s1">Problem</button>
+      <button type="button" data-goto="cs-s2">Initial approach</button>
+      <button type="button" data-goto="cs-s3">Idea evolution</button>
+      <button type="button" data-goto="cs-s4">Key challenge</button>
+      <button type="button" data-goto="cs-s5">Outcome</button>
+      <button type="button" data-goto="cs-s6">Takeaways</button>
+    </nav>
+
     <div class="nb-scroll">
       <header class="nb-head">
         <p class="nb-kicker">Case study · science fair prototype, rebuilt</p>
@@ -324,14 +341,6 @@
         </div>
       </header>
 
-      <nav class="nb-tabs" aria-label="Jump to section">
-        <button type="button" data-goto="cs-s1">Problem</button>
-        <button type="button" data-goto="cs-s2">Initial approach</button>
-        <button type="button" data-goto="cs-s3">Idea evolution</button>
-        <button type="button" data-goto="cs-s4">Key challenge</button>
-        <button type="button" data-goto="cs-s5">Outcome</button>
-        <button type="button" data-goto="cs-s6">Takeaways</button>
-      </nav>
 
       <section class="nb-sec" id="cs-s1">
         <h3 class="nb-h">The Problem</h3>

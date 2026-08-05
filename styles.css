@@ -223,6 +223,7 @@ img, video { max-width: 100%; }
     repeating-linear-gradient(90deg, var(--ts) 0 5px, transparent 5px 10px);
   opacity: .9;
   pointer-events: none;
+  z-index: 5;
   clip-path: polygon(0 0, 4px 12%, 0 25%, 4px 37%, 0 50%, 4px 62%, 0 75%, 4px 87%, 0 100%,
     100% 100%, calc(100% - 4px) 87%, 100% 75%, calc(100% - 4px) 62%, 100% 50%,
     calc(100% - 4px) 37%, 100% 25%, calc(100% - 4px) 12%, 100% 0);
@@ -568,16 +569,15 @@ img, video { max-width: 100%; }
   box-shadow: var(--shadow-md);
   transition: transform .2s ease, box-shadow .2s ease;
 }
-.work.tilt-a { transform: rotate(-.5deg); }
-.work.tilt-b { transform: rotate(.6deg); }
-.work:hover { transform: rotate(0deg) translateY(-3px); box-shadow: var(--shadow-lift-lg); }
+.work:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift-lg); }
 
-.work.tilt-a > .tape { top: -12px; left: 26px; width: 76px; height: 22px; transform: rotate(-3deg); }
-.work.tilt-b > .tape { top: -12px; right: 26px; width: 76px; height: 22px; transform: rotate(2.5deg); }
+.work.tape-left > .tape { top: -12px; left: 26px; width: 76px; height: 22px; transform: rotate(-3deg); }
+.work.tape-right > .tape { top: -12px; right: 26px; width: 76px; height: 22px; transform: rotate(2.5deg); }
 
 /* the frame takes the clip's own aspect ratio (--ar) so the entire video
    frame is always visible — never cropped, never letterboxed */
 .work-thumb {
+  position: relative;
   display: block;
   aspect-ratio: var(--ar, 16 / 9);
   background: repeating-linear-gradient(45deg, var(--hatch-a) 0 6px, var(--hatch-b) 6px 12px);
@@ -589,6 +589,21 @@ img, video { max-width: 100%; }
   object-fit: contain;
   display: block;
 }
+.thumb-note {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: .06em;
+  padding: 3px 8px;
+  background: var(--paper-veil);
+  color: var(--mono-mute);
+  opacity: 0;
+  pointer-events: none;
+}
+.work-thumb.failed .thumb-note { opacity: 1; }
 
 .work-body { padding: 14px 6px 0; }
 .work-title { font-size: 17px; font-weight: 600; }
@@ -715,8 +730,8 @@ img, video { max-width: 100%; }
 }
 .nb-overlay.open .nb { transform: none; opacity: 1; }
 
-.nb-tape-l { top: -13px; left: 42px; width: 92px; height: 24px; transform: rotate(-2.4deg); }
-.nb-tape-r { top: -13px; right: 152px; width: 84px; height: 24px; transform: rotate(1.8deg); }
+.nb-tape-l { top: -13px; left: 42px; width: 92px; height: 24px; transform: rotate(-2.4deg); z-index: 6; }
+.nb-tape-r { top: -13px; right: 152px; width: 84px; height: 24px; transform: rotate(1.8deg); z-index: 6; }
 
 /* punched margin down the left edge */
 .nb-rings {
@@ -725,6 +740,7 @@ img, video { max-width: 100%; }
   bottom: 0;
   left: 0;
   width: 46px;
+  z-index: 1;
   border-right: 1px solid var(--line);
   background-color: var(--card-alt);
   background-image: radial-gradient(circle at 23px 17px, var(--hole) 0 5.5px, var(--hole-ring) 5.5px 6.5px, transparent 6.5px);
@@ -747,7 +763,7 @@ img, video { max-width: 100%; }
   position: absolute;
   top: -14px;
   right: -10px;
-  z-index: 3;
+  z-index: 4;
   font-family: 'Courier Prime', monospace;
   font-size: 10.5px;
   letter-spacing: .06em;
@@ -769,7 +785,7 @@ img, video { max-width: 100%; }
   overflow-y: auto;
   overscroll-behavior: contain;
   scroll-behavior: smooth;
-  padding: 34px 40px 40px 74px;
+  padding: 30px 40px 40px 74px;
   background-image: repeating-linear-gradient(var(--paper-line) 0 1px, transparent 1px 30px);
   background-position: 0 44px;
   scrollbar-width: thin;
@@ -828,21 +844,17 @@ img, video { max-width: 100%; }
 .nb-actions a:hover { color: var(--chip-fg); transform: translateY(-1px); box-shadow: var(--shadow-xs); }
 .nb-actions a.primary { background: var(--solid-bg); border-color: var(--solid-bg); color: var(--solid-fg); }
 
-/* section tabs stuck to the top of the paper — frosted, so the ruled
-   lines still read through, and stopping at the binding so the punched
-   margin runs unbroken down the page */
+/* section tabs: a fixed bar at the head of the notebook, outside the
+   scrolling paper, so nothing ever slides above or behind it */
 .nb-tabs {
-  position: sticky;
-  top: -34px;
+  position: relative;
   z-index: 2;
+  flex: none;
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  margin: 0 -40px 0 -28px;
-  padding: 12px 40px 12px 28px;
-  background: var(--paper-veil);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
+  padding: 13px 40px 13px 74px;
+  background: var(--frame);
   border-bottom: 1px solid var(--line);
 }
 .nb-tabs button {
@@ -1158,13 +1170,11 @@ html.nb-lock, html.nb-lock body { overflow: hidden; }
   .nb-close { top: 10px; right: 12px; transform: none; }
   .nb-close:hover { transform: none; }
   .nb-kicker { padding-right: 92px; }
-  .nb-scroll { padding: 26px 20px 34px 42px; }
+  .nb-scroll { padding: 22px 20px 34px 42px; }
   .nb-title { font-size: 34px; }
   .nb-sub { font-size: 15px; }
   .nb-tabs {
-    top: -26px;
-    margin: 0 -20px 0 -16px;
-    padding: 10px 20px 10px 16px;
+    padding: 10px 20px 10px 42px;
     flex-wrap: nowrap;
     overflow-x: auto;
     scrollbar-width: none;

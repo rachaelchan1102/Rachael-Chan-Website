@@ -54,15 +54,38 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
   }, 2900);
 })();
 
-/* ---------- restart preview videos each time they scroll into view ---------- */
+/* ---------- demo videos ----------
+   These clips are tens of megabytes, so nothing is fetched until the
+   card is actually on screen. Each then loops while visible and pauses
+   when it isn't. If every source fails to play, the frame says so
+   instead of sitting blank. */
 (function () {
   const vids = document.querySelectorAll('.work-thumb video');
   if (!vids.length) return;
+
+  function load(v) {
+    if (v.dataset.loaded) return;
+    v.dataset.loaded = '1';
+    v.querySelectorAll('source[data-src]').forEach((src) => { src.src = src.dataset.src; });
+    v.load();
+  }
+
+  vids.forEach((v) => {
+    // fires once the browser has run out of sources to try
+    v.addEventListener('error', () => v.closest('.work-thumb').classList.add('failed'), true);
+    v.addEventListener('loadeddata', () => v.closest('.work-thumb').classList.remove('failed'));
+  });
+
   const vObs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       const v = e.target;
-      if (e.isIntersecting) { try { v.currentTime = 0; } catch (_) {} v.play().catch(() => {}); }
-      else { v.pause(); }
+      if (e.isIntersecting) {
+        load(v);
+        try { v.currentTime = 0; } catch (_) {}
+        v.play().catch(() => {});
+      } else if (v.dataset.loaded) {
+        v.pause();
+      }
     });
   }, { threshold: 0.2 });
   vids.forEach((v) => vObs.observe(v));
@@ -183,18 +206,26 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
     const tabs = [...overlay.querySelectorAll('.nb-tabs button')];
     if (!tabs.length) return;
 
+    // distance from the top of the scrollable content to this element
+    const topOf = (el) =>
+      el.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
+
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
         const target = overlay.querySelector('#' + tab.dataset.goto);
-        if (target) scroller.scrollTo({ top: target.offsetTop - 56, behavior: reduceMotion ? 'auto' : 'smooth' });
+        if (target) scroller.scrollTo({ top: topOf(target) - 14, behavior: reduceMotion ? 'auto' : 'smooth' });
       });
     });
 
     const sections = tabs.map((t) => overlay.querySelector('#' + t.dataset.goto)).filter(Boolean);
     const mark = () => {
-      const y = scroller.scrollTop + 90;
+      const y = scroller.scrollTop + 40;
       let idx = 0;
-      sections.forEach((s, i) => { if (s.offsetTop <= y) idx = i; });
+      sections.forEach((s, i) => { if (topOf(s) <= y) idx = i; });
+      // the last sections can't reach the top of the scrollport, so once
+      // we're at the bottom the final one is what's being read
+      const atEnd = scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 4;
+      if (atEnd) idx = sections.length - 1;
       tabs.forEach((t, i) => t.setAttribute('aria-current', String(i === idx)));
     };
     overlay.markTabs = mark;
