@@ -57,6 +57,9 @@
 
   --hole: #161c22;
   --hole-ring: #414c57;
+  --scrim: rgba(6, 9, 12, .72);
+  --paper-line: rgba(255, 255, 255, .055);
+  --margin-rule: rgba(190, 120, 110, .38);
   --frame: #232b33;
   --frame-line: #38424d;
   --dash: #454f5a;
@@ -129,6 +132,9 @@
 
   --hole: #e9e2d4;
   --hole-ring: #d6cbb8;
+  --scrim: rgba(58, 48, 36, .5);
+  --paper-line: rgba(90, 110, 140, .13);
+  --margin-rule: rgba(196, 108, 96, .45);
   --frame: #fffdf8;
   --frame-line: #e2d9c9;
   --dash: #ded3bd;
@@ -152,13 +158,21 @@
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* nothing is ever allowed to scroll sideways — the sheet is exactly as
+   wide as the window. `clip` rather than `hidden` so it doesn't turn the
+   root into a scroll container (which would break sticky positioning). */
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
 
 /* the dotted paper runs the full width of the window; the content
    column stays 1000px so it still reads like the mockup */
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: clip;
+  max-width: 100%;
   background-color: var(--paper);
   background-image: radial-gradient(var(--dot) 1px, transparent 1px);
   background-size: 10px 10px;
@@ -414,13 +428,14 @@ img, video { max-width: 100%; }
 }
 .polaroid:hover { transform: rotate(0deg) translateY(-3px); }
 .polaroid .tape { top: -13px; left: 50%; width: 84px; height: 24px; transform: translateX(-50%) rotate(-2deg); }
+/* frame matches the photo's own ratio so none of it is cropped away */
 .polaroid .shot {
   display: block;
-  height: 236px;
+  aspect-ratio: var(--ar, 1 / 1);
   background: repeating-linear-gradient(45deg, var(--hatch-a) 0 6px, var(--hatch-b) 6px 12px);
   overflow: hidden;
 }
-.polaroid .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.polaroid .shot img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
 /* ============================================================
    section labels
@@ -554,19 +569,24 @@ img, video { max-width: 100%; }
 .work.tilt-a { transform: rotate(-.5deg); }
 .work.tilt-b { transform: rotate(.6deg); }
 .work:hover { transform: rotate(0deg) translateY(-3px); box-shadow: var(--shadow-lift-lg); }
-.work.expanded { grid-column: 1 / -1; transform: rotate(0deg); }
-.work.expanded:hover { transform: rotate(0deg); }
 
 .work.tilt-a > .tape { top: -12px; left: 26px; width: 76px; height: 22px; transform: rotate(-3deg); }
 .work.tilt-b > .tape { top: -12px; right: 26px; width: 76px; height: 22px; transform: rotate(2.5deg); }
 
+/* the frame takes the clip's own aspect ratio (--ar) so the entire video
+   frame is always visible — never cropped, never letterboxed */
 .work-thumb {
   display: block;
-  height: 200px;
+  aspect-ratio: var(--ar, 16 / 9);
   background: repeating-linear-gradient(45deg, var(--hatch-a) 0 6px, var(--hatch-b) 6px 12px);
   overflow: hidden;
 }
-.work-thumb video, .work-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.work-thumb video, .work-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 
 .work-body { padding: 14px 6px 0; }
 .work-title { font-size: 17px; font-weight: 600; }
@@ -607,6 +627,8 @@ img, video { max-width: 100%; }
   color: var(--solid-fg);
 }
 .work-links a.primary:hover { color: var(--solid-fg); }
+.work-links .nb-open-btn { border-color: var(--accent); color: var(--accent); }
+.work-links .nb-open-btn:hover { color: var(--accent); }
 
 /* ============================================================
    "Why?" — graph-paper index card
@@ -644,80 +666,235 @@ img, video { max-width: 100%; }
 .spec-cell p { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
 
 /* ============================================================
-   deep dive — taped folder of case-study sections
+   case-study notebook — a ring-bound notebook that zooms open over
+   the page. One transform, no reflow, so it stays smooth.
    ============================================================ */
-.deepdive {
+.nb-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
   display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows .35s ease, margin-top .35s ease;
-  margin-top: 0;
+  /* minmax(0,1fr) so the track can't grow to the tab row's max-content —
+     otherwise the notebook's own `width: 100%` resolves against that */
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  padding: 4vh 24px;
+  opacity: 0;
+  transition: opacity .32s ease;
 }
-.deepdive.open { grid-template-rows: 1fr; margin-top: 18px; }
-.deepdive > .deepdive-inner { min-height: 0; overflow: hidden; }
-.deepdive-inner {
+/* `display` beats the hidden attribute, so opt out explicitly */
+.nb-overlay[hidden] { display: none; }
+.nb-overlay.open { opacity: 1; }
+
+.nb-scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim);
+  backdrop-filter: blur(4px) saturate(.85);
+  -webkit-backdrop-filter: blur(4px) saturate(.85);
+  cursor: pointer;
+}
+
+.nb {
+  position: relative;
+  width: min(920px, 100%);
+  max-height: 92vh;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  background: var(--frame);
+  border: 1px solid var(--frame-line);
+  box-shadow: 0 26px 70px -12px rgba(0, 0, 0, .6), 0 3px 10px rgba(0, 0, 0, .3);
+  /* the zoom: origin is set from the card that opened it */
+  transform: scale(.9) translateY(26px);
+  transform-origin: var(--nb-origin, 50% 50%);
+  opacity: 0;
+  transition: transform .5s cubic-bezier(.16, .84, .28, 1), opacity .3s ease;
+  will-change: transform, opacity;
+}
+.nb-overlay.open .nb { transform: none; opacity: 1; }
+
+.nb-tape-l { top: -13px; left: 42px; width: 92px; height: 24px; transform: rotate(-2.4deg); }
+.nb-tape-r { top: -13px; right: 152px; width: 84px; height: 24px; transform: rotate(1.8deg); }
+
+/* punched margin down the left edge */
+.nb-rings {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 46px;
+  border-right: 1px solid var(--line);
+  background-color: var(--card-alt);
+  background-image: radial-gradient(circle at 23px 17px, var(--hole) 0 5.5px, var(--hole-ring) 5.5px 6.5px, transparent 6.5px);
+  background-size: 100% 40px;
+  background-repeat: repeat-y;
+  pointer-events: none;
+}
+/* the red margin rule just inside the punch line */
+.nb-rings::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -5px;
+  width: 1px;
+  background: var(--margin-rule);
 }
 
-.dd-item {
-  background: var(--card-alt);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-xs);
-}
-.dd-head {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 15px;
-  background: none;
-  border: 0;
-  border-bottom: 1px dashed transparent;
-  cursor: pointer;
-  text-align: left;
-  color: var(--ink);
-  font: inherit;
-}
-.dd-head[aria-expanded="true"] { border-bottom-color: var(--line-2); }
-.dd-title { font-family: Caveat, cursive; font-size: 21px; font-weight: 600; }
-.dd-chevron {
+.nb-close {
+  position: absolute;
+  top: -14px;
+  right: -10px;
+  z-index: 3;
   font-family: 'Courier Prime', monospace;
-  font-size: 16px;
-  line-height: 1;
-  color: var(--accent);
-  flex: none;
+  font-size: 10.5px;
+  letter-spacing: .06em;
+  padding: 5px 10px;
+  background: var(--solid-bg);
+  border: 1px solid var(--solid-bg);
+  color: var(--solid-fg);
+  cursor: pointer;
+  transform: rotate(2deg);
+  box-shadow: var(--shadow-md);
+  transition: transform .18s ease;
 }
-.dd-chevron::before { content: "+"; }
-.dd-head[aria-expanded="true"] .dd-chevron::before { content: "–"; }
+.nb-close:hover { transform: rotate(0deg) translateY(-1px); }
 
-.dd-body {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows .3s ease;
+/* ruled paper that scrolls under the binding */
+.nb-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  padding: 34px 40px 40px 74px;
+  background-image: repeating-linear-gradient(var(--paper-line) 0 1px, transparent 1px 30px);
+  background-position: 0 44px;
+  scrollbar-width: thin;
 }
-.dd-head[aria-expanded="true"] + .dd-body { grid-template-rows: 1fr; }
-.dd-body > .dd-copy { min-height: 0; overflow: hidden; }
-.dd-copy { padding: 0 16px; }
-.dd-head[aria-expanded="true"] + .dd-body > .dd-copy { padding: 14px 16px 18px; }
-.dd-copy > * + * { margin-top: 12px; }
-.dd-copy p { font-size: 14.5px; line-height: 1.62; color: var(--ink-soft); }
-.dd-copy strong { color: var(--ink); font-weight: 600; }
+.nb-scroll::-webkit-scrollbar { width: 10px; }
+.nb-scroll::-webkit-scrollbar-track { background: transparent; }
+.nb-scroll::-webkit-scrollbar-thumb { background: var(--line-2); border: 3px solid var(--frame); }
+
+.nb-head { padding-bottom: 20px; border-bottom: 1px dashed var(--line-2); }
+.nb-kicker {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mono-mute);
+}
+.nb-title {
+  font-family: Caveat, cursive;
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1.02;
+  margin: 2px 0 8px;
+}
+.nb-sub { font-size: 16.5px; line-height: 1.5; color: var(--ink-soft); max-width: 46em; }
+.nb-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 26px;
+  margin-top: 14px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+.nb-meta i {
+  font-family: 'Courier Prime', monospace;
+  font-style: normal;
+  font-size: 9.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--mono-mute);
+  margin-right: 7px;
+}
+.nb-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 10.5px;
+}
+.nb-actions a {
+  padding: 5px 9px;
+  border: 1px solid var(--line-2);
+  color: var(--chip-fg);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.nb-actions a:hover { color: var(--chip-fg); transform: translateY(-1px); box-shadow: var(--shadow-xs); }
+.nb-actions a.primary { background: var(--solid-bg); border-color: var(--solid-bg); color: var(--solid-fg); }
+
+/* section tabs stuck to the top of the paper */
+.nb-tabs {
+  position: sticky;
+  top: -34px;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 0 -40px 0 -74px;
+  padding: 12px 40px 12px 74px;
+  background: var(--frame);
+  border-bottom: 1px solid var(--line);
+}
+.nb-tabs button {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  background: var(--chip-bg);
+  border: 1px solid var(--line-2);
+  color: var(--chip-fg);
+  cursor: pointer;
+  transition: transform .15s ease, background-color .15s ease, color .15s ease;
+}
+.nb-tabs button:hover { transform: translateY(-1px); }
+.nb-tabs button[aria-current="true"] {
+  background: var(--solid-bg);
+  border-color: var(--solid-bg);
+  color: var(--solid-fg);
+}
+
+.nb-sec { padding-top: 30px; scroll-margin-top: 56px; }
+.nb-sec > * + * { margin-top: 13px; }
+.nb-sec p { font-size: 15.5px; line-height: 1.72; color: var(--ink-soft); }
+.nb-sec strong { color: var(--ink); font-weight: 600; }
+
+.nb-h {
+  display: inline-block;
+  font-family: Caveat, cursive;
+  font-size: 29px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+  border-bottom: 2px solid var(--label-rule);
+  padding-bottom: 1px;
+}
+
+.nb-end {
+  margin-top: 44px;
+  text-align: center;
+  font-family: Caveat, cursive;
+  font-size: 19px;
+  color: var(--mono-mute);
+}
 
 .dd-note {
   padding: 11px 13px;
   background: var(--card);
   border: 1px dashed var(--line-2);
-  font-size: 13.5px !important;
+  font-size: 14.5px !important;
 }
 
 .dd-stats, .dd-steps { display: flex; flex-direction: column; gap: 9px; }
 .dd-stats li, .dd-steps li {
   position: relative;
-  padding-left: 22px;
-  font-size: 14.5px;
-  line-height: 1.6;
+  padding-left: 24px;
+  font-size: 15.5px;
+  line-height: 1.7;
   color: var(--ink-soft);
 }
 .dd-stats li::before {
@@ -847,11 +1024,11 @@ img, video { max-width: 100%; }
 .snap:hover { transform: rotate(0deg) translateY(-3px); }
 .snap-img {
   display: block;
-  height: 112px;
+  aspect-ratio: var(--ar, 4 / 3);
   overflow: hidden;
   background: repeating-linear-gradient(45deg, var(--hatch-a) 0 6px, var(--hatch-b) 6px 12px);
 }
-.snap-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.snap-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .snap figcaption {
   font-family: Caveat, cursive;
   font-size: 17px;
@@ -915,7 +1092,6 @@ img, video { max-width: 100%; }
   .intro-line { font-size: 13px; }
   .polaroid { width: 150px; margin: 20px auto 0; padding: 9px 9px 10px; }
   .polaroid .tape { top: -11px; width: 66px; height: 20px; }
-  .polaroid .shot { height: 160px; }
 
   .block, .exp-row { padding: 26px 20px 0; }
   .block-label { font-size: 22px; padding: 3px 14px 4px; margin-bottom: 13px; }
@@ -933,7 +1109,6 @@ img, video { max-width: 100%; }
   .works { gap: 16px; }
   .work { padding: 10px 10px 14px; }
   .work > .tape { display: none; }
-  .work-thumb { height: 150px; }
   .work-body { padding: 12px 4px 0; }
   .work-title { font-size: 16px; }
   .work-metric { font-size: 16px; margin: 1px 0 5px; }
@@ -957,7 +1132,6 @@ img, video { max-width: 100%; }
 
   .snaps { gap: 14px; }
   .snap { padding: 8px 8px 0; outline-offset: -5px; }
-  .snap-img { height: 96px; }
   .snap figcaption { font-size: 15px; padding: 6px 0 9px; }
 
   .foot { margin: 28px 20px 0; padding-top: 16px; display: block; }
@@ -965,8 +1139,41 @@ img, video { max-width: 100%; }
   .foot-copy { font-size: 9.5px; }
 }
 
+/* body scroll lock while a notebook is open */
+html.nb-lock, html.nb-lock body { overflow: hidden; }
+
+/* ---------- notebook, small screens ---------- */
+@media (max-width: 860px) {
+  .nb-overlay { padding: 0; }
+  .nb { width: 100%; max-height: 100vh; height: 100vh; border: 0; }
+  .nb-tape-l, .nb-tape-r { display: none; }
+  .nb-rings { width: 26px; }
+  .nb-rings { background-image: radial-gradient(circle at 13px 15px, var(--hole) 0 4px, var(--hole-ring) 4px 5px, transparent 5px); background-size: 100% 34px; }
+  .nb-close { top: 10px; right: 12px; transform: none; }
+  .nb-close:hover { transform: none; }
+  .nb-kicker { padding-right: 92px; }
+  .nb-scroll { padding: 26px 20px 34px 42px; }
+  .nb-title { font-size: 34px; }
+  .nb-sub { font-size: 15px; }
+  .nb-tabs {
+    top: -26px;
+    margin: 0 -20px 0 -42px;
+    padding: 10px 20px 10px 42px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nb-tabs::-webkit-scrollbar { display: none; }
+  .nb-tabs button { flex: none; }
+  .nb-sec { padding-top: 24px; }
+  .nb-sec p, .dd-stats li, .dd-steps li { font-size: 14.5px; line-height: 1.65; }
+  .nb-h { font-size: 25px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
+  .nb { transform: none; }
+  .nb-scroll { scroll-behavior: auto; }
 }
