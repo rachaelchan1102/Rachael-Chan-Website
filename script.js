@@ -146,8 +146,31 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
       const onPage = Math.floor(i / per) === page;
       s.inert = !onPage;
       s.setAttribute('aria-hidden', String(!onPage));
+      if (!onPage) setFlipped(s, false);   // leave the page face-up
     });
   }
+
+  /* ---- flipping a photo over to read the fun fact ---- */
+  function setFlipped(fig, on) {
+    if (fig.classList.contains('flipped') === on) return;
+    fig.classList.toggle('flipped', on);
+    const btn = fig.querySelector('.snap-flip');
+    if (btn) btn.setAttribute('aria-pressed', String(on));
+    // only the side facing the reader should be readable
+    const front = fig.querySelector('.snap-front');
+    const back = fig.querySelector('.snap-back');
+    if (front) front.setAttribute('aria-hidden', String(on));
+    if (back) back.setAttribute('aria-hidden', String(!on));
+  }
+
+  slides.forEach((fig) => {
+    const btn = fig.querySelector('.snap-flip');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      if (dragged) return;   // that was a swipe, not a tap
+      setFlipped(fig, !fig.classList.contains('flipped'));
+    });
+  });
 
   deck.querySelectorAll('[data-snap-dir]').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -165,14 +188,21 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
   });
 
   let startX = null;
-  viewport.addEventListener('pointerdown', (e) => { startX = e.clientX; });
-  viewport.addEventListener('pointerup', (e) => {
+  let dragged = false;
+  // the drag starts on the strip, but it's tracked on the window: a swipe
+  // usually ends with the cursor outside the strip, and capturing the
+  // pointer instead would retarget the click and break tap-to-flip
+  viewport.addEventListener('pointerdown', (e) => { startX = e.clientX; dragged = false; });
+  window.addEventListener('pointermove', (e) => {
+    if (startX !== null && Math.abs(e.clientX - startX) > 8) dragged = true;
+  });
+  window.addEventListener('pointerup', (e) => {
     if (startX === null) return;
     const dx = e.clientX - startX;
     startX = null;
     if (Math.abs(dx) > 45) { page += dx < 0 ? 1 : -1; render(); }
   });
-  viewport.addEventListener('pointercancel', () => { startX = null; });
+  window.addEventListener('pointercancel', () => { startX = null; dragged = false; });
 
   // re-measure when the column width or the per-page count changes
   let raf = 0;
