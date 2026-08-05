@@ -123,20 +123,25 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
   const pageEl = document.getElementById('snapPage');
   const pagesEl = document.getElementById('snapPages');
   let page = 0;
+  let anchor = 0; // index of the first photo on the current page
 
   const perPage = () =>
     Math.max(1, parseInt(getComputedStyle(deck).getPropertyValue('--per'), 10) || 1);
   const gap = () => parseFloat(getComputedStyle(track).gap) || 0;
   const pageCount = () => Math.max(1, Math.ceil(slides.length / perPage()));
 
-  function render() {
+  // keepAnchor: after a resize the photos-per-page may have changed, so
+  // stay on the photo you were looking at instead of the page number
+  function render(keepAnchor) {
+    const per = perPage();
     const total = pageCount();
+    if (keepAnchor) page = Math.floor(anchor / per);
     page = ((page % total) + total) % total;           // wrap both ways
+    anchor = page * per;
     track.style.transform = `translateX(${-page * (viewport.clientWidth + gap())}px)`;
     if (pageEl) pageEl.textContent = String(page + 1);
     if (pagesEl) pagesEl.textContent = String(total);
     // keep off-screen photos out of the tab order
-    const per = perPage();
     slides.forEach((s, i) => {
       const onPage = Math.floor(i / per) === page;
       s.inert = !onPage;
@@ -176,7 +181,7 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
     raf = requestAnimationFrame(() => {
       const prev = track.style.transition;
       track.style.transition = 'none';   // resize shouldn't animate
-      render();
+      render(true);
       void track.offsetWidth;
       track.style.transition = prev;
     });

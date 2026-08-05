@@ -1020,7 +1020,6 @@ img, video { max-width: 100%; }
   background: var(--frame);
   border: 1px solid var(--frame-line);
   box-shadow: var(--shadow-md);
-  transform: rotate(-.4deg);
 }
 .dd-figure img { width: 100%; height: auto; display: block; }
 
