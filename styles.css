@@ -733,6 +733,18 @@ img, video { max-width: 100%; }
 .nb-tape-l { top: -13px; left: 42px; width: 92px; height: 24px; transform: rotate(-2.4deg); z-index: 6; }
 .nb-tape-r { top: -13px; right: 152px; width: 84px; height: 24px; transform: rotate(1.8deg); z-index: 6; }
 
+/* the strips on the notebook are opaque — they read as tape holding it
+   up rather than a tint over the scrim behind */
+.nb .tape { opacity: 1; }
+.nb .tape--green  { --tb: #4c5c4e; --ts: rgba(191, 207, 193, .42); }
+.nb .tape--sand   { --tb: #706349; --ts: rgba(227, 214, 187, .42); }
+.nb .tape--violet { --tb: #585165; --ts: rgba(203, 196, 216, .42); }
+.nb .tape--rose   { --tb: #71545c; --ts: rgba(228, 198, 207, .42); }
+[data-theme="light"] .nb .tape--green  { --tb: #dde6db; --ts: rgba(108, 142, 112, .4); }
+[data-theme="light"] .nb .tape--sand   { --tb: #ece2cc; --ts: rgba(176, 150, 100, .4); }
+[data-theme="light"] .nb .tape--violet { --tb: #e4dfec; --ts: rgba(132, 118, 160, .4); }
+[data-theme="light"] .nb .tape--rose   { --tb: #f0dfe2; --ts: rgba(186, 128, 144, .4); }
+
 /* punched margin down the left edge */
 .nb-rings {
   position: absolute;
@@ -785,7 +797,7 @@ img, video { max-width: 100%; }
   overflow-y: auto;
   overscroll-behavior: contain;
   scroll-behavior: smooth;
-  padding: 30px 40px 40px 74px;
+  padding: 0 40px 40px 74px;
   background-image: repeating-linear-gradient(var(--paper-line) 0 1px, transparent 1px 30px);
   background-position: 0 44px;
   scrollbar-width: thin;
@@ -794,7 +806,7 @@ img, video { max-width: 100%; }
 .nb-scroll::-webkit-scrollbar-track { background: transparent; }
 .nb-scroll::-webkit-scrollbar-thumb { background: var(--line-2); border: 3px solid var(--frame); }
 
-.nb-head { padding-bottom: 20px; border-bottom: 1px dashed var(--line-2); }
+.nb-head { padding: 34px 0 4px; }
 .nb-kicker {
   font-family: 'Courier Prime', monospace;
   font-size: 10px;
@@ -844,19 +856,21 @@ img, video { max-width: 100%; }
 .nb-actions a:hover { color: var(--chip-fg); transform: translateY(-1px); box-shadow: var(--shadow-xs); }
 .nb-actions a.primary { background: var(--solid-bg); border-color: var(--solid-bg); color: var(--solid-fg); }
 
-/* section tabs: a fixed bar at the head of the notebook, outside the
-   scrolling paper, so nothing ever slides above or behind it */
+/* section tabs: they follow the title, then pin to the top as you read.
+   The scroller has no top padding, so `top: 0` is exactly the top edge —
+   nothing can ever slide above them. Opaque, and stretched from the
+   binding to the right edge so no text peeks around either side. */
 .nb-tabs {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 2;
-  flex: none;
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  padding: 13px 40px 13px 74px;
+  margin: 22px -40px 0 -28px;
+  padding: 12px 40px 12px 28px;
   background: var(--frame);
+  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
+.nb-tabs-track { display: flex; gap: 6px; flex-wrap: wrap; }
 .nb-tabs button {
   font-family: 'Courier Prime', monospace;
   font-size: 10px;
@@ -876,7 +890,7 @@ img, video { max-width: 100%; }
   color: var(--solid-fg);
 }
 
-.nb-sec { padding-top: 30px; scroll-margin-top: 56px; }
+.nb-sec { padding-top: 28px; }
 .nb-sec > * + * { margin-top: 13px; }
 .nb-sec p { font-size: 15.5px; line-height: 1.72; color: var(--ink-soft); }
 .nb-sec strong { color: var(--ink); font-weight: 600; }
@@ -1170,17 +1184,24 @@ html.nb-lock, html.nb-lock body { overflow: hidden; }
   .nb-close { top: 10px; right: 12px; transform: none; }
   .nb-close:hover { transform: none; }
   .nb-kicker { padding-right: 92px; }
-  .nb-scroll { padding: 22px 20px 34px 42px; }
+  .nb-scroll { padding: 0 20px 34px 42px; }
+  .nb-head { padding-top: 24px; }
   .nb-title { font-size: 34px; }
   .nb-sub { font-size: 15px; }
   .nb-tabs {
-    padding: 10px 20px 10px 42px;
+    margin: 18px -20px 0 -16px;
+    padding: 10px 20px 10px 16px;
+  }
+  /* the bar stays full width so nothing shows through beside it, while the
+     tab strip itself stops short of the close chip and scrolls within */
+  .nb-tabs-track {
     flex-wrap: nowrap;
     overflow-x: auto;
+    margin-right: 74px;
     scrollbar-width: none;
   }
-  .nb-tabs::-webkit-scrollbar { display: none; }
-  .nb-tabs button { flex: none; }
+  .nb-tabs-track::-webkit-scrollbar { display: none; }
+  .nb-tabs-track button { flex: none; }
   .nb-sec { padding-top: 24px; }
   .nb-sec p, .dd-stats li, .dd-steps li { font-size: 14.5px; line-height: 1.65; }
   .nb-h { font-size: 25px; }

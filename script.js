@@ -203,30 +203,52 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
   /* section tabs: jump within the notebook, and highlight what you're reading */
   document.querySelectorAll('.nb-overlay').forEach((overlay) => {
     const scroller = overlay.querySelector('.nb-scroll');
+    const rail = overlay.querySelector('.nb-tabs');
     const tabs = [...overlay.querySelectorAll('.nb-tabs button')];
     if (!tabs.length) return;
+
+    // the rail pins over the top of the paper, so everything below has to
+    // clear its height rather than the raw scrollport edge
+    const railH = () => rail.offsetHeight;
 
     // distance from the top of the scrollable content to this element
     const topOf = (el) =>
       el.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
 
-    tabs.forEach((tab) => {
+    const sections = tabs.map((t) => overlay.querySelector('#' + t.dataset.goto)).filter(Boolean);
+    const setCurrent = (idx) => tabs.forEach((t, i) => t.setAttribute('aria-current', String(i === idx)));
+
+    // a click wins over scroll tracking until the reader scrolls again —
+    // the last sections sit at the bottom of the scroll range and can
+    // never reach the top, so position alone can't tell them apart
+    let picked = -1;
+    let pickedAt = 0;
+
+    tabs.forEach((tab, i) => {
       tab.addEventListener('click', () => {
         const target = overlay.querySelector('#' + tab.dataset.goto);
-        if (target) scroller.scrollTo({ top: topOf(target) - 14, behavior: reduceMotion ? 'auto' : 'smooth' });
+        if (!target) return;
+        picked = i;
+        pickedAt = performance.now();
+        setCurrent(i);
+        scroller.scrollTo({ top: topOf(target) - railH() - 10, behavior: reduceMotion ? 'auto' : 'smooth' });
       });
     });
 
-    const sections = tabs.map((t) => overlay.querySelector('#' + t.dataset.goto)).filter(Boolean);
     const mark = () => {
-      const y = scroller.scrollTop + 40;
+      // ignore the scroll events the click itself produced
+      if (picked >= 0 && performance.now() - pickedAt < 900) { setCurrent(picked); return; }
+      picked = -1;
+      const y = scroller.scrollTop + railH() + 24;
       let idx = 0;
       sections.forEach((s, i) => { if (topOf(s) <= y) idx = i; });
-      // the last sections can't reach the top of the scrollport, so once
-      // we're at the bottom the final one is what's being read
-      const atEnd = scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 4;
-      if (atEnd) idx = sections.length - 1;
-      tabs.forEach((t, i) => t.setAttribute('aria-current', String(i === idx)));
+      // the final section can't scroll to the top, so at the bottom it's
+      // whatever has begun above the middle of the page
+      if (scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 4) {
+        const mid = scroller.scrollTop + scroller.clientHeight / 2;
+        sections.forEach((s, i) => { if (topOf(s) <= mid && i > idx) idx = i; });
+      }
+      setCurrent(idx);
     };
     overlay.markTabs = mark;
     let queued = false;
