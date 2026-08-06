@@ -1,0 +1,7 @@
+node_modules/
+
+# This site is plain HTML served straight from the repo with no build
+# step, so it has no npm dependencies. A package.json at the root also
+# makes Vercel look for a build to run.
+package.json
+package-lock.json
