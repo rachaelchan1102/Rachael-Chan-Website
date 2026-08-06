@@ -410,28 +410,23 @@ img, video { max-width: 100%; }
 .r3 { transform: rotate(.5deg); }
 .r4 { transform: rotate(-.4deg); }
 
-/* theme toggle, in the same tape-label idiom */
+/* the toggle is a .chip too, so it matches the others exactly; all it
+   adds is the tilt and swapping which icon and word show */
 .theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-family: 'Courier Prime', monospace;
-  font-size: 10.5px;
-  letter-spacing: .06em;
-  padding: 4px 9px 5px;
   margin-left: 2px;
-  background: var(--chip-bg);
-  border: 1px solid var(--line-2);
-  color: var(--chip-fg);
   cursor: pointer;
   transform: rotate(1deg);
-  transition: transform .15s ease, box-shadow .15s ease;
 }
 .theme-toggle:hover { transform: rotate(0deg) translateY(-1px); box-shadow: var(--shadow-xs); }
-.theme-toggle .ti { font-size: 12px; line-height: 1; }
-.theme-toggle .ti-moon, .theme-toggle .tt-light { display: none; }
-[data-theme="light"] .theme-toggle .ti-sun, [data-theme="light"] .theme-toggle .tt-dark { display: none; }
-[data-theme="light"] .theme-toggle .ti-moon, [data-theme="light"] .theme-toggle .tt-light { display: inline; }
+/* swap which icon and word show. The icons must stay display:block like
+   every other .ci — flipping them to inline changes their layout box and
+   made the toggle shorter than the chips beside it. */
+.theme-toggle .ti-moon { display: none; }
+.theme-toggle .tt-light { display: none; }
+[data-theme="light"] .theme-toggle .ti-sun { display: none; }
+[data-theme="light"] .theme-toggle .tt-dark { display: none; }
+[data-theme="light"] .theme-toggle .ti-moon { display: block; }
+[data-theme="light"] .theme-toggle .tt-light { display: inline; }
 
 /* ============================================================
    intro
@@ -983,6 +978,7 @@ img, video { max-width: 100%; }
   transition: transform .15s ease, background-color .15s ease, color .15s ease;
 }
 .nb-tabs button:hover { transform: translateY(-1px); }
+.nb-tabs .t-short { display: none; }
 .nb-tabs button[aria-current="true"] {
   background: var(--solid-bg);
   border-color: var(--solid-bg);
@@ -1264,7 +1260,10 @@ img, video { max-width: 100%; }
   justify-content: space-between;
   gap: 10px;
   padding: 16px 15px;
-  background: var(--card-alt);
+  /* flat: no inset dashed frame and the same paper as the front, so the
+     reverse doesn't read as a recessed panel */
+  outline: none;
+  background: var(--card);
   overflow: hidden;
 }
 .snap-fact-label {
@@ -1467,8 +1466,7 @@ img, video { max-width: 100%; }
   }
   .theme-toggle { position: relative; }
   .ci { width: 13px; height: 13px; }
-  .theme-toggle { font-size: 9px; padding: 3px 7px 4px; }
-  .theme-toggle .tt-label { display: none; }
+
 
   .intro { display: block; padding: 16px 20px 0; }
   .intro-hi { font-size: 20px; }
@@ -1564,16 +1562,17 @@ html.nb-lock, html.nb-lock body { overflow: hidden; }
     margin: 18px -20px 0 -5px;
     padding: 10px 20px 10px 5px;
   }
-  /* the bar stays full width so nothing shows through beside it, while the
-     tab strip itself stops short of the close chip and scrolls within */
+  /* wrap onto a second row rather than scrolling sideways — over half the
+     tabs used to sit off-screen with nothing to show they were there.
+     The right margin keeps the first row clear of the close chip. */
   .nb-tabs-track {
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    gap: 5px;
     margin-right: 74px;
-    scrollbar-width: none;
   }
-  .nb-tabs-track::-webkit-scrollbar { display: none; }
-  .nb-tabs-track button { flex: none; }
+  .nb-tabs .t-full { display: none; }
+  .nb-tabs .t-short { display: inline; }
+  .nb-tabs button { padding: 5px 8px; letter-spacing: .03em; }
   .nb-sec { padding-top: 24px; }
   .nb-sec p, .dd-stats li, .dd-steps li { font-size: 14.5px; line-height: 1.65; }
   .nb-h { font-size: 25px; }
