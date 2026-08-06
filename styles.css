@@ -1140,10 +1140,10 @@ img, video { max-width: 100%; }
 }
 /* a repeating set of tilts and pin colours so any number of photos stays
    hand-placed rather than falling into a pattern */
-.snap:nth-child(4n + 1) { transform: rotate(-1.6deg); --pin: #ce98a8; --pin-deep: #9d6879; }
-.snap:nth-child(4n + 2) { transform: rotate(1.2deg);  --pin: #7e9bba; --pin-deep: #536f8d; }
-.snap:nth-child(4n + 3) { transform: rotate(-.8deg);  --pin: #8aa88e; --pin-deep: #5e7c62; }
-.snap:nth-child(4n + 4) { transform: rotate(1.7deg);  --pin: #ccb484; --pin-deep: #9a8352; }
+.snap:nth-child(4n + 1) { transform: rotate(-1.6deg); --pin: #c05a52; --pin-deep: #8a3a34; }
+.snap:nth-child(4n + 2) { transform: rotate(1.2deg);  --pin: #6d8aa8; --pin-deep: #445f79; }
+.snap:nth-child(4n + 3) { transform: rotate(-.8deg);  --pin: #7f9a72; --pin-deep: #536e49; }
+.snap:nth-child(4n + 4) { transform: rotate(1.7deg);  --pin: #c19a4e; --pin-deep: #8a6a2b; }
 .snap:hover { transform: rotate(0deg) translateY(-3px); }
 
 /* The pin holding the print to the board. It lives on the wrapper rather
