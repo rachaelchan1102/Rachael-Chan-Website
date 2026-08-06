@@ -1123,6 +1123,9 @@ img, video { max-width: 100%; }
 
 .snap-track {
   display: flex;
+  /* frames differ in height because each keeps its photo's ratio, so hang
+     them from the top rather than stretching them to match */
+  align-items: flex-start;
   gap: var(--gap);
   transition: transform .55s cubic-bezier(.22, .78, .3, 1);
   will-change: transform;

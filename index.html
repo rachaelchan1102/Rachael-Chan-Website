@@ -184,12 +184,13 @@
     <h2 class="block-label t4">Off the Clock</h2>
     <div class="snap-deck">
       <div class="snap-viewport">
-        <!-- Fun facts are drafts based on your own rotator phrases — edit .snap-note freely. -->
+        <!-- Each frame takes its own photo's ratio (--ar) so nothing is cropped.
+             Fun facts below are drafts — edit .snap-note freely. -->
         <div class="snap-track" id="snapTrack">
           <figure class="snap">
             <button class="snap-flip" type="button" aria-pressed="false" aria-label="4-inch cakes — flip for a fun fact">
               <span class="snap-face snap-front">
-                <span class="snap-img"><img src="https://picsum.photos/seed/rc-baking/600/450" alt="4-inch cakes" loading="lazy" /></span>
+                <span class="snap-img" style="--ar: 1170 / 1226"><img src="assets/hobby%20poloroids/cake.jpg" alt="4-inch cakes" loading="lazy" /></span>
                 <span class="snap-cap">4-inch cakes<i class="snap-turn" aria-hidden="true">↻</i></span>
               </span>
               <span class="snap-face snap-back" aria-hidden="true">
@@ -201,7 +202,7 @@
           <figure class="snap">
             <button class="snap-flip" type="button" aria-pressed="false" aria-label="piano nights — flip for a fun fact">
               <span class="snap-face snap-front">
-                <span class="snap-img"><img src="https://picsum.photos/seed/rc-piano/600/450" alt="piano nights" loading="lazy" /></span>
+                <span class="snap-img" style="--ar: 1170 / 1271"><img src="assets/hobby%20poloroids/piano.jpg" alt="piano nights" loading="lazy" /></span>
                 <span class="snap-cap">piano nights<i class="snap-turn" aria-hidden="true">↻</i></span>
               </span>
               <span class="snap-face snap-back" aria-hidden="true">
@@ -213,7 +214,7 @@
           <figure class="snap">
             <button class="snap-flip" type="button" aria-pressed="false" aria-label="plane watching — flip for a fun fact">
               <span class="snap-face snap-front">
-                <span class="snap-img"><img src="https://picsum.photos/seed/rc-planes/600/450" alt="plane watching" loading="lazy" /></span>
+                <span class="snap-img" style="--ar: 1169 / 1143"><img src="assets/hobby%20poloroids/plane%20watching.jpg" alt="plane watching" loading="lazy" /></span>
                 <span class="snap-cap">plane watching<i class="snap-turn" aria-hidden="true">↻</i></span>
               </span>
               <span class="snap-face snap-back" aria-hidden="true">
@@ -225,7 +226,7 @@
           <figure class="snap">
             <button class="snap-flip" type="button" aria-pressed="false" aria-label="tea sampling — flip for a fun fact">
               <span class="snap-face snap-front">
-                <span class="snap-img"><img src="https://picsum.photos/seed/rc-tea/600/450" alt="tea sampling" loading="lazy" /></span>
+                <span class="snap-img" style="--ar: 1170 / 1240"><img src="assets/hobby%20poloroids/tea.jpg" alt="tea sampling" loading="lazy" /></span>
                 <span class="snap-cap">tea sampling<i class="snap-turn" aria-hidden="true">↻</i></span>
               </span>
               <span class="snap-face snap-back" aria-hidden="true">
@@ -235,13 +236,37 @@
             </button>
           </figure>
           <figure class="snap">
-            <button class="snap-flip" type="button" aria-pressed="false" aria-label="toffee cookies — flip for a fun fact">
+            <button class="snap-flip" type="button" aria-pressed="false" aria-label="brunch spots — flip for a fun fact">
               <span class="snap-face snap-front">
-                <span class="snap-img"><img src="https://picsum.photos/seed/rc-cookies/600/450" alt="toffee cookies" loading="lazy" /></span>
-                <span class="snap-cap">toffee cookies<i class="snap-turn" aria-hidden="true">↻</i></span>
+                <span class="snap-img" style="--ar: 1170 / 1288"><img src="assets/hobby%20poloroids/brunch%20spots.jpg" alt="brunch spots" loading="lazy" /></span>
+                <span class="snap-cap">brunch spots<i class="snap-turn" aria-hidden="true">↻</i></span>
               </span>
               <span class="snap-face snap-back" aria-hidden="true">
-                <span class="snap-note">Toffee chocolate chip cookies are the house specialty. The toffee gets chopped by hand.</span>
+                <span class="snap-note">Ranking Toronto brunch spots is an ongoing and very serious research project.</span>
+                <span class="snap-turn-back">↺ back</span>
+              </span>
+            </button>
+          </figure>
+          <figure class="snap">
+            <button class="snap-flip" type="button" aria-pressed="false" aria-label="sushi runs — flip for a fun fact">
+              <span class="snap-face snap-front">
+                <span class="snap-img" style="--ar: 1170 / 1097"><img src="assets/hobby%20poloroids/sushi.jpg" alt="sushi runs" loading="lazy" /></span>
+                <span class="snap-cap">sushi runs<i class="snap-turn" aria-hidden="true">↻</i></span>
+              </span>
+              <span class="snap-face snap-back" aria-hidden="true">
+                <span class="snap-note">Sushi is my default answer whenever someone asks where we should eat.</span>
+                <span class="snap-turn-back">↺ back</span>
+              </span>
+            </button>
+          </figure>
+          <figure class="snap">
+            <button class="snap-flip" type="button" aria-pressed="false" aria-label="eating through New York — flip for a fun fact">
+              <span class="snap-face snap-front">
+                <span class="snap-img" style="--ar: 1170 / 1214"><img src="assets/hobby%20poloroids/exploring%20food%20in%20new%20york.jpg" alt="eating through New York" loading="lazy" /></span>
+                <span class="snap-cap">eating through New York<i class="snap-turn" aria-hidden="true">↻</i></span>
+              </span>
+              <span class="snap-face snap-back" aria-hidden="true">
+                <span class="snap-note">Planned an entire New York trip around what I wanted to eat.</span>
                 <span class="snap-turn-back">↺ back</span>
               </span>
             </button>
@@ -249,7 +274,7 @@
           <figure class="snap">
             <button class="snap-flip" type="button" aria-pressed="false" aria-label="cat visits — flip for a fun fact">
               <span class="snap-face snap-front">
-                <span class="snap-img"><img src="https://picsum.photos/seed/rc-cats/600/450" alt="cat visits" loading="lazy" /></span>
+                <span class="snap-img" style="--ar: 1170 / 1497"><img src="assets/hobby%20poloroids/cat.jpg" alt="cat visits" loading="lazy" /></span>
                 <span class="snap-cap">cat visits<i class="snap-turn" aria-hidden="true">↻</i></span>
               </span>
               <span class="snap-face snap-back" aria-hidden="true">
@@ -259,13 +284,13 @@
             </button>
           </figure>
           <figure class="snap">
-            <button class="snap-flip" type="button" aria-pressed="false" aria-label="documentary nights — flip for a fun fact">
+            <button class="snap-flip" type="button" aria-pressed="false" aria-label="jellycats — flip for a fun fact">
               <span class="snap-face snap-front">
-                <span class="snap-img"><img src="https://picsum.photos/seed/rc-docs/600/450" alt="documentary nights" loading="lazy" /></span>
-                <span class="snap-cap">documentary nights<i class="snap-turn" aria-hidden="true">↻</i></span>
+                <span class="snap-img" style="--ar: 1170 / 1511"><img src="assets/hobby%20poloroids/jellycat.jpg" alt="jellycats" loading="lazy" /></span>
+                <span class="snap-cap">jellycats<i class="snap-turn" aria-hidden="true">↻</i></span>
               </span>
               <span class="snap-face snap-back" aria-hidden="true">
-                <span class="snap-note">Singing competition shows, back to back, no regrets.</span>
+                <span class="snap-note">The Jellycat collection has comfortably outgrown the shelf it was meant to live on.</span>
                 <span class="snap-turn-back">↺ back</span>
               </span>
             </button>
@@ -273,7 +298,7 @@
           <figure class="snap">
             <button class="snap-flip" type="button" aria-pressed="false" aria-label="back in Markham — flip for a fun fact">
               <span class="snap-face snap-front">
-                <span class="snap-img"><img src="https://picsum.photos/seed/rc-markham/600/450" alt="back in Markham" loading="lazy" /></span>
+                <span class="snap-img" style="--ar: 919 / 874"><img src="assets/hobby%20poloroids/markham.jpg" alt="back in Markham" loading="lazy" /></span>
                 <span class="snap-cap">back in Markham<i class="snap-turn" aria-hidden="true">↻</i></span>
               </span>
               <span class="snap-face snap-back" aria-hidden="true">
