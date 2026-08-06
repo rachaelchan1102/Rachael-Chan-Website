@@ -102,6 +102,12 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 })();
 
+/* ---------- footer year, so the copyright can't go stale ---------- */
+(function () {
+  const el = document.getElementById('year');
+  if (el) el.textContent = String(new Date().getFullYear());
+})();
+
 /* ---------- per-project "Why?" summary ---------- */
 document.querySelectorAll('.why-btn').forEach((btn) => {
   const panel = document.getElementById(btn.getAttribute('aria-controls'));
