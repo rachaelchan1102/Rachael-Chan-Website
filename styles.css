@@ -1132,17 +1132,43 @@ img, video { max-width: 100%; }
 }
 
 .snap {
+  position: relative;
   flex: 0 0 calc((100% - (var(--per) - 1) * var(--gap)) / var(--per));
   margin: 0;
   perspective: 1100px;
   transition: transform .2s ease;
 }
-/* a repeating set of tilts so any number of photos stays hand-placed */
-.snap:nth-child(4n + 1) { transform: rotate(-1.6deg); }
-.snap:nth-child(4n + 2) { transform: rotate(1.2deg); }
-.snap:nth-child(4n + 3) { transform: rotate(-.8deg); }
-.snap:nth-child(4n + 4) { transform: rotate(1.7deg); }
+/* a repeating set of tilts and pin colours so any number of photos stays
+   hand-placed rather than falling into a pattern */
+.snap:nth-child(4n + 1) { transform: rotate(-1.6deg); --pin: #ce98a8; --pin-deep: #9d6879; }
+.snap:nth-child(4n + 2) { transform: rotate(1.2deg);  --pin: #7e9bba; --pin-deep: #536f8d; }
+.snap:nth-child(4n + 3) { transform: rotate(-.8deg);  --pin: #8aa88e; --pin-deep: #5e7c62; }
+.snap:nth-child(4n + 4) { transform: rotate(1.7deg);  --pin: #ccb484; --pin-deep: #9a8352; }
 .snap:hover { transform: rotate(0deg) translateY(-3px); }
+
+/* The pin holding the print to the board. It lives on the wrapper rather
+   than the card, so the photo swings around it when you flip it over.
+   A rounded head, but with the specular highlight kept small and low
+   so it doesn't read as shiny plastic. Colours are the washi hues. */
+.snap::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: -7px;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  margin-left: -7.5px;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255, 255, 255, .3) 0 9%, rgba(255, 255, 255, 0) 44%),
+    radial-gradient(circle at 62% 72%, var(--pin-deep), var(--pin) 70%);
+  box-shadow:
+    0 2px 3px rgba(0, 0, 0, .32),
+    inset 0 -1px 1.5px rgba(0, 0, 0, .22),
+    inset 0 1px 1px rgba(255, 255, 255, .1);
+}
 
 /* the card itself turns over in 3D; the tilt above stays on the wrapper
    so the two transforms don't fight each other */
@@ -1231,7 +1257,14 @@ img, video { max-width: 100%; }
   overflow: hidden;
   background: repeating-linear-gradient(45deg, var(--hatch-a) 0 6px, var(--hatch-b) 6px 12px);
 }
-.snap-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.snap-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  /* per-photo tone tweak, set with --adjust on the .snap-img */
+  filter: var(--adjust, none);
+}
 
 /* ---------- paging controls, in the same taped-label idiom ---------- */
 .snap-nav {
@@ -1358,6 +1391,7 @@ img, video { max-width: 100%; }
 
   .snap-deck { --per: 2; --gap: 14px; }
   .snap-face { padding: 8px 8px 0; outline-offset: -5px; }
+  .snap::before { width: 12px; height: 12px; margin-left: -6px; top: -6px; }
   .snap-cap { font-size: 15px; padding: 6px 0 9px; }
   .snap-back { padding: 12px 11px; gap: 7px; }
   .snap-note { font-size: 16px; }

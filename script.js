@@ -120,6 +120,65 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
   const deck = track.closest('.snap-deck');
   const viewport = track.parentElement;
   const slides = [...track.children];
+
+  // Deal the photos fresh every visit, but spread them out: a plain
+  // shuffle happily puts both sushi shots side by side. Cards are grouped
+  // by data-kind, each group is shuffled, then they're dealt by always
+  // taking from the largest remaining group that isn't the one just
+  // placed. Two photos of the same kind therefore never sit next to each
+  // other, and the biggest group (food) leads, so a food shot opens the
+  // deck. Runs before the section reveals itself, so nothing visibly
+  // jumps. Delete this block to keep the order written in the HTML.
+  (function dealSpread() {
+    const groups = new Map();
+    slides.forEach((el) => {
+      const kind = el.dataset.kind || 'misc';
+      if (!groups.has(kind)) groups.set(kind, []);
+      groups.get(kind).push(el);
+    });
+    for (const arr of groups.values()) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+    const dealt = [];
+    let last = null;
+    while (dealt.length < slides.length) {
+      let pick = null;
+      for (const [kind, arr] of groups) {
+        if (!arr.length || kind === last) continue;
+        if (!pick || arr.length > groups.get(pick).length) pick = kind;
+      }
+      // only the kind we just placed is left, so it has to go next
+      if (pick === null) for (const [kind, arr] of groups) if (arr.length) { pick = kind; break; }
+      dealt.push(groups.get(pick).pop());
+      last = pick;
+    }
+    // Some photos are flagged to stay off the opening page. 4 covers the
+    // widest page (4-up on desktop, 2-up on mobile), so a card past that
+    // index can't show up first at any breakpoint.
+    const OPENING = 4;
+    const sameAsNeighbour = (arr) =>
+      arr.some((el, k) => k > 0 && el.dataset.kind === arr[k - 1].dataset.kind);
+    const wasClean = !sameAsNeighbour(dealt);
+    dealt.forEach((el, at) => {
+      if (el.dataset.hold !== 'off-first' || at >= OPENING) return;
+      for (let to = OPENING; to < dealt.length; to++) {
+        [dealt[at], dealt[to]] = [dealt[to], dealt[at]];
+        // keep the swap only if it didn't pair up two of a kind
+        if (!wasClean || !sameAsNeighbour(dealt)) return;
+        [dealt[at], dealt[to]] = [dealt[to], dealt[at]];
+      }
+      // nothing worked out, so just push it to the back
+      dealt.push(dealt.splice(at, 1)[0]);
+    });
+
+    slides.length = 0;
+    slides.push(...dealt);
+    track.append(...dealt);
+  })();
+
   const pageEl = document.getElementById('snapPage');
   const pagesEl = document.getElementById('snapPages');
   let page = 0;
