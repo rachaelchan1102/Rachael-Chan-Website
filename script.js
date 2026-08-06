@@ -4,7 +4,8 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 (function () {
   const root = document.documentElement;
   const stored = localStorage.getItem('theme');
-  const initial = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  // light is the default; a visitor's own choice still wins on return
+  const initial = stored || 'light';
   root.setAttribute('data-theme', initial);
 
   const btn = document.getElementById('themeToggle');
