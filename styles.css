@@ -1235,6 +1235,17 @@ img, video { max-width: 100%; }
   background: var(--card-alt);
   overflow: hidden;
 }
+.snap-fact-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--mono-mute);
+  padding-bottom: 7px;
+  border-bottom: 1px dashed var(--line-2);
+  margin-bottom: 2px;
+}
 .snap-note {
   font-family: Caveat, cursive;
   font-size: 19px;
