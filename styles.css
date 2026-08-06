@@ -1228,7 +1228,14 @@ img, video { max-width: 100%; }
   box-shadow: var(--shadow-md);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  /* Safari doesn't cull positioned descendants with the face they belong
+     to, so the photo well's overlay printed a ghost rectangle through the
+     reverse. Hiding the away-facing side outright fixes it everywhere;
+     the delay is half the flip, so the swap happens edge-on. */
+  transition: visibility 0s linear .31s;
 }
+.snap:not(.flipped) .snap-back { visibility: hidden; }
+.snap.flipped .snap-front { visibility: hidden; }
 
 .snap-cap {
   display: flex;
@@ -1585,4 +1592,5 @@ html.nb-lock, html.nb-lock body { overflow: hidden; }
   .nb { transform: none; }
   .nb-scroll { scroll-behavior: auto; }
   .snap-flip { transition: none; }
+  .snap-face { transition-delay: 0s; }
 }

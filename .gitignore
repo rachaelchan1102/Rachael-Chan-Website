@@ -5,3 +5,6 @@ node_modules/
 # makes Vercel look for a build to run.
 package.json
 package-lock.json
+
+.vercel
+.env*
