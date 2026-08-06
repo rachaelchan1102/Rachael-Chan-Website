@@ -573,5 +573,11 @@
 </div>
 
 <script src="script.js"></script>
+
+<!-- Vercel Web Analytics. The React <Analytics /> component needs a build
+     step; this is the plain-HTML equivalent. /_vercel/insights/script.js is
+     served by Vercel itself, so it 404s on localhost — that's expected. -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
