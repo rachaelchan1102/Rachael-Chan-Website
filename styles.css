@@ -489,27 +489,37 @@ img, video { max-width: 100%; }
 }
 .rotator.out { opacity: 0; transform: translateY(-4px); }
 
-/* polaroid */
+/* the headshot, mounted on the same patterned stock as the footer note.
+   The tile is scaled down so a full motif still reads in the narrower
+   border band. */
 .polaroid {
   position: relative;
   flex: none;
-  width: 214px;
+  width: 236px;
   margin: 0;
-  padding: 11px 11px 13px;
-  background: var(--frame);
-  border: 1px solid var(--frame-line);
-  box-shadow: var(--shadow-frame);
+  padding: 21px;
+  background-color: var(--mount);
+  background-image: var(--stamp);
+  background-size: 26px 26px;
+  background-repeat: round;
+  border: 1px solid var(--mount-line);
+  box-shadow: 0 0 0 1px var(--mount) inset, var(--mount-shadow);
   transform: rotate(1.6deg);
   transition: transform .25s ease;
 }
 .polaroid:hover { transform: rotate(0deg) translateY(-3px); }
 .polaroid .tape { top: -13px; left: 50%; width: 84px; height: 24px; transform: translateX(-50%) rotate(-2deg); }
-/* frame matches the photo's own ratio so none of it is cropped away */
+/* frame matches the photo's own ratio so none of it is cropped away,
+   double-ruled in the accent colour like the footer note */
 .polaroid .shot {
   display: block;
   aspect-ratio: var(--ar, 1 / 1);
   background: repeating-linear-gradient(45deg, var(--hatch-a) 0 6px, var(--hatch-b) 6px 12px);
   overflow: hidden;
+  border: 1.5px solid var(--accent);
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--mount);
 }
 .polaroid .shot img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
@@ -1439,7 +1449,7 @@ img, video { max-width: 100%; }
   .intro-name { font-size: 52px; line-height: .95; margin-bottom: 12px; }
   .intro-desc { font-size: 17px; line-height: 1.45; margin-bottom: 10px; }
   .intro-line { font-size: 13px; }
-  .polaroid { width: 150px; margin: 20px auto 0; padding: 9px 9px 10px; }
+  .polaroid { width: 178px; margin: 20px auto 0; padding: 16px; background-size: 21px 21px; }
   .polaroid .tape { top: -11px; width: 66px; height: 20px; }
 
   .block, .exp-row { padding: 26px 20px 0; }
