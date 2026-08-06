@@ -59,7 +59,14 @@
   --hole-ring: #414c57;
   --mount: #1b222a;
   --mount-line: #3b4650;
-  --mount-shadow: 0 4px 12px rgba(0, 0, 0, .5);
+  --mount-shadow:
+    0 1px 2px rgba(0, 0, 0, .45),
+    0 6px 12px -3px rgba(0, 0, 0, .44),
+    0 16px 26px -10px rgba(0, 0, 0, .48);
+  --frame-lift:
+    0 1px 2px rgba(0, 0, 0, .4),
+    0 5px 10px -3px rgba(0, 0, 0, .38),
+    0 13px 20px -10px rgba(0, 0, 0, .4);
   --stamp: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cg%20fill%3D%22%239fbcd8%22%20opacity%3D%22.82%22%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(0%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(45%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(90%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(135%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(180%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(225%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(270%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(315%2020%2020)%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%222.8%22%2F%3E%3C%2Fg%3E%3Cg%20opacity%3D%22.55%22%3E%3Cpath%20d%3D%22M0%209%20A9%209%200%200%201%209%200%22%20fill%3D%22none%22%20stroke%3D%22%239fbcd8%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20transform%3D%22translate(0%200)%20rotate(0)%22%2F%3E%3Cpath%20d%3D%22M0%209%20A9%209%200%200%201%209%200%22%20fill%3D%22none%22%20stroke%3D%22%239fbcd8%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20transform%3D%22translate(40%200)%20rotate(90)%22%2F%3E%3Cpath%20d%3D%22M0%209%20A9%209%200%200%201%209%200%22%20fill%3D%22none%22%20stroke%3D%22%239fbcd8%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20transform%3D%22translate(40%2040)%20rotate(180)%22%2F%3E%3Cpath%20d%3D%22M0%209%20A9%209%200%200%201%209%200%22%20fill%3D%22none%22%20stroke%3D%22%239fbcd8%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20transform%3D%22translate(0%2040)%20rotate(270)%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%239fbcd8%22%20opacity%3D%22.45%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%221.5%22%20r%3D%221.1%22%2F%3E%3Ccircle%20cx%3D%221.5%22%20cy%3D%2220%22%20r%3D%221.1%22%2F%3E%3Ccircle%20cx%3D%2238.5%22%20cy%3D%2220%22%20r%3D%221.1%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2238.5%22%20r%3D%221.1%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
   --scrim: rgba(6, 9, 12, .72);
   --well: inset 0 0 0 1px rgba(0, 0, 0, .3), inset 0 3px 12px rgba(0, 0, 0, .5), inset 0 -2px 8px rgba(0, 0, 0, .32);
@@ -141,7 +148,14 @@
   --hole-ring: #d6cbb8;
   --mount: #fbfaf6;
   --mount-line: #cdd6e0;
-  --mount-shadow: 0 3px 9px rgba(60, 45, 30, .1);
+  --mount-shadow:
+    0 1px 2px rgba(60, 45, 30, .13),
+    0 5px 11px -3px rgba(60, 45, 30, .13),
+    0 15px 24px -10px rgba(60, 45, 30, .15);
+  --frame-lift:
+    0 1px 2px rgba(60, 45, 30, .11),
+    0 4px 9px -3px rgba(60, 45, 30, .11),
+    0 12px 18px -10px rgba(60, 45, 30, .13);
   --stamp: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cg%20fill%3D%22%233f6188%22%20opacity%3D%22.82%22%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(0%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(45%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(90%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(135%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(180%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(225%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(270%2020%2020)%22%2F%3E%3Cellipse%20cx%3D%2220%22%20cy%3D%2211.5%22%20rx%3D%222.4%22%20ry%3D%225%22%20transform%3D%22rotate(315%2020%2020)%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%222.8%22%2F%3E%3C%2Fg%3E%3Cg%20opacity%3D%22.55%22%3E%3Cpath%20d%3D%22M0%209%20A9%209%200%200%201%209%200%22%20fill%3D%22none%22%20stroke%3D%22%233f6188%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20transform%3D%22translate(0%200)%20rotate(0)%22%2F%3E%3Cpath%20d%3D%22M0%209%20A9%209%200%200%201%209%200%22%20fill%3D%22none%22%20stroke%3D%22%233f6188%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20transform%3D%22translate(40%200)%20rotate(90)%22%2F%3E%3Cpath%20d%3D%22M0%209%20A9%209%200%200%201%209%200%22%20fill%3D%22none%22%20stroke%3D%22%233f6188%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20transform%3D%22translate(40%2040)%20rotate(180)%22%2F%3E%3Cpath%20d%3D%22M0%209%20A9%209%200%200%201%209%200%22%20fill%3D%22none%22%20stroke%3D%22%233f6188%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20transform%3D%22translate(0%2040)%20rotate(270)%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%233f6188%22%20opacity%3D%22.45%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%221.5%22%20r%3D%221.1%22%2F%3E%3Ccircle%20cx%3D%221.5%22%20cy%3D%2220%22%20r%3D%221.1%22%2F%3E%3Ccircle%20cx%3D%2238.5%22%20cy%3D%2220%22%20r%3D%221.1%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2238.5%22%20r%3D%221.1%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
   --scrim: rgba(58, 48, 36, .5);
   --well: inset 0 0 0 1px rgba(60, 45, 30, .1), inset 0 3px 10px rgba(60, 45, 30, .2), inset 0 -2px 6px rgba(60, 45, 30, .1);
@@ -503,7 +517,7 @@ img, video { max-width: 100%; }
   background-size: 24px 24px;
   background-repeat: round;
   border: 1px solid var(--mount-line);
-  box-shadow: 0 0 0 1px var(--mount) inset, var(--mount-shadow);
+  box-shadow: 0 0 0 1px var(--mount) inset, var(--frame-lift);
   transform: rotate(1.6deg);
   transition: transform .25s ease;
 }
@@ -592,8 +606,8 @@ img, video { max-width: 100%; }
 }
 
 .roles--past .role { background: var(--card-alt); box-shadow: none; }
-/* paperclip */
-.roles--past .role::after {
+/* paperclip — just on the top card, as if it holds the little stack */
+.roles--past .role:first-child::after {
   content: "";
   position: absolute;
   top: -9px;
@@ -1463,7 +1477,7 @@ img, video { max-width: 100%; }
   .role-at { font-size: 13.5px; }
   .role-note { font-size: 13px; margin-top: 6px; }
   .role-logo { display: none; }
-  .roles--past .role::after { display: none; }
+  .roles--past .role:first-child::after { display: none; }
 
   .works { gap: 16px; }
   .work { padding: 10px 10px 14px; }
