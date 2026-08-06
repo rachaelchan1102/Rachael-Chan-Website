@@ -1,0 +1,7 @@
+# Design source, not part of the site
+mockups/
+
+# The QuickTime original of the ConvoSpark demo. The site loads the .mp4
+# copy of it (same bytes, MP4-branded container); this is only a fallback
+# <source> and costs 24 MB to ship, so it's left out of deploys.
+assets/convospark/convospark ai demo.MOV
