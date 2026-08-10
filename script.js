@@ -333,22 +333,35 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
   }));
 
   overlay.querySelectorAll('.mail-copy').forEach((btn) => {
+    // captured once at setup, not per click: reading it inside the handler
+    // meant a second click within the timeout captured "COPIED" as the
+    // label to restore, and it stuck that way
+    const label = btn.textContent;
+    let revert = 0;
+
     btn.addEventListener('click', async () => {
       const text = btn.dataset.copy;
+      let ok = true;
       try {
         await navigator.clipboard.writeText(text);
       } catch (_) {
         const t = document.createElement('textarea');   // older browsers
         t.value = text;
+        t.setAttribute('readonly', '');
+        t.style.position = 'fixed';
+        t.style.opacity = '0';
         document.body.appendChild(t);
         t.select();
-        try { document.execCommand('copy'); } catch (__) {}
+        try { ok = document.execCommand('copy'); } catch (__) { ok = false; }
         t.remove();
       }
-      const was = btn.textContent;
-      btn.textContent = 'COPIED';
-      btn.classList.add('done');
-      setTimeout(() => { btn.textContent = was; btn.classList.remove('done'); }, 1400);
+      clearTimeout(revert);
+      btn.textContent = ok ? 'COPIED' : 'SELECT IT';
+      btn.classList.toggle('done', ok);
+      revert = setTimeout(() => {
+        btn.textContent = label;
+        btn.classList.remove('done');
+      }, 1400);
     });
   });
 
