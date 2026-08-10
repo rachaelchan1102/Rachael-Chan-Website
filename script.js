@@ -286,6 +286,84 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
   render();
 })();
 
+/* ---------- email picker: personal or school ---------- */
+(function () {
+  const overlay = document.getElementById('mailPicker');
+  if (!overlay) return;
+  const card = overlay.querySelector('.mail-card');
+  const root = document.documentElement;
+  let opener = null;
+
+  function open(trigger) {
+    opener = trigger || null;
+    if (trigger) {
+      const r = trigger.getBoundingClientRect();
+      card.style.setProperty('--mail-origin',
+        `${Math.round(r.left + r.width / 2)}px ${Math.round(r.top + r.height / 2)}px`);
+    }
+    const gap = window.innerWidth - root.clientWidth;
+    root.classList.add('nb-lock');
+    if (gap > 0) document.body.style.paddingRight = gap + 'px';
+    overlay.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      overlay.classList.add('open');
+      overlay.querySelector('.mail-opt').focus({ preventScroll: true });
+    }));
+  }
+
+  function close() {
+    if (overlay.hidden) return;
+    overlay.classList.remove('open');
+    root.classList.remove('nb-lock');
+    document.body.style.paddingRight = '';
+    setTimeout(() => { overlay.hidden = true; }, 300);
+    if (opener) { opener.focus({ preventScroll: true }); opener = null; }
+  }
+
+  // the triggers stay real mailto links, so this only takes over when
+  // scripting is available
+  document.querySelectorAll('[data-mail-picker]').forEach((el) => {
+    el.addEventListener('click', (e) => { e.preventDefault(); open(el); });
+  });
+  overlay.querySelectorAll('[data-mail-close]').forEach((el) => {
+    el.addEventListener('click', close);
+  });
+  overlay.querySelectorAll('.mail-opt').forEach((a) => a.addEventListener('click', () => {
+    setTimeout(close, 120);          // let the mail client open first
+  }));
+
+  overlay.querySelectorAll('.mail-copy').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (_) {
+        const t = document.createElement('textarea');   // older browsers
+        t.value = text;
+        document.body.appendChild(t);
+        t.select();
+        try { document.execCommand('copy'); } catch (__) {}
+        t.remove();
+      }
+      const was = btn.textContent;
+      btn.textContent = 'COPIED';
+      btn.classList.add('done');
+      setTimeout(() => { btn.textContent = was; btn.classList.remove('done'); }, 1400);
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (overlay.hidden) return;
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key !== 'Tab') return;
+    const f = overlay.querySelectorAll('a[href], button:not([disabled])');
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+})();
+
 /* ============================================================
    case-study notebooks
    The notebook zooms open from the card that was clicked: one

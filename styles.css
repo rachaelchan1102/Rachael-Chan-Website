@@ -1384,6 +1384,128 @@ img, video { max-width: 100%; }
 .snap-count b { color: var(--ink); font-weight: 400; }
 
 /* ============================================================
+   email picker — personal or school
+   ============================================================ */
+.mail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  padding: 5vh 20px;
+  opacity: 0;
+  transition: opacity .28s ease;
+}
+.mail-overlay[hidden] { display: none; }
+.mail-overlay.open { opacity: 1; }
+
+.mail-card {
+  position: relative;
+  width: min(430px, 100%);
+  padding: 28px 26px 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--mount-shadow);
+  transform: scale(.93) translateY(18px);
+  transform-origin: var(--mail-origin, 50% 50%);
+  opacity: 0;
+  transition: transform .42s cubic-bezier(.18, .82, .26, 1), opacity .26s ease;
+}
+.mail-overlay.open .mail-card { transform: none; opacity: 1; }
+
+.mail-tape {
+  top: -12px;
+  left: 50%;
+  width: 92px;
+  height: 22px;
+  margin-left: -46px;
+  transform: rotate(-2deg);
+}
+.mail-close {
+  position: absolute;
+  top: -13px;
+  right: -8px;
+  z-index: 4;
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: .06em;
+  padding: 5px 9px;
+  background: var(--solid-bg);
+  border: 1px solid var(--solid-bg);
+  color: var(--solid-fg);
+  cursor: pointer;
+  transform: rotate(2deg);
+  box-shadow: var(--shadow-md);
+  transition: transform .16s ease;
+}
+.mail-close:hover { transform: rotate(0deg) translateY(-1px); }
+
+.mail-kicker {
+  font-family: Caveat, cursive;
+  font-size: 24px;
+  color: var(--accent);
+  transform: rotate(-1deg);
+}
+.mail-title {
+  font-family: Caveat, cursive;
+  font-size: 31px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: -2px 0 16px;
+}
+
+.mail-list { display: flex; flex-direction: column; gap: 10px; }
+.mail-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+  background: var(--card-alt);
+  border: 1px solid var(--line);
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.mail-row:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.mail-opt { flex: 1; min-width: 0; display: block; }
+.mail-tag {
+  display: block;
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mono-mute);
+}
+.mail-addr {
+  display: block;
+  font-family: Newsreader, Georgia, serif;
+  font-size: 15.5px;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent-rule);
+  margin-top: 2px;
+  word-break: break-all;
+}
+.mail-copy {
+  flex: none;
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: .08em;
+  padding: 6px 9px;
+  background: var(--chip-bg);
+  border: 1px solid var(--line-2);
+  color: var(--chip-fg);
+  cursor: pointer;
+  transition: transform .15s ease;
+}
+.mail-copy:hover { transform: translateY(-1px); }
+.mail-copy.done { background: var(--solid-bg); border-color: var(--solid-bg); color: var(--solid-fg); }
+
+@media (max-width: 640px) {
+  .mail-card { padding: 24px 18px 20px; }
+  .mail-title { font-size: 27px; }
+  .mail-addr { font-size: 14px; }
+}
+
+/* ============================================================
    footer — a note mounted on patterned card, taped down
    ============================================================ */
 .foot { margin: 60px 56px 0; }
