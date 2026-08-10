@@ -1547,7 +1547,7 @@ img, video { max-width: 100%; }
   .toolkit p { font-size: 13.5px; margin-bottom: 8px; }
   .toolkit .tape { display: none; }
 
-  .deck-hint { font-size: 20px; margin-bottom: 13px; gap: 6px; }
+  .deck-hint { font-size: 18px; margin-bottom: 13px; gap: 5px; }
   .deck-hint svg { width: 29px; height: 19px; }
   .snap-deck { --per: 2; --gap: 14px; }
   /* comfortable thumb targets */
