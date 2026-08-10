@@ -1146,16 +1146,15 @@ img, video { max-width: 100%; }
   gap: 8px;
   margin-bottom: 18px;
   font-family: Caveat, cursive;
-  font-size: 19px;
-  color: var(--ink-quiet);
+  font-size: 24px;
+  color: var(--accent);
   transform: rotate(-1.2deg);
 }
 .deck-hint svg {
-  width: 34px;
-  height: 22px;
+  width: 36px;
+  height: 23px;
   flex: none;
   color: var(--accent);
-  opacity: .8;
   transform: rotate(4deg) scaleX(-1);
 }
 
@@ -1548,8 +1547,8 @@ img, video { max-width: 100%; }
   .toolkit p { font-size: 13.5px; margin-bottom: 8px; }
   .toolkit .tape { display: none; }
 
-  .deck-hint { font-size: 16px; margin-bottom: 13px; gap: 6px; }
-  .deck-hint svg { width: 27px; height: 18px; }
+  .deck-hint { font-size: 20px; margin-bottom: 13px; gap: 6px; }
+  .deck-hint svg { width: 29px; height: 19px; }
   .snap-deck { --per: 2; --gap: 14px; }
   /* comfortable thumb targets */
   .snap-btn { padding: 12px 20px; font-size: 15px; }
