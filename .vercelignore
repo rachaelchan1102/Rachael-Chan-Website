@@ -5,3 +5,6 @@ mockups/
 # copy of it (same bytes, MP4-branded container); this is only a fallback
 # <source> and costs 24 MB to ship, so it's left out of deploys.
 assets/convospark/convospark ai demo.MOV
+
+# generator scripts, not part of the site
+tools/

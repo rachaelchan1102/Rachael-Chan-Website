@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ontario University Metrics — Rachael Chan</title>
+  <meta name="description" content="A public web app where students can explore real university admissions data across 600+ Ontario programs." />
+  <link rel="canonical" href="https://www.rachaelchan.ca/case/ontario-university-metrics/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Rachael Chan" />
+  <meta property="og:title" content="Ontario University Metrics — Rachael Chan" />
+  <meta property="og:description" content="A public web app where students can explore real university admissions data across 600+ Ontario programs." />
+  <meta property="og:url" content="https://www.rachaelchan.ca/case/ontario-university-metrics/" />
+  <meta property="og:image" content="https://www.rachaelchan.ca/assets/og/ontario-university-metrics.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ontario University Metrics — Rachael Chan" />
+  <meta name="twitter:description" content="A public web app where students can explore real university admissions data across 600+ Ontario programs." />
+  <meta name="twitter:image" content="https://www.rachaelchan.ca/assets/og/ontario-university-metrics.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>
+</head>
+<body>
+
+<div class="page case-page">
+
+  <header class="top">
+    <a class="brand" href="../../index.html" aria-label="Rachael Chan — back to the homepage">
+      <span class="tape tape--blue" aria-hidden="true"></span>
+      <span class="avatar"><img src="../../assets/profile/rachael%20chan.png" alt="" /></span>
+      <span class="name">Rachael Chan</span>
+    </a>
+    <nav class="top-nav">
+      <a class="chip r1" href="../../index.html#work">&#8592; ALL PROJECTS</a>
+      <button class="chip theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode"><svg class="ci ti ti-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.3M12 19.3v2.3M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.4 12h2.3M19.3 12h2.3M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg><svg class="ci ti ti-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1z"/></svg><span class="chip-label tt-label"><span class="tt-dark">LIGHT</span><span class="tt-light">DARK</span></span></button>
+    </nav>
+  </header>
+
+  <main class="case-main">
+<div class="nb" role="dialog" aria-modal="true" aria-labelledby="nb-oum-title">
+    <span class="tape tape--green nb-tape-l" aria-hidden="true"></span>
+    <span class="tape tape--sand nb-tape-r" aria-hidden="true"></span>
+    <span class="nb-rings" aria-hidden="true"></span>
+
+    <div class="nb-scroll">
+      <header class="nb-head">
+        <p class="nb-kicker">Case study · 2025</p>
+        <h2 class="nb-title" id="nb-oum-title">Ontario University Metrics</h2>
+        <p class="nb-sub">A public web app where students can explore real university admissions data across 600+ Ontario programs.</p>
+        <div class="nb-meta">
+          <span><i>Role</i> Solo — data, backend, frontend</span>
+          <span><i>Stack</i> TypeScript, Next.js, PostgreSQL</span>
+        </div>
+        <div class="nb-actions">
+          <a class="primary" href="https://www.ontariouniversitymetrics.com/" target="_blank" rel="noopener">LIVE SITE ↗</a>
+          <a href="https://github.com/rachaelchan1102/OntarioUniversityMetrics" target="_blank" rel="noopener">GITHUB ↗</a>
+        </div>
+      </header>
+
+      <nav class="nb-tabs" aria-label="Jump to section">
+        <div class="nb-tabs-track">
+          <a href="#oum-s1"><span class="t-full">Problem</span><span class="t-short">Problem</span></a>
+          <a href="#oum-s2"><span class="t-full">Approach</span><span class="t-short">Approach</span></a>
+          <a href="#oum-s3"><span class="t-full">Key challenge</span><span class="t-short">Challenge</span></a>
+          <a href="#oum-s4"><span class="t-full">Outcome</span><span class="t-short">Outcome</span></a>
+          <a href="#oum-s5"><span class="t-full">Takeaways</span><span class="t-short">Takeaways</span></a>
+        </div>
+      </nav>
+
+
+      <section class="nb-sec" id="oum-s1">
+        <h3 class="nb-h">The Problem</h3>
+        <p>High school students applying to Ontario universities have almost no reliable way to know what grades actually get someone into a program.</p>
+        <ul class="dd-stats">
+          <li>Crowdsourced Reddit spreadsheets are the best available resource, but entries are often missing a program code or name, making it hard to search and get accurate results, with no historical view or fast way to compare across programs or years.</li>
+          <li>University pages publish their own estimated minimum cutoffs, but these don’t always reflect what students are actually getting in with.</li>
+        </ul>
+        <p>Students are left manually cross-referencing scattered spreadsheets and official pages just to guess their odds.</p>
+      </section>
+
+      <section class="nb-sec" id="oum-s2">
+        <h3 class="nb-h">Approach</h3>
+        <p>The underlying data was sourced from two places: crowdsourced admissions spreadsheets, which track real self-reported admission results and feed the core data and visualizations, and official university pages, which publish targeted averages representing each program’s estimated minimum cutoff. These served as a benchmark, allowing the platform to show how far official estimates were from actual admitted grades. Both sources came in inconsistent formats with no shared structure across schools or years. Before any analytics could be built, this raw data had to be reconciled into a single consistent dataset and cross-referenced, so the platform could show reported admission averages alongside official published ranges.</p>
+        <p>The pipeline runs in three stages, scrape, clean, and normalize:</p>
+        <figure class="dd-figure"><img src="../../assets/oum/oum_pipeline_diagram.svg" alt="Ontario University Metrics data pipeline diagram: scrape, clean, normalize" /></figure>
+      </section>
+
+      <section class="nb-sec" id="oum-s3">
+        <h3 class="nb-h">Key Challenge: Program Matching Accuracy</h3>
+        <p>The hardest problem was matching the data correctly. The same program could appear under different names depending on the source:</p>
+        <ul class="dd-stats">
+          <li>Flipped word order (e.g. “Computer Engineering” vs. “Engineering, Computer”)</li>
+          <li>Abbreviations or added specializations</li>
+          <li>Inconsistent formatting</li>
+          <li>Missing codes, missing names, or misspellings</li>
+        </ul>
+        <p>An exact string match against a canonical program list only worked about 75% of the time, dropping or mismatching a quarter of the data.</p>
+        <p>To fix this, program and university names were normalized and broken into word tokens, then matched using token-set similarity.</p>
+        <figure class="dd-figure"><img src="../../assets/oum/token_matching_diagram.svg" alt="Token-set similarity matching diagram" /></figure>
+        <p>This process raised match accuracy from 75% to 95%.</p>
+      </section>
+
+      <section class="nb-sec" id="oum-s4">
+        <h3 class="nb-h">Outcome</h3>
+        <div class="kpi-grid">
+          <div class="kpi"><span class="kpi-num">10,000+</span><span class="kpi-label">users total</span></div>
+          <div class="kpi"><span class="kpi-num">1,500+</span><span class="kpi-label">users in the first 24 hours</span></div>
+          <div class="kpi"><span class="kpi-num">600+</span><span class="kpi-label">programs tracked</span></div>
+          <div class="kpi"><span class="kpi-num">21</span><span class="kpi-label">universities</span></div>
+        </div>
+        <p>The platform launched on Reddit and quickly gained traction among students researching admissions. Feedback highlighted a limitation: since the data is self-reported, students with higher grades are more likely to post their results, which can skew average admitted grades higher than reality. This is a known bias in crowdsourced admissions data, and future versions could address it by weighting or flagging self-reported entries differently from verified sources.</p>
+      </section>
+
+      <section class="nb-sec" id="oum-s5">
+        <h3 class="nb-h">Personal Takeaways</h3>
+        <div class="tk-grid">
+          <div class="tk-card">
+            <svg class="tk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+            <h4 class="tk-title">First live deploy</h4>
+            <p>Learned to ship to the real public and keep it reliable, not just demo-ready.</p>
+          </div>
+          <div class="tk-card">
+            <svg class="tk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <h4 class="tk-title">Users shape products</h4>
+            <p>Users surfaced issues I’d missed, like self-reporting bias, and kept me iterating.</p>
+          </div>
+          <div class="tk-card">
+            <svg class="tk-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h4 class="tk-title">Solved a problem I had</h4>
+            <p>Built the admissions tool I’d wished for in high school, which hooked me on fixing problems.</p>
+          </div>
+        </div>
+      </section>
+
+      <p class="nb-end" aria-hidden="true">— end —</p>
+    </div>
+  </div>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-mount">
+      <span class="tape tape--plaid foot-tape" aria-hidden="true"></span>
+      <div class="foot-card">
+        <div class="foot-row">
+          <div>
+            <p class="foot-hi">Say hi &#8212;</p>
+            <a class="foot-mail" href="mailto:rachaelchan1102@gmail.com">rachaelchan1102@gmail.com</a>
+            <div class="foot-chips">
+              <a class="chip" href="https://github.com/rachaelchan1102" target="_blank" rel="noopener">GITHUB &#8599;</a>
+              <a class="chip" href="https://linkedin.com/in/rachael-chan-01726b334/" target="_blank" rel="noopener">LINKEDIN &#8599;</a>
+            </div>
+          </div>
+          <div class="foot-end">
+            <p class="foot-thanks">thanks for reading</p>
+            <p class="foot-copy">&#169; <span id="year">2026</span> Rachael Chan &#183; Toronto</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="../../script.js"></script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

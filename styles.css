@@ -1506,6 +1506,44 @@ img, video { max-width: 100%; }
 }
 
 /* ============================================================
+   standalone case-study page — the same notebook, sitting in the page
+   instead of floating over it (see tools/build-case-pages.py)
+   ============================================================ */
+.case-main { padding: 34px 56px 0; }
+.case-main .nb {
+  width: min(920px, 100%);
+  max-height: none;
+  margin: 0 auto;
+  transform: none;
+  opacity: 1;
+  transition: none;
+}
+.case-main .nb-scroll {
+  overflow: visible;
+  max-height: none;
+}
+/* the rail pins to the window here rather than to a scroll box */
+.case-main .nb-tabs { top: 0; }
+.case-main .nb-sec { scroll-margin-top: 82px; }
+.case-main .nb-tabs a {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  background: var(--chip-bg);
+  border: 1px solid var(--line-2);
+  color: var(--chip-fg);
+  transition: transform .15s ease;
+}
+.case-main .nb-tabs a:hover { transform: translateY(-1px); color: var(--chip-fg); }
+
+@media (max-width: 640px) {
+  .case-main { padding: 20px 20px 0; }
+  .case-main .nb-sec { scroll-margin-top: 64px; }
+}
+
+/* ============================================================
    footer — a note mounted on patterned card, taped down
    ============================================================ */
 .foot { margin: 60px 56px 0; }

@@ -464,8 +464,15 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
     if (lastTrigger) { lastTrigger.focus({ preventScroll: true }); lastTrigger = null; }
   }
 
+  // these are real links to /case/<slug>/, so they can be opened in a new
+  // tab, copied, and followed by crawlers. With scripting on we intercept
+  // and show the notebook in place instead.
   document.querySelectorAll('.nb-open-btn').forEach((btn) => {
-    btn.addEventListener('click', () => open(btn.dataset.notebook, btn));
+    btn.addEventListener('click', (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;  // let it open in a tab
+      e.preventDefault();
+      open(btn.dataset.notebook, btn);
+    });
   });
   document.querySelectorAll('[data-nb-close]').forEach((el) => {
     el.addEventListener('click', () => close());
