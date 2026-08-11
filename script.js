@@ -399,11 +399,29 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
     document.body.style.paddingRight = '';
   }
 
-  function open(id, trigger) {
+  // #slug in the URL <-> which notebook is open, so each case study has a
+  // shareable address and browser back closes it
+  const bySlug = {};
+  document.querySelectorAll('.nb-overlay[data-slug]').forEach((o) => { bySlug[o.dataset.slug] = o.id; });
+  let syncingHash = false;
+
+  function setHash(slug) {
+    syncingHash = true;
+    if (slug) {
+      history.pushState(null, '', '#' + slug);
+    } else if (location.hash) {
+      history.pushState(null, '', location.pathname + location.search);
+    }
+    // let the hashchange this caused go by before we react to it
+    setTimeout(() => { syncingHash = false; }, 0);
+  }
+
+  function open(id, trigger, fromHash) {
     const overlay = document.getElementById(id);
     if (!overlay || active) return;
     active = overlay;
     lastTrigger = trigger || null;
+    if (!fromHash && overlay.dataset.slug) setHash(overlay.dataset.slug);
 
     // zoom out of the card the reader clicked
     const nb = overlay.querySelector('.nb');
@@ -427,10 +445,11 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
     }));
   }
 
-  function close() {
+  function close(fromHash) {
     if (!active) return;
     const overlay = active;
     active = null;
+    if (!fromHash && overlay.dataset.slug) setHash(null);
     overlay.classList.remove('open');
     unlockScroll();
 
@@ -449,8 +468,28 @@ document.querySelectorAll('.why-btn').forEach((btn) => {
     btn.addEventListener('click', () => open(btn.dataset.notebook, btn));
   });
   document.querySelectorAll('[data-nb-close]').forEach((el) => {
-    el.addEventListener('click', close);
+    el.addEventListener('click', () => close());
   });
+
+  // follow the URL: on load, and whenever it changes (back/forward too)
+  function syncToHash(initial) {
+    if (syncingHash) return;
+    const id = bySlug[location.hash.replace(/^#/, '')];
+    if (id && (!active || active.id !== id)) {
+      if (active) close(true);
+      // land the page on the projects section, so closing leaves the
+      // reader somewhere sensible rather than at the very top
+      if (initial) {
+        const work = document.getElementById('work');
+        if (work) work.scrollIntoView({ block: 'start', behavior: 'auto' });
+      }
+      open(id, null, true);
+    } else if (!id && active) {
+      close(true);
+    }
+  }
+  window.addEventListener('hashchange', () => syncToHash(false));
+  syncToHash(true);
 
   document.addEventListener('keydown', (e) => {
     if (!active) return;
