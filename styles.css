@@ -396,12 +396,6 @@ img, video { max-width: 100%; }
   transform: rotate(0deg) translateY(-1px);
   box-shadow: var(--shadow-xs);
 }
-.chip--solid {
-  background: var(--solid-bg);
-  border-color: var(--solid-bg);
-  color: var(--solid-fg);
-}
-.chip--solid:hover { color: var(--solid-fg); }
 
 .ci { width: 12px; height: 12px; flex: none; display: block; }
 
