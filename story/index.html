@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/device-route.js"></script>
 <script src="/support.js"></script>
 </head>
@@ -69,7 +72,7 @@ a{color:#26272a;text-decoration:none}a:hover{color:#d9480f}
 
 <sc-if value="{{ s.isEnd }}" hint-placeholder-val="{{ false }}">
 <div style="display:grid;grid-template-rows:{{ s.rows }};opacity:{{ s.op }};transition:{{ s.tr }}"><div style="overflow:hidden;min-height:0"><div style="padding-top:14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-<a href="mailto:rachaelchan1102@gmail.com" onClick="{{ s.stop }}" style="padding:10px 14px;border:1.5px solid #f0561d;background:#f0561d;color:#f3f0e8;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em">EMAIL ME →</a>
+<a href="mailto:rachaelchan1102@gmail.com" target="_blank" rel="noopener" onClick="{{ s.stop }}" style="padding:10px 14px;border:1.5px solid #f0561d;background:#f0561d;color:#f3f0e8;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em">EMAIL ME →</a>
 <a href="/resume#request" onClick="{{ s.stop }}" style="padding:10px 14px;border:1.5px solid #f3f0e8;color:#f3f0e8;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em">REQUEST MY RESUME →</a>
 </div></div></div>
 </sc-if>
@@ -137,6 +140,10 @@ a{color:#26272a;text-decoration:none}a:hover{color:#d9480f}
 
 </div>
 
+<footer style="margin-top:60px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:16px;border-top:1.5px solid #26272a;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">
+<span>TORONTO, ON</span>
+<span style="display:flex;gap:16px"><a href="https://github.com/rachaelchan1102" target="_blank" rel="noopener">GITHUB</a><a href="https://linkedin.com/in/rachael-chan-01726b334/" target="_blank" rel="noopener">LINKEDIN</a><a href="mailto:rachaelchan1102@gmail.com" target="_blank" rel="noopener">EMAIL</a></span>
+</footer>
 </main>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
