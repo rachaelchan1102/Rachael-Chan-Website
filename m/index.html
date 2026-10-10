@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/device-route.js"></script>
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script>if (location.hash && location.hash.length > 1) document.documentElement.classList.add("arriving");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+html.arriving #fadeOut{opacity:1 !important}
+html,body{margin:0;background:#f3f0e8;color:#26272a}
+
+a{color:#26272a;text-decoration:none}a:hover{color:#d9480f}
+@media (max-width:1100px){.hud{display:none !important}}
+@media (max-width:760px){.introSticker{display:none !important}}
+@media (max-height:640px){.introSticker{width:130px !important}.stCard p{font-size:13px !important;line-height:1.45 !important}.stCard h1{font-size:44px !important}.stCard a{padding-top:5px !important;padding-bottom:5px !important}}
+@media (max-width:600px){header{padding:16px 14px !important;gap:10px !important;letter-spacing:.02em !important;font-size:14px !important}header nav{gap:11px !important}header>a span:first-child{width:12px !important;height:12px !important}header nav a>span:first-child{display:none !important}}@media (max-width:600px){.stCard{width:calc(100vw - 92px) !important}.stCard [style*="justify-content:space-between;padding:10px 16px"],.stCard [style*="justify-content: space-between;padding: 10px 16px"]{padding:8px 10px !important;font-size:9px !important}.stCard h1{font-size:38px !important}.stCard [style*="font-size:40px"],.stCard [style*="font-size: 40px"]{font-size:32px !important}.stCard [style*="font-size:18px"],.stCard [style*="font-size: 18px"]{font-size:17px !important}.stCard [style*="padding:16px 22px"],.stCard [style*="padding: 16px 22px"]{padding:12px 16px 14px !important}.stCard [style*="padding:10px 0"],.stCard [style*="padding: 10px 0"]{padding:8px 0 !important}.stCard [style*="padding:8px 0"],.stCard [style*="padding: 8px 0"]{padding:6px 0 !important}.stCard p{font-size:13px !important;line-height:1.5 !important}.stCard [style*="font:600 14px"],.stCard [style*="font: 600 14px"]{font-size:14px !important}}
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+@media (max-width:600px){.stCard[data-name="WORK"] a:nth-of-type(n+4):not(.inspectBtn){display:none !important}}
+@media (max-width:600px){header>a,header nav a{min-height:44px !important;display:flex !important;align-items:center !important}header{padding-top:4px !important;padding-bottom:4px !important}.stCard a{min-height:44px !important;box-sizing:border-box !important;align-items:center !important}.inspectBtn{min-height:44px !important}button,[role="button"],.jumpLink,#jumpBar a{min-height:44px !important;box-sizing:border-box !important}#jumpBar a,.jumpLink{display:flex !important;align-items:center !important}.pillRow{height:48px !important}footer a,footer span a{display:inline-flex !important;align-items:center !important;min-height:44px !important;padding:0 4px !important}main>a:first-child,[style*="ALL PROJECTS"]{min-height:44px !important}a[href$="/projects"]:not(header a){min-height:44px;display:inline-flex;align-items:center}.projCard{min-height:44px}}
+@media (max-width:600px){.loc{display:none !important}:has(> .loc){justify-content:center !important;padding-top:10px !important}:has(> .loc) a{font-size:0 !important;width:44px;height:44px;display:inline-block !important;background:center/22px no-repeat}:has(> .loc) span{gap:18px !important}}
+@media (max-width:600px){:has(> .loc) span{align-items:center !important}:has(> .loc) a{box-sizing:border-box !important;padding:0 !important;margin:0 !important;width:44px !important;height:44px !important;min-height:44px !important;background-size:22px 22px !important;background-position:center !important;vertical-align:middle !important;flex:none !important}:has(> .loc) a:nth-child(1){background-size:23px 23px !important}:has(> .loc) a:nth-child(3){background-size:24px 24px !important}}
+@media (max-width:600px){#jumpBar a[target="_blank"],#jumpBar a[href="#"]:not(.jumpLink){font-size:0 !important;padding:0 13px !important;gap:0 !important}#jumpBar a[target="_blank"] svg,#jumpBar a[href="#"]:not(.jumpLink) svg{width:18px !important;height:18px !important}#jumpBar a span[style*="border-radius"]{width:10px !important;height:10px !important}#jumpBar>div{gap:6px !important}#jumpBar>div>div:first-child{gap:6px !important}:has(> .loc) a:nth-child(1){background-size:27px 27px !important}}
+.socIco{display:inline-flex !important;align-items:center !important;justify-content:center !important;width:44px !important;height:44px !important;background:none !important;font-size:0 !important;padding:0 !important}
+</style>
+<script src="/page-fade.js"></script>
+</helmet>
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px clamp(20px,4vw,48px);font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(#f3f0e8 40%,rgba(243,240,232,0))">
+<a href="/m" style="display:flex;align-items:center;gap:10px">
+<span style="width:10px;height:10px;background:#f0561d;display:block"></span>
+<span>R. Chan</span>
+</a>
+<nav style="display:flex;gap:clamp(14px,2.4vw,32px);flex-wrap:wrap;justify-content:flex-end">
+<a href="/m/work" style="display:flex;gap:6px"><span style="color:#8a8a84">10</span>Work</a>
+<a href="/m/projects" style="display:flex;gap:6px"><span style="color:#8a8a84">20</span>Projects</a>
+<a href="/m/story" style="display:flex;gap:6px"><span style="color:#8a8a84">30</span>Story</a>
+<a href="/m/resume" style="display:flex;gap:6px"><span style="color:#8a8a84">40</span>Resume</a>
+</nav>
+</header>
+
+<div id="lineTrack" style="position:relative;height:760vh">
+<div style="position:sticky;top:0;height:100vh;overflow:hidden">
+<canvas id="lineCanvas" style="position:absolute;inset:0;display:block"></canvas>
+
+<div class="stCard" data-name="WELCOME" style="position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:min(620px,88vw);box-sizing:border-box;border:1.5px solid transparent;opacity:0">
+<div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #c9c5ba;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63"><span><span style="color:#d9480f">STN 00</span> · WELCOME</span><span></span></div>
+<div style="display:flex;gap:22px;align-items:center;padding:20px 22px 22px">
+<div style="flex:1;min-width:0">
+<h1 style="margin:0;font-family:Archivo,sans-serif;font-weight:800;font-stretch:72%;font-size:clamp(40px,6.4vw,72px);line-height:.88;text-transform:uppercase">Rachael Chan</h1>
+<div style="margin-top:10px;font:500 12px/1.4 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#5d5f63">Industrial Engineering · University of Toronto</div>
+<p style="margin:14px 0 0;font:400 15px/1.55 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">I’m into <span style="color:#d9480f">process optimization</span>, <span style="color:#d9480f">simulation</span>, and making systems run smoother, with experience in logistics, operations, data and automation. I also love baking, crocheting and playing piano.</p>
+</div>
+<img class="introSticker" src="/assets/scrap/sticker-me.png" alt="Rachael holding a pink phone" style="flex:none;width:clamp(130px,16vw,190px);height:auto;display:block">
+</div>
+</div>
+
+<div class="stCard" data-name="WORK" style="position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:min(620px,88vw);box-sizing:border-box;border:1.5px solid transparent;opacity:0">
+<div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #c9c5ba;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63"><span><span style="color:#d9480f">STN 10</span> · WORK</span><span></span></div>
+<div style="padding:16px 22px 18px">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:75%;font-size:40px;line-height:1;text-transform:uppercase;margin-bottom:10px">Work</div>
+<a href="/m/work#ai-data-intern" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:8px 0;border-top:1px solid #c9c5ba"><span style="font:600 14px/1.3 'IBM Plex Mono',monospace">Process Improvement Intern <span style="font-weight:400;color:#5d5f63">· Constellation Homebuilder Systems</span></span><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#5d5f63;white-space:nowrap">S26</span></a>
+<a href="/m/work#findnext" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:8px 0;border-top:1px solid #c9c5ba"><span style="font:600 14px/1.3 'IBM Plex Mono',monospace">Technical Project Manager <span style="font-weight:400;color:#5d5f63">· FindNext Inc.</span></span><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#5d5f63;white-space:nowrap">W26</span></a>
+<a href="/m/work#constellation-analyst" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:8px 0;border-top:1px solid #c9c5ba"><span style="font:600 14px/1.3 'IBM Plex Mono',monospace">Data Analyst Intern <span style="font-weight:400;color:#5d5f63">· Constellation Homebuilder Systems</span></span><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#5d5f63;white-space:nowrap">S25</span></a>
+<a href="/m/work#utfr" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:8px 0;border-top:1px solid #c9c5ba"><span style="font:600 14px/1.3 'IBM Plex Mono',monospace">Senior Race Engineering Member <span style="font-weight:400;color:#5d5f63">· UofT Formula Racing</span></span><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#5d5f63;white-space:nowrap">NOW</span></a>
+<a href="/m/work#mftga" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:8px 0;border-top:1px solid #c9c5ba;border-bottom:1px solid #c9c5ba"><span style="font:600 14px/1.3 'IBM Plex Mono',monospace">Co-Founder &amp; Operations Lead <span style="font-weight:400;color:#5d5f63">· Music for the Golden Age</span></span><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#5d5f63;white-space:nowrap">NOW</span></a>
+<a href="/m/work#yncn" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:8px 0;border-top:1px solid #c9c5ba"><span style="font:600 14px/1.3 'IBM Plex Mono',monospace">Data Engineer <span style="font-weight:400;color:#5d5f63">· You’re Next Career Network</span></span><span style="font:500 11px/1 'IBM Plex Mono',monospace;color:#5d5f63;white-space:nowrap">NOW</span></a>
+<a href="/m/work" class="inspectBtn" data-stn="STN 10 · WORK" style="display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:11px 16px;border:1.5px solid #26272a;background:#26272a;color:#f3f0e8;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em" style-hover="background:#f0561d;border-color:#f0561d;color:#f3f0e8">INSPECT →</a>
+</div>
+</div>
+
+<div class="stCard" data-name="PROJECTS" style="position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:min(620px,88vw);box-sizing:border-box;border:1.5px solid transparent;opacity:0">
+<div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #c9c5ba;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63"><span><span style="color:#d9480f">STN 20</span> · PROJECTS</span><span></span></div>
+<div style="padding:16px 22px 18px">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:75%;font-size:40px;line-height:1;text-transform:uppercase;margin-bottom:10px">Projects</div>
+<a href="/m/projects/pso" class="inspectBtn" data-stn="STN 20 · PROJECTS" style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:10px 0;border-top:1px solid #c9c5ba"><span style="font-family:Archivo,sans-serif;font-weight:700;font-stretch:85%;font-size:18px">Production Sequence Optimization</span><span style="font:500 16px/1 'IBM Plex Mono',monospace">→</span></a>
+<a href="/m/projects/rosterflow" class="inspectBtn" data-stn="STN 20 · PROJECTS" style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:10px 0;border-top:1px solid #c9c5ba"><span style="font-family:Archivo,sans-serif;font-weight:700;font-stretch:85%;font-size:18px">Rosterflow</span><span style="font:500 16px/1 'IBM Plex Mono',monospace">→</span></a>
+<a href="/m/projects/fsae" class="inspectBtn" data-stn="STN 20 · PROJECTS" style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:10px 0;border-top:1px solid #c9c5ba"><span style="font-family:Archivo,sans-serif;font-weight:700;font-stretch:85%;font-size:18px">FSAE Telemetry Tracker</span><span style="font:500 16px/1 'IBM Plex Mono',monospace">→</span></a>
+<a href="/m/projects" class="inspectBtn" data-stn="STN 20 · PROJECTS" style="display:flex;justify-content:space-between;gap:16px;align-items:center;padding:10px 0;border-top:1px solid #c9c5ba;border-bottom:1px solid #c9c5ba"><span style="font-family:Archivo,sans-serif;font-weight:700;font-stretch:85%;font-size:18px">More</span><span style="font:500 16px/1 'IBM Plex Mono',monospace">→</span></a>
+<a href="/m/projects" class="inspectBtn" data-stn="STN 20 · PROJECTS" style="display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:11px 16px;border:1.5px solid #26272a;background:#26272a;color:#f3f0e8;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em" style-hover="background:#f0561d;border-color:#f0561d;color:#f3f0e8">INSPECT →</a>
+</div>
+</div>
+
+<div class="stCard" data-name="STORY" style="position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:min(620px,88vw);box-sizing:border-box;border:1.5px solid transparent;opacity:0">
+<div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #c9c5ba;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63"><span><span style="color:#d9480f">STN 30</span> · STORY</span><span></span></div>
+<div style="padding:16px 22px 20px">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:75%;font-size:40px;line-height:1;text-transform:uppercase;margin-bottom:10px">Story</div>
+<p style="margin:0;font:400 15px/1.55 'IBM Plex Mono',monospace;color:#3d3e42">The process map of my life.</p>
+<a href="/m/story" class="inspectBtn" data-stn="STN 30 · STORY" style="display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:11px 16px;border:1.5px solid #26272a;background:#26272a;color:#f3f0e8;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em" style-hover="background:#f0561d;border-color:#f0561d;color:#f3f0e8">INSPECT →</a>
+</div>
+</div>
+
+<div class="stCard" data-name="RESUME" style="position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:min(620px,88vw);box-sizing:border-box;border:1.5px solid transparent;opacity:0">
+<div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #c9c5ba;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63"><span><span style="color:#d9480f">STN 40</span> · RESUME</span><span></span></div>
+<div style="padding:16px 22px 20px">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:75%;font-size:40px;line-height:1;text-transform:uppercase;margin-bottom:10px">Resume</div>
+<p style="margin:0;font:400 15px/1.55 'IBM Plex Mono',monospace;color:#3d3e42">Take a look at my skills! If you like what you see, I’d love to send you my resume.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+<a href="/m/resume" class="inspectBtn" data-stn="STN 40 · RESUME" style="display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border:1.5px solid #26272a;background:#26272a;color:#f3f0e8;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em" style-hover="background:#f0561d;border-color:#f0561d;color:#f3f0e8">VIEW ALL SKILLS →</a>
+<a href="/m/resume#request" class="inspectBtn" data-stn="STN 40 · RESUME" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:11px 16px;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;border:1.5px solid #f0561d;background:#f0561d;color:#f3f0e8" style-hover="background:#d9480f;border-color:#d9480f;color:#f3f0e8">REQUEST MY RESUME →</a>
+</div>
+</div>
+</div>
+
+<div class="stCard" data-name="CONTACT" style="position:absolute;left:50%;top:56%;transform:translate(-50%,-50%);width:min(620px,88vw);box-sizing:border-box;border:1.5px solid transparent;opacity:0">
+<div style="display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #c9c5ba;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63"><span><span style="color:#d9480f">STN 50</span> · CONTACT</span><span>THANKS FOR COMING</span></div>
+<div style="padding:16px 22px 20px">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:75%;font-size:40px;line-height:1;text-transform:uppercase;margin-bottom:12px">Contact me</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.08em">
+<a href="https://github.com/rachaelchan1102" target="_blank" rel="noopener" aria-label="GitHub" class="socIco"><svg width="22" height="22" viewBox="0 0 16 16" fill="#26272a" aria-hidden="true" style="display:block"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a><a href="https://linkedin.com/in/rachael-chan-01726b334/" target="_blank" rel="noopener" aria-label="LinkedIn" class="socIco"><svg width="21" height="21" viewBox="0 0 24 24" fill="#26272a" aria-hidden="true" style="display:block"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg></a><a href="mailto:rachaelchan1102@gmail.com" aria-label="Email" class="socIco"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#26272a" stroke-width="2" aria-hidden="true" style="display:block"><rect x="2.5" y="4.5" width="19" height="15"></rect><path d="M3 5.5l9 7 9-7"></path></svg></a>
+<button id="toStart" type="button" style="display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border:1.5px solid #26272a;background:#26272a;color:#f3f0e8;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;cursor:pointer">BACK TO START ↑</button>
+</div>
+</div>
+</div>
+
+<div class="hud" style="position:absolute;right:clamp(16px,3vw,40px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;padding:14px 16px;background:rgba(243,240,232,.92);border:1px solid #c9c5ba;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;z-index:5">
+<button class="hudItem" type="button" style="display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;cursor:pointer;font:inherit;letter-spacing:inherit;color:#8a8a84;text-align:left"><span class="hudDot" style="width:8px;height:8px;border:1.5px solid currentColor;display:block"></span>00 WELCOME</button>
+<button class="hudItem" type="button" style="display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;cursor:pointer;font:inherit;letter-spacing:inherit;color:#8a8a84;text-align:left"><span class="hudDot" style="width:8px;height:8px;border:1.5px solid currentColor;display:block"></span>10 WORK</button>
+<button class="hudItem" type="button" style="display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;cursor:pointer;font:inherit;letter-spacing:inherit;color:#8a8a84;text-align:left"><span class="hudDot" style="width:8px;height:8px;border:1.5px solid currentColor;display:block"></span>20 PROJECTS</button>
+<button class="hudItem" type="button" style="display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;cursor:pointer;font:inherit;letter-spacing:inherit;color:#8a8a84;text-align:left"><span class="hudDot" style="width:8px;height:8px;border:1.5px solid currentColor;display:block"></span>30 STORY</button>
+<button class="hudItem" type="button" style="display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;cursor:pointer;font:inherit;letter-spacing:inherit;color:#8a8a84;text-align:left"><span class="hudDot" style="width:8px;height:8px;border:1.5px solid currentColor;display:block"></span>40 RESUME</button>
+<button class="hudItem" type="button" style="display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;cursor:pointer;font:inherit;letter-spacing:inherit;color:#8a8a84;text-align:left"><span class="hudDot" style="width:8px;height:8px;border:1.5px solid currentColor;display:block"></span>50 CONTACT</button>
+</div>
+
+<div id="fadeOut" style="position:fixed;inset:0;z-index:80;background:#f3f0e8;opacity:0;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#5d5f63"><span id="fadeLab" style="display:none">→ INSPECTION</span><span style="display:none;width:180px;height:2px;background:#c9c5ba;position:relative;overflow:hidden"><span id="fadeBar" style="position:absolute;left:0;top:0;bottom:0;width:0;background:#f0561d;display:block"></span></span></div>
+<div id="scrollHint" style="position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#5d5f63;transition:opacity .4s;white-space:nowrap">SCROLL TO RUN THE LINE ↓</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ambientMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    var self = this, INK = '#1f2024', OR = '#f0561d', PAPER = '#f3f0e8';
+    var cv = document.getElementById('lineCanvas'), ctx = cv.getContext('2d');
+    var track = document.getElementById('lineTrack');
+    var cards = Array.from(document.querySelectorAll('.stCard'));
+    var hud = Array.from(document.querySelectorAll('.hudItem'));
+    var hint = document.getElementById('scrollHint');
+    var names = cards.map(function (c) { return c.dataset.name; });
+    var N = cards.length, GAP = 16, Z0 = 14, DP = 5, NEAR = 0.35, FAR = 64, CE = 11.5;
+    var ambient = this.props.ambientMotion !== false;
+    var TOOLS = [['grip', 'weld'], ['grip', 'weld'], ['grip', 'seal'], ['grip', 'cam'], ['grip', 'weld'], ['grip', 'seal']], TIPS = {};
+    var W, H, dpr, f, cx, hy, eyeY, beamY, cardCY, cHW, midY, cTop, floorY, rects = [], camZ = 0, t = 0;
+    var B = {}, TX = [], DOTS = [], FL = [], SHUT = 0, ZR = Z0 + 3.6, CC = 0, WR = { xl: -2, xr: 2, yt: 3, yb: 1 }, BZ = .16;
+    var YEL = '#e9b630', RED = '#d4553f', KRAFT = '#c49a5e', SLATE = '#6f8096', GREY = '#8d949c', WARM = '#b9a88e', BLUE = '#4f7fd0';
+
+    function measure() {
+      W = document.documentElement.clientWidth || window.innerWidth; H = window.innerHeight; dpr = Math.min(2, window.devicePixelRatio || 1);
+      cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px';
+      cx = W / 2; cardCY = H * 0.56; hy = H * 0.26;
+      var maxW = 0, maxH = 0;
+      rects = cards.map(function (c) {
+        var w = c.offsetWidth, h = c.offsetHeight;
+        maxW = Math.max(maxW, w); maxH = Math.max(maxH, h);
+        return { l: cx - w / 2, t: cardCY - h / 2, w: w, h: h };
+      });
+      f = (maxW / 2 + 44) * DP / 2.05;
+      floorY = Math.min(H - 18, cardCY + maxH / 2 + 84);
+      eyeY = (floorY - hy) * DP / f;
+      beamY = eyeY + (hy - (cardCY - maxH / 2 - 30)) * DP / f;
+      cTop = eyeY + (hy - (cardCY - maxH / 2)) * DP / f;
+      cHW = (maxW / 2) * DP / f;
+      midY = eyeY - (cardCY - hy) * DP / f;
+    }
+    function cl01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+    function sm(v) { v = cl01(v); return v * v * (3 - 2 * v); }
+    function fog(d) { if (d < 5.5) return 1; if (d > FAR) return 0; return Math.exp(-(d - 5.5) / 13) * (1 - (d - 5.5) / (FAR - 5.5)); }
+    var NOCMP = false, CAMX = 0, RIDE = false, TRN = null, BELT = 0, REV = null, ZM = 1, TXV = 1, lastZ = 1;
+    function px(x, d) { var xx = x - (RIDE ? 0 : CAMX); if (W < 600 && false) { var ax = Math.abs(xx), e0 = cHW * 1.04; if (ax > e0) xx = (xx < 0 ? -1 : 1) * (e0 + (ax - e0) * .22); } return cx + f * xx / d; }
+    function py(y, d) { return hy - f * (y - eyeY) / d; }
+    var NB = 32, FB = {};
+    var TOPF = false, LBL = null;
+    function bk(d) { if (TOPF === true) return 'top'; var v = Math.floor(Math.sqrt(Math.max(0, d) / FAR) * NB); if (TOPF === 'near') v -= 2; return v < 0 ? 0 : v >= NB ? NB - 1 : v; }
+    function seg(a, col, w, X1, Y1, X2, Y2, d) {
+      var bi = bk(d), bb = B[bi] || (B[bi] = {});
+      var k = col + '|' + (Math.round(a * 16) / 16) + '|' + (Math.round(w * 4) / 4);
+      (bb[k] || (bb[k] = [])).push(X1, Y1, X2, Y2);
+    }
+    function poly(p, ox, oy) { ctx.beginPath(); ctx.moveTo(p[0] + ox, p[1] + oy); for (var i = 2; i < p.length; i += 2) ctx.lineTo(p[i] + ox, p[i + 1] + oy); ctx.closePath(); }
+    function render() {
+      var order = []; for (var b0 = NB - 1; b0 >= 0; b0--) order.push(b0); order.push('top');
+      for (var oi = 0; oi < order.length; oi++) { var b = order[oi]; if (b === 'top' && LBL) { ctx.globalCompositeOperation = 'source-over'; LBL(); }
+        var fl = FB[b];
+        if (fl) {
+          for (var n = 0; n < fl.length; n++) {
+            var q = fl[n], p = q[0];
+            ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = q[3] ? 1 : Math.min(.78, q[2] * 1.6); ctx.fillStyle = PAPER; poly(p, 0, 0); ctx.fill();
+            ctx.globalCompositeOperation = 'multiply'; ctx.fillStyle = q[1];
+            ctx.globalAlpha = q[2] * .75; poly(p, 1.6, -.8); ctx.fill();
+            ctx.globalAlpha = q[2] * .55; poly(p, -1.2, 1.4); ctx.fill();
+          }
+          ctx.globalCompositeOperation = 'source-over';
+        }
+        var bb = B[b];
+        if (bb) for (var k in bb) {
+          var pp = k.split('|'), a = bb[k]; if (+pp[1] <= 0) continue;
+          ctx.strokeStyle = pp[0]; ctx.globalAlpha = +pp[1]; ctx.lineWidth = +pp[2]; ctx.beginPath();
+          for (var i = 0; i < a.length; i += 4) { ctx.moveTo(a[i], a[i + 1]); ctx.lineTo(a[i + 2], a[i + 3]); }
+          ctx.stroke();
+        }
+      }
+      B = {}; FB = {};
+    }
+    function L(x1, y1, z1, x2, y2, z2, m, col) {
+      if (camZ < ZR && (z1 - ZR) * (z2 - ZR) < -1e-6) { var qs = (ZR - z1) / (z2 - z1), xm = x1 + (x2 - x1) * qs, ym = y1 + (y2 - y1) * qs; L(x1, y1, z1, xm, ym, ZR, m, col); L(xm, ym, ZR, x2, y2, z2, m, col); return; }
+      var d1 = z1 - camZ, d2 = z2 - camZ, q;
+      if (d1 < NEAR && d2 < NEAR) return;
+      if (d1 < NEAR) { q = (NEAR - d1) / (d2 - d1); x1 += (x2 - x1) * q; y1 += (y2 - y1) * q; d1 = NEAR; }
+      else if (d2 < NEAR) { q = (NEAR - d2) / (d1 - d2); x2 += (x1 - x2) * q; y2 += (y1 - y2) * q; d2 = NEAR; }
+      var dm = (d1 + d2) / 2; if (dm > FAR) return;
+      var a = fog(dm) * (m == null ? 1 : m); if (a < 0.03) return;
+      seg(a, col || INK, Math.max(0.4, Math.min(2.2, 8 / dm)), px(x1, d1), py(y1, d1), px(x2, d2), py(y2, d2), dm);
+    }
+    function FP(pts, col, a, op) {
+      var out = [], ds = 0;
+      for (var i = 0; i < pts.length; i++) { var d = pts[i][2] - camZ; if (d < NEAR + .1) return; ds += d; out.push(px(pts[i][0], d), py(pts[i][1], d)); }
+      ds /= pts.length; if (camZ < ZR) { var mn = 1e9, mx = -1e9; pts.forEach(function (p) { mn = Math.min(mn, p[2]); mx = Math.max(mx, p[2]); }); if (mn < ZR - .01 && mx > ZR + .01) ds = mx - camZ; } var al = fog(ds) * a; if (!op && al < .01) return;
+      var bi = bk(ds); (FB[bi] || (FB[bi] = [])).push([out, col, al, op]);
+    }
+    function FQ(x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, col, a) { FP([[x0, y0, z0], [x1, y1, z1], [x2, y2, z2], [x3, y3, z3]], col, a); }
+    function FQo(x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3, col, a) { FP([[x0, y0, z0], [x1, y1, z1], [x2, y2, z2], [x3, y3, z3]], col, a, true); }
+    function LP(a, b, m, col) { L(a[0], a[1], a[2], b[0], b[1], b[2], m, col); }
+    function ZL(x, y, za, zb, m, col) {
+      za = Math.max(za, camZ + NEAR); zb = Math.min(zb, camZ + FAR);
+      for (var z = za; z < zb; z += 3) L(x, y, z, x, y, Math.min(zb, z + 3), m, col);
+    }
+    function box(x0, x1, y0, y1, z0, z1, m, col) {
+      L(x0, y0, z0, x1, y0, z0, m, col); L(x1, y0, z0, x1, y1, z0, m, col); L(x1, y1, z0, x0, y1, z0, m, col); L(x0, y1, z0, x0, y0, z0, m, col);
+      if (z1 === z0) return;
+      L(x0, y0, z1, x1, y0, z1, m, col); L(x1, y0, z1, x1, y1, z1, m, col); L(x1, y1, z1, x0, y1, z1, m, col); L(x0, y1, z1, x0, y0, z1, m, col);
+      L(x0, y0, z0, x0, y0, z1, m, col); L(x1, y0, z0, x1, y0, z1, m, col); L(x0, y1, z0, x0, y1, z1, m, col); L(x1, y1, z0, x1, y1, z1, m, col);
+    }
+    function bx(xa, xb, y0, y1, za, zb, m, col) { box(Math.min(xa, xb), Math.max(xa, xb), Math.min(y0, y1), Math.max(y0, y1), Math.min(za, zb), Math.max(za, zb), m, col); }
+    function ringH(x0, y, z0, r, m, n) {
+      n = n || 14; var lx = x0 + r, lz = z0;
+      for (var k = 1; k <= n; k++) { var a = k / n * Math.PI * 2, x = x0 + Math.cos(a) * r, z = z0 + Math.sin(a) * r; L(lx, y, lz, x, y, z, m); lx = x; lz = z; }
+    }
+    function bez(p0, p1, p2, n, m, col) {
+      var prev = p0;
+      for (var k = 1; k <= n; k++) {
+        var s = k / n, a = (1 - s) * (1 - s), b = 2 * (1 - s) * s, c = s * s;
+        var p = [a * p0[0] + b * p1[0] + c * p2[0], a * p0[1] + b * p1[1] + c * p2[1], a * p0[2] + b * p1[2] + c * p2[2]];
+        LP(prev, p, m, col); prev = p;
+      }
+    }
+    function txt(s, x, y, z, size, col) { TX.push([s, x, y, z, size, col]); }
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function robot(bx0, by, bz, u, yaw0, tgt, r, tool, seed) {
+      var dB = bz - camZ; if (dB < NEAR + .5 || dB > FAR) return;
+      var idleYaw = yaw0 + (ambient ? Math.sin(t * .42 + seed) * .38 : 0);
+      var idR = 1.5 + (ambient ? Math.sin(t * .63 + seed * 2.1) * .22 : 0), idH = 1.45 + (ambient ? Math.cos(t * .51 + seed) * .28 : 0);
+      var yaw = idleYaw, tr = idR, th0 = idH;
+      if (tgt && r > 0.001) {
+        var ty = Math.atan2(tgt[2] - bz, tgt[0] - bx0), dy = ty - idleYaw;
+        while (dy > Math.PI) dy -= 2 * Math.PI; while (dy < -Math.PI) dy += 2 * Math.PI;
+        yaw = idleYaw + dy * r;
+        var hd = Math.hypot(tgt[0] - bx0, tgt[2] - bz);
+        tr = idR + (hd - idR) * r; th0 = idH + ((tgt[1] - by) * u - idH) * r;
+      }
+      var cy = Math.cos(yaw), sy = Math.sin(yaw), nx = -sy, nz = cy;
+      function P(rr, hh, l) { l = l || 0; return [bx0 + rr * cy + l * nx, by + hh * u, bz + rr * sy + l * nz]; }
+      function S2(a, b, l, m, col) { LP(P(a[0], a[1], l), P(b[0], b[1], l), m, col); }
+      function both(a, b, w, m) { S2(a, b, w, m); S2(a, b, -w, m); }
+      function circ(c, rad, l, m, n) { n = n || 10; var pr = null; for (var k = 0; k <= n; k++) { var an = k / n * Math.PI * 2, p = P(c[0] + Math.cos(an) * rad, c[1] + Math.sin(an) * rad, l); if (pr) LP(pr, p, m); pr = p; } }
+      function perpRing(c, dir, rad, m) { var q = [-dir[1], dir[0]], pr = null; for (var k = 0; k <= 10; k++) { var an = k / 10 * Math.PI * 2, cc = Math.cos(an) * rad, ss = Math.sin(an) * rad, p = P(c[0] + q[0] * cc, c[1] + q[1] * cc, ss); if (pr) LP(pr, p, m); pr = p; } }
+      function add(a, b, k) { return [a[0] + b[0] * k, a[1] + b[1] * k]; }
+      function quad(pts, w, m) { for (var k = 0; k < pts.length; k++) { var a = pts[k], b = pts[(k + 1) % pts.length]; S2(a, b, w, m); S2(a, b, -w, m); } pts.forEach(function (p) { LP(P(p[0], p[1], w), P(p[0], p[1], -w), m * .6); }); }
+      function fillP(pts, l, col, a) { FP(pts.map(function (p) { return P(p[0], p[1], l); }), col, Math.min(.9, a * 1.9), true); }
+      function bezP(a, b, c, l, m) { bez(P(a[0], a[1], l), P(b[0], b[1], l), P(c[0], c[1], l), 8, m); }
+      // base + riser + turntable
+      bx(bx0 - .42, bx0 + .42, by, by + .12 * u, bz - .42, bz + .42, .9);
+      ringH(bx0, by + .12 * u, bz, .3, .8); ringH(bx0, by + .52 * u, bz, .3, .8);
+      for (var k = 0; k < 4; k++) { var an = k * Math.PI / 2 + .4; L(bx0 + Math.cos(an) * .3, by + .12 * u, bz + Math.sin(an) * .3, bx0 + Math.cos(an) * .3, by + .52 * u, bz + Math.sin(an) * .3, .7); }
+      ringH(bx0, by + .52 * u, bz, .38, .9); ringH(bx0, by + .66 * u, bz, .38, .9);
+      // shoulder casting + J1 motor
+      quad([[-.3, .66], [.34, .66], [.28, 1.1], [-.08, 1.2]], .2, 1);
+      fillP([[-.3, .66], [.34, .66], [.28, 1.1], [-.08, 1.2]], .2, YEL, .32);
+      var tt = []; for (var q0 = 0; q0 < 12; q0++) { var aq = q0 / 12 * 6.283; tt.push([bx0 + Math.cos(aq) * .38, by + .6 * u, bz + Math.sin(aq) * .38]); } FP(tt, GREY, .18);
+      var Sh = [.12, 1.0];
+      circ(Sh, .17, .21, 1); circ(Sh, .17, -.21, 1); circ(Sh, .07, .21, .6, 6);
+      quad([[-.52, .72], [-.3, .72], [-.3, .98], [-.52, .98]], .12, .8);
+      // IK
+      var aa = -1.25 + .95 * r, td = [Math.cos(aa), Math.sin(aa)], TL = .46;
+      var Wc = [tr - td[0] * TL, th0 - td[1] * TL];
+      var L1 = 1.3, L2 = 1.38, dx = Wc[0] - Sh[0], dyy = Wc[1] - Sh[1], dd = Math.hypot(dx, dyy);
+      var dc = Math.min(L1 + L2 - .03, Math.max(Math.abs(L1 - L2) + .05, dd));
+      var th = Math.atan2(dyy, dx), al = Math.acos((L1 * L1 + dc * dc - L2 * L2) / (2 * L1 * dc)), e = th + al;
+      var ed = [Math.cos(e), Math.sin(e)], E = add(Sh, ed, L1);
+      var fx = Wc[0] - E[0], fy = Wc[1] - E[1], fl = Math.hypot(fx, fy) || 1, fd = [fx / fl, fy / fl], fq = [-fd[1], fd[0]];
+      var Wp = add(E, fd, L2);
+      // lower arm (tapered, two side plates)
+      var pe = [-ed[1], ed[0]];
+      both(add(Sh, pe, .15), add(E, pe, .11), .14, 1); both(add(Sh, pe, -.15), add(E, pe, -.11), .14, 1);
+      fillP([add(Sh, pe, .15), add(E, pe, .11), add(E, pe, -.11), add(Sh, pe, -.15)], .14, YEL, .34);
+      S2(add(Sh, ed, .3), add(E, ed, -.28), .14, .35);
+      circ(add(Sh, ed, L1 * .5), .055, .14, .5, 6);
+      // counterbalance
+      var c0 = [-.34, 1.2], c1 = add(add(Sh, ed, L1 * .4), pe, -.16);
+      var cdx = c1[0] - c0[0], cdy = c1[1] - c0[1], cll = Math.hypot(cdx, cdy) || 1, cq = [-cdy / cll * .05, cdx / cll * .05];
+      S2(add(c0, cq, 1), add(c1, cq, 1), .27, .8); S2(add(c0, cq, -1), add(c1, cq, -1), .27, .8);
+      var cm = [c0[0] + cdx * .55, c0[1] + cdy * .55]; S2(add(cm, cq, 1.6), add(cm, cq, -1.6), .27, .8);
+      circ(c0, .06, .27, .7, 6);
+      // elbow + J3 motor
+      circ(E, .19, .15, 1); circ(E, .19, -.15, 1); circ(E, .08, .15, .6, 6);
+      quad([add(add(E, fd, -.2), fq, .14), add(add(E, fd, -.52), fq, .14), add(add(E, fd, -.52), fq, -.05), add(add(E, fd, -.2), fq, -.05)], .11, .9);
+      S2(add(add(E, fd, -.31), fq, .14), add(add(E, fd, -.31), fq, -.05), .11, .5);
+      S2(add(add(E, fd, -.42), fq, .14), add(add(E, fd, -.42), fq, -.05), .11, .5);
+      // forearm
+      var f0 = add(E, fd, .16);
+      S2(add(f0, fq, .1), add(Wp, fq, .07), 0, 1); S2(add(f0, fq, -.1), add(Wp, fq, -.07), 0, 1);
+      fillP([add(f0, fq, .1), add(Wp, fq, .07), add(Wp, fq, -.07), add(f0, fq, -.1)], 0, YEL, .3);
+      fillP([add(add(E, fd, -.2), fq, .14), add(add(E, fd, -.52), fq, .14), add(add(E, fd, -.52), fq, -.05), add(add(E, fd, -.2), fq, -.05)], .11, GREY, .25);
+      perpRing(f0, fd, .1, .8); perpRing(add(E, fd, L2 * .55), fd, .085, .6); perpRing(add(Wp, fd, -.12), fd, .075, .8);
+      // wrist
+      circ(Wp, .1, .08, 1, 8); circ(Wp, .1, -.08, 1, 8);
+      // cable dress
+      var cmid = [(Sh[0] + E[0]) / 2 - .25, Math.max(Sh[1], E[1]) + .5];
+      bezP([-.15, .9], cmid, add(E, fd, .55), .25, .55); bezP([-.15, .86], cmid, add(E, fd, .5), .3, .4);
+      // tool
+      var tq = [-td[1], td[0]], T0 = add(Wp, td, .1), tipW = P(Wp[0] + td[0] * .42, Wp[1] + td[1] * .42, 0);
+      perpRing(T0, td, .07, .9); S2(Wp, T0, 0, .8);
+      if (tool === 'weld') {
+        var tb0 = add(T0, tq, .06), tb1 = add(tb0, td, .26);
+        quad([tb0, tb1, add(tb1, tq, .2), add(tb0, tq, .2)], .1, .9);
+        var c_0 = add(T0, tq, -.02), c_1 = add(c_0, tq, -.32), c_2 = add(c_1, td, .42), c_3 = add(c_2, tq, .13);
+        both(c_0, c_1, .035, 1); both(c_1, c_2, .035, 1); both(c_2, c_3, .035, 1);
+        var u0 = add(T0, td, .32); both(T0, u0, .035, .7); S2(u0, add(u0, tq, -.13), 0, 1);
+        fillP([c_0, c_1, c_2, c_3], .035, RED, .18);
+      } else if (tool === 'grip') {
+        var g0 = add(Wp, td, .22);
+        S2(T0, g0, 0, .9);
+        LP(P(g0[0], g0[1], -.38), P(g0[0], g0[1], .38), 1);
+        LP(P(g0[0] + tq[0] * .06, g0[1] + tq[1] * .06, -.38), P(g0[0] + tq[0] * .06, g0[1] + tq[1] * .06, .38), .7);
+        [-.32, 0, .32].forEach(function (l) {
+          var g1 = add(g0, td, .16); S2(g0, g1, l, .9);
+          var pr = null; for (var k2 = 0; k2 <= 8; k2++) { var an2 = k2 / 8 * 6.28, p = P(g1[0] + tq[0] * Math.cos(an2) * .055, g1[1] + tq[1] * Math.cos(an2) * .055, l + Math.sin(an2) * .055); if (pr) LP(pr, p, .8); pr = p; }
+        });
+        S2(add(g0, tq, .03), add(add(g0, td, .24), tq, .12), .38, .8); S2(add(g0, tq, .03), add(add(g0, td, .24), tq, .12), -.38, .8);
+      } else if (tool === 'drive') {
+        var d1 = add(T0, td, .26), d2 = add(Wp, td, .42);
+        fillP([add(T0, tq, .075), add(d1, tq, .075), add(d1, tq, -.075), add(T0, tq, -.075)], 0, GREY, .45);
+        S2(add(T0, tq, .075), add(d1, tq, .075), 0, 1); S2(add(T0, tq, -.075), add(d1, tq, -.075), 0, 1);
+        perpRing(add(T0, td, .06), td, .075, .6); perpRing(d1, td, .075, .9);
+        S2(add(d1, tq, .025), add(d2, tq, .025), 0, 1); S2(add(d1, tq, -.025), add(d2, tq, -.025), 0, 1); S2(add(d2, tq, .025), add(d2, tq, -.025), 0, 1);
+      } else if (tool === 'seal') {
+        var n1 = add(Wp, td, .66);
+        S2(add(T0, tq, .028), add(n1, tq, .012), 0, 1); S2(add(T0, tq, -.028), add(n1, tq, -.012), 0, 1);
+        quad([add(T0, tq, .05), add(add(T0, td, .16), tq, .05), add(add(T0, td, .16), tq, -.05), add(T0, tq, -.05)], .05, .8);
+        bezP(add(T0, tq, .07), [E[0] + .1, E[1] + .6], add(E, fq, .14), .06, .6);
+
+      } else {
+        var k0 = add(T0, tq, .1), k1 = add(k0, td, .26);
+        quad([k0, k1, add(k1, tq, -.2), add(k0, tq, -.2)], .09, .9);
+        var lens = add(T0, td, .29); perpRing(lens, td, .06, 1); perpRing(add(lens, td, .04), td, .04, .7);
+        fillP([k0, k1, add(k1, tq, -.2), add(k0, tq, -.2)], .09, SLATE, .28);
+      }
+      return tipW;
+    }
+
+    function rack(s, z0, z1) {
+      var xa = s * 2.95, xb = s * 4.25;
+      [z0, z1].forEach(function (z) { L(xa, 0, z, xa, 2.4, z, .9); L(xb, 0, z, xb, 2.4, z, .9); });
+      [0.08, .82, 1.6, 2.4].forEach(function (y) { L(xa, y, z0, xa, y, z1, .8); L(xb, y, z0, xb, y, z1, .5); L(xa, y, z0, xb, y, z0, .6); L(xa, y, z1, xb, y, z1, .6); });
+      L(xa, .08, z0, xa, 2.4, z1, .25); L(xa, 2.4, z0, xa, .08, z1, .25);
+      var xm = s * 3.6, D = [[0, 0], [.9, 0], [.95, .32], [.78, .62], [.12, .62], [0, .42]], Wn = [[.18, .38], [.72, .38], [.66, .56], [.2, .56]];
+      [.1, .84].forEach(function (y0) {
+        for (var k = 0; k < 3; k++) {
+          var zb = z0 + .25 + k * ((z1 - z0 - 1.2) / 2), xo = xm + s * (k - 1) * .22;
+          FP(D.map(function (p) { return [xo, y0 + p[1], zb + p[0]]; }), SLATE, .2);
+          for (var j = 0; j < D.length; j++) { var a = D[j], b = D[(j + 1) % D.length]; L(xo, y0 + a[1], zb + a[0], xo, y0 + b[1], zb + b[0], .75); }
+          for (j = 0; j < Wn.length; j++) { var c = Wn[j], d = Wn[(j + 1) % Wn.length]; L(xo, y0 + c[1], zb + c[0], xo, y0 + d[1], zb + d[0], .45); }
+        }
+      });
+    }
+    function arch(zg) {
+      [zg, zg + .7].forEach(function (z, k) {
+        var m = k ? .5 : 1;
+        L(-2.45, 0, z, -2.45, 3.0, z, m); L(2.45, 0, z, 2.45, 3.0, z, m);
+        L(-2.45, 3.0, z, -2.0, 3.45, z, m); L(2.45, 3.0, z, 2.0, 3.45, z, m); L(-2.0, 3.45, z, 2.0, 3.45, z, m);
+      });
+      [[-2.45, 0], [2.45, 0], [-2.45, 3.0], [2.45, 3.0], [-2.0, 3.45], [2.0, 3.45]].forEach(function (p) { L(p[0], p[1], zg, p[0], p[1], zg + .7, .6); });
+      [-1, 1].forEach(function (s) { FQ(s * 2.45, 0, zg, s * 2.45, 3.0, zg, s * 2.45, 3.0, zg + .7, s * 2.45, 0, zg + .7, BLUE, .32); });
+      FQ(-2.0, 3.45, zg, 2.0, 3.45, zg, 2.0, 3.45, zg + .7, -2.0, 3.45, zg + .7, BLUE, .32);
+      for (var y = .5; y < 2.9; y += .3) { L(-2.3, y, zg + .1, -2.3, y, zg + .6, .45); L(2.3, y, zg + .1, 2.3, y, zg + .6, .45); }
+      for (var x = -1.6; x <= 1.61; x += .4) L(x, 3.3, zg + .1, x, 3.3, zg + .6, .45);
+      txt('QC SCAN', 0, 3.7, zg, .16, INK);
+    }
+    function liftConv(zg) {
+      var y0 = 4.1, y1 = 4.5;
+      box(-1.6, 1.6, y0, y1, zg - 2.4, zg + 2.4, .7);
+      for (var z = zg - 2.3; z < zg + 2.4; z += .32) L(-1.6, y0, z, 1.6, y0, z, .3);
+      [-1.5, 1.5].forEach(function (x) { [zg - 2.2, zg + 2.2].forEach(function (z) { L(x, y1, z, x, CE - .6, z, .35); }); });
+      var off = ambient ? (t * .8) % 1.6 : 0;
+      for (var zz = zg - 2.4 + off; zz < zg + 2.4; zz += 1.6) { L(-.5, y0, zz, -.5, y0 - .5, zz, .7); L(.5, y0, zz, .5, y0 - .5, zz, .7); L(-.7, y0 - .5, zz, .7, y0 - .5, zz, .7); L(-.7, y0 - .5, zz, -.7, y0 - .9, zz + .2, .5); L(.7, y0 - .5, zz, .7, y0 - .9, zz + .2, .5); }
+    }
+
+    function outbound(zk, on) {
+      var zp = zk + 7; if (zp - camZ < -12 || zp - camZ > FAR + 4) return;
+      var dd = DP + 7, Yc = rects[N - 1] ? rects[N - 1].t : cardCY - 100, wy = function (Y) { return eyeY + (hy - Y) * dd / f; }, S = dd / f;
+      var top = wy(Yc + 6), ow = Math.max(3.2, cHW * (dd / DP) * .62), pw = 1.6, hd = wy(Yc - 46);
+      var rnd = function (n) { var x = Math.sin(n * 91.7) * 43758.5; return x - Math.floor(x); };
+      var x, z, k;
+      FQ(-5, 0, zk - 2, 5, 0, zk - 2, 5, 0, zp, -5, 0, zp, WARM, .14);
+      for (x = -5; x <= 5.01; x += 1.25) L(x, 0, zk - 2, x, 0, zp, .3);
+      for (z = zk - 2; z <= zp; z += 1.1) L(-5, 0, z, 5, 0, z, .3);
+      var zt = zp + .6, zb = zt + 11, it = top - .15;
+      FQ(-ow, 0, zb, ow, 0, zb, ow, it, zb, -ow, it, zb, PAPER, .9);
+      [-1, 1].forEach(function (s) {
+        FQ(s * ow, 0, zt, s * ow, it, zt, s * ow, it, zb, s * ow, 0, zb, BLUE, .12);
+        L(s * ow, 0, zt, s * ow, 0, zb, .6); L(s * ow, it, zt, s * ow, it, zb, .6);
+        for (var zz = zt + .55; zz < zb; zz += 1.1) for (var y = .5; y < it - .4; y += .6) L(s * (ow - .02), y, zz - .3, s * (ow - .02), y, zz + .3, .6, BLUE);
+      });
+      FQ(-ow, it, zt, ow, it, zt, ow, it, zb, -ow, it, zb, BLUE, .08);
+      for (z = zt; z <= zb + .01; z += 1.1) { L(-ow, 0, z, -ow, it - .5, z, .45); L(-ow, it - .5, z, -ow + .5, it, z, .45); L(-ow + .5, it, z, ow - .5, it, z, .45); L(ow - .5, it, z, ow, it - .5, z, .45); L(ow, it - .5, z, ow, 0, z, .45); }
+      for (x = -ow + 1; x < ow - .9; x += 1) L(x, it, zt, x, it, zb, .45, BLUE);
+      box(-ow, ow, 0, it, zb, zb, .6);
+      txt('SHIPPING', 0, it * .55, zb, .3, INK);
+      [-1, 1].forEach(function (s) {
+        var xa = s * ow, xb = s * (ow + pw);
+        FQ(xa, 0, zp, xb, 0, zp, xb, hd, zp, xa, hd, zp, WARM, .5);
+        FQ(xb, 0, zp, xb, 0, zt, xb, hd, zt, xb, hd, zp, WARM, .3);
+        bx(xa, xb, 0, hd, zp, zt, 1);
+        L(xb - s * .3, .3, zp - .01, xb - s * .3, hd - .3, zp - .01, .35);
+      });
+      FQ(-ow, top, zp, ow, top, zp, ow, hd, zp, -ow, hd, zp, WARM, .5);
+      L(-ow, top, zp, ow, top, zp, 1); L(-ow - pw, hd, zp, ow + pw, hd, zp, 1);
+      bx(-ow - pw - .1, ow + pw + .1, hd, hd + .14, zp - .06, zt + .06, .9);
+      var sw = 1.55;
+      var s0 = wy(Yc - 10), s1 = wy(Yc - 38);
+      FQ(-sw, s0, zp - .02, sw, s0, zp - .02, sw, s1, zp - .02, -sw, s1, zp - .02, INK, .85);
+      box(-sw, sw, s0, s1, zp - .02, zp - .02, 1);
+      txt('CONTACT ME', 0, (s0 + s1) / 2, zp - .03, S * 15, PAPER);
+      DOTS.push([ow + pw * .5, (s0 + s1) / 2, zp - .02, .09, on && Math.floor(t * 2) % 2 === 0]);
+      var yd = wy(Yc - 64), FT = (yd - hd) * .55, RH = wy(Yc - 118) - yd, zm0 = zp - 1.2, zm1 = zt + 2.5;
+      FQ(-7.5, yd - FT, zm0, 7.5, yd - FT, zm0, 7.5, yd - FT, zm1, -7.5, yd - FT, zm1, GREY, .14);
+      bx(-5.6, -3.4, yd, yd + RH * 2.3, zm0 + 1.1, zm0 + 2.6, .7); FQ(-5.6, yd, zm0 + 1.1, -3.4, yd, zm0 + 1.1, -3.4, yd + RH * 2.3, zm0 + 1.1, -5.6, yd + RH * 2.3, zm0 + 1.1, RED, .32);
+      L(-4.5, yd + RH * 2.3, zm0 + 1.8, -4.5, CE, zm0 + 1.8, .4);
+      bx(3.6, 5.3, yd, yd + RH * 1.8, zm0 + 1.0, zm0 + 1.8, .7); FQ(3.6, yd, zm0 + 1.0, 5.3, yd, zm0 + 1.0, 5.3, yd + RH * 1.8, zm0 + 1.0, 3.6, yd + RH * 1.8, zm0 + 1.0, SLATE, .22);
+      FQ(-7.5, yd - FT, zm0, 7.5, yd - FT, zm0, 7.5, yd, zm0, -7.5, yd, zm0, GREY, .42);
+      box(-7.5, 7.5, yd - FT, yd, zm0, zm0, 1);
+      for (x = -7.5; x <= 7.51; x += .75) L(x, yd, zm0, x, yd + RH, zm0, .7);
+      L(-7.5, yd + RH, zm0, 7.5, yd + RH, zm0, .9); L(-7.5, yd + RH * .5, zm0, 7.5, yd + RH * .5, zm0, .5);
+      [-7.2, -5.4, 5.4, 7.2].forEach(function (cx0) { bx(cx0 - .12, cx0 + .12, 0, yd - FT, zm0 + .1, zm0 + .34, .8); FQ(cx0 - .12, 0, zm0 + .1, cx0 + .12, 0, zm0 + .1, cx0 + .12, yd - FT, zm0 + .1, cx0 - .12, yd - FT, zm0 + .1, GREY, .25); });
+      var panel = function (cxp, w, hh, label, seed, ts) {
+        var yt = yd + RH * .95, zz = zm0 - .06; hh *= S * 48;
+        var pts = [[cxp - w, yt], [cxp + w, yt], [cxp + w * .82, yt - hh], [cxp + w * .2, yt - hh * 1.08], [cxp - w * .2, yt - hh * 1.08], [cxp - w * .82, yt - hh]];
+        FP(pts.map(function (p) { return [p[0], p[1], zz]; }), YEL, .6);
+        for (var j = 0; j < pts.length; j++) { var a = pts[j], b = pts[(j + 1) % pts.length]; L(a[0], a[1], zz, b[0], b[1], zz, 1); }
+        for (j = 0; j < 26; j++) { var sx = cxp + (rnd(seed + j) - .5) * w * 1.5, sy = yt - .12 - rnd(seed + j * 3.1) * hh * .85, l = .1 + rnd(seed + j * 7.3) * .22, an = (rnd(seed + j * 1.7) - .5) * .8; L(sx, sy, zz - .01, sx + Math.cos(an) * l, sy + Math.sin(an) * l, zz - .01, .35); }
+        txt(label, cxp, yt - hh * .4, zz - .02, ts, INK);
+      };
+      panel(-2.9, 1.0, .85, 'R. CHAN', 11, S * 10); panel(2.9, 1.0, .85, 'QC PASS', 23, S * 10); panel(0, 1.25, 1.15, 'UNIT 001', 3, S * 13);
+      var cxn = -ow - pw - .9, czn = zp - 1.3;
+      FP([[cxn - .28, 0, czn], [cxn + .28, 0, czn], [cxn, .9, czn]], RED, .55);
+      L(cxn - .28, 0, czn, cxn, .9, czn, 1); L(cxn + .28, 0, czn, cxn, .9, czn, 1); L(cxn - .36, 0, czn, cxn + .36, 0, czn, 1);
+      L(cxn - .18, .35, czn, cxn + .18, .35, czn, .7); L(cxn - .1, .6, czn, cxn + .1, .6, czn, .7);
+      var rx = ow + pw + .5;
+      bx(rx, rx + 1.7, 0, .35, zp - 1.7, zp - .3, .9); FQ(rx, 0, zp - 1.7, rx + 1.7, 0, zp - 1.7, rx + 1.7, .35, zp - 1.7, rx, .35, zp - 1.7, GREY, .3);
+      for (k = 0; k < 4; k++) { var x0 = rx + .1 + k * .4; FQ(x0, .35, zp - 1.72, x0 + .32, .35, zp - 1.72, x0 + .32, 1.65, zp - 1.72, x0, 1.65, zp - 1.72, BLUE, .3); box(x0, x0 + .32, .35, 1.65, zp - 1.72, zp - 1.72, .8); }
+    }
+    function intake(zk) { NOCMP = true; try { return intake0(zk); } finally { NOCMP = false; } }
+    function intake0(zk) {
+      var z0 = Math.max(camZ + NEAR + .05, zk - 6.3), z, x, y, s;
+      var k1 = (DP + .12) / DP, zc = zk + .12, Xa = cHW * k1 + .2, Yt = eyeY + (cTop - eyeY) * k1 + .24, tw = .15;
+      var X = Math.max(3.2, Xa + 1), YH = Math.max(5.2, Yt + 1.8);
+      var dw = 2.3, dh = Math.min(YH - .7, Yt + .9);
+      // back wall + door + roller shutter
+      FQo(-X, 0, ZR, -dw, 0, ZR, -dw, YH, ZR, -X, YH, ZR, WARM, .1); FQo(dw, 0, ZR, X, 0, ZR, X, YH, ZR, dw, YH, ZR, WARM, .1); FQo(-dw, dh, ZR, dw, dh, ZR, dw, YH, ZR, -dw, YH, ZR, WARM, .1);
+      box(-dw, dw, 0, dh, ZR, ZR + .3, .9);
+      for (y = .2; y < dh; y += .4) { L(-dw - .02, y, ZR - .01, -dw + .18, y + .2, ZR - .01, .7, '#c99a1e'); L(dw + .02, y, ZR - .01, dw - .18, y + .2, ZR - .01, .7, '#c99a1e'); }
+      FQ(-dw, 0, ZR - .01, -dw + .2, 0, ZR - .01, -dw + .2, dh, ZR - .01, -dw, dh, ZR - .01, YEL, .45); FQ(dw - .2, 0, ZR - .01, dw, 0, ZR - .01, dw, dh, ZR - .01, dw - .2, dh, ZR - .01, YEL, .45);
+      var sb = dh * SHUT;
+      if (SHUT < .999) {
+        FQo(-dw, sb, ZR + .15, dw, sb, ZR + .15, dw, dh, ZR + .15, -dw, dh, ZR + .15, GREY, .14);
+        for (y = sb; y < dh; y += .18) L(-dw, y, ZR + .14, dw, y, ZR + .14, .4);
+        L(-dw, sb, ZR + .14, dw, sb, ZR + .14, 1);
+      }
+      box(-dw, dw, dh, dh + .35, ZR - .02, ZR - .02, .8);
+      box(-1.2, 1.2, dh + .5, dh + .62 + .3, ZR - .02, ZR - .02, 1); FQo(-1.2, dh + .5, ZR - .02, 1.2, dh + .5, ZR - .02, 1.2, dh + .92, ZR - .02, -1.2, dh + .92, ZR - .02, INK, .85);
+      txt('LINE 01  →', 0, dh + .71, ZR - .03, .17, PAPER);
+      // side cells (white mesh)
+      for (s = -1; s <= 1; s += 2) {
+        var sx = s * X;
+        for (z = Math.floor(z0 / .9) * .9; z < ZR; z += .9) {
+          var za = Math.max(z, z0), zb2 = Math.min(z + .9, ZR); if (zb2 <= za) continue;
+          FQo(sx, 0, za, sx, YH, za, sx, YH, zb2, sx, 0, zb2, WARM, .05);
+          for (var m = 0; m < 3; m++) { var zz = z + m * .3; if (zz >= za && zz < zb2) L(sx, .15, zz, sx, YH, zz, m ? .2 : .75); }
+          for (y = .5; y < YH; y += .35) L(sx, y, za, sx, y, zb2, .2);
+          L(sx, .15, za, sx, .15, zb2, .7); L(sx, 2.7, za, sx, 2.7, zb2, .6); L(sx, YH, za, sx, YH, zb2, .7);
+          FQo(s * (X - .01), 3.6, za, s * (X - .01), 4.1, za, s * (X - .01), 4.1, zb2, s * (X - .01), 3.6, zb2, PAPER, 0);
+        }
+        [zk - 1.7, zk + 2.3].forEach(function (zr0) {
+          if (zr0 + .34 < z0) return;
+          var xa = s * (X - .36), xb = s * (X - .02);
+          FQo(xa, 0, zr0, xb, 0, zr0, xb, YH, zr0, xa, YH, zr0, RED, .55);
+          FQo(xa, 0, zr0, xa, 0, zr0 + .34, xa, YH, zr0 + .34, xa, YH, zr0, RED, .4);
+          bx(xa, xb, 0, YH, zr0, zr0 + .34, 1);
+          L(xa + s * .12, .2, zr0 - .01, xa + s * .12, YH - .2, zr0 - .01, .35);
+        });
+        var px0 = s * (X - .18);
+        for (z = Math.max(z0, zk - 6.3); z < ZR; z += 1.5) { var z2 = Math.min(ZR, z + 1.5); L(px0, YH - .32, z, px0, YH - .32, z2, 1, '#3d6bbd'); L(px0, YH - .5, z, px0, YH - .5, z2, 1, '#3d6bbd'); FQ(px0, YH - .32, z, px0, YH - .32, z2, px0, YH - .5, z2, px0, YH - .5, z, BLUE, .5); }
+        if (zk - .9 > z0) { L(px0, YH - .5, zk - .9, px0, 3.3, zk - .9, 1, '#3d6bbd'); L(px0 - s * .1, YH - .5, zk - .9, px0 - s * .1, 3.3, zk - .9, 1, '#3d6bbd'); }
+        var yx = s * (X - .6);
+        if (zk + .7 > z0) { L(yx, 0, zk + .7, yx, YH, zk + .7, 1); L(yx - s * .07, 0, zk + .7, yx - s * .07, YH, zk + .7, 1); FQ(yx, 0, zk + .7, yx - s * .07, 0, zk + .7, yx - s * .07, YH, zk + .7, yx, YH, zk + .7, YEL, .6); }
+        if (zk - 3.5 > z0) { FQo(s * (X - .02), 3.3, zk - 3.6, s * (X - .02), 3.9, zk - 3.6, s * (X - .02), 3.9, zk - 3.0, s * (X - .02), 3.3, zk - 3.0, RED, .5); box(s * (X - .02), s * (X - .02), 3.3, 3.9, zk - 3.6, zk - 3.0, .9); }
+      }
+      // ceiling + overhead red beam
+      for (z = z0; z < ZR; z += 1) { var zc2 = Math.min(ZR, z + 1); FQo(-X, YH, z, X, YH, z, X, YH, zc2, -X, YH, zc2, WARM, .04); L(-X, YH, z, X, YH, z, .25); }
+      L(-.5, YH, z0, -.5, YH, ZR, .4); L(.5, YH, z0, .5, YH, ZR, .4);
+      for (z = Math.ceil((z0 - zk) / 2) * 2 + zk + .4; z < ZR - .6; z += 2) { [-1.6, 1.6].forEach(function (xx) { FQ(xx - .45, YH - .02, z, xx + .45, YH - .02, z, xx + .45, YH - .02, z + .9, xx - .45, YH - .02, z + .9, BLUE, .1); box(xx - .45, xx + .45, YH - .05, YH - .05, z, z + .9, .6); }); }
+      if (zk - .6 > z0) {
+        FQo(-X, YH - .55, zk - .6, X, YH - .55, zk - .6, X, YH, zk - .6, -X, YH, zk - .6, RED, .55);
+        bx(-X, X, YH - .55, YH, zk - .6, zk - .3, 1);
+        for (s = -1; s <= 1; s += 2) L(s * (X - .4), YH - .55, zk - .45, s * (Xa + .2), Yt + .9, zk - .45, .6);
+      }
+      // floor
+      for (z = Math.ceil(z0 / 2) * 2; z < ZR; z += 2) L(-X, 0, z, X, 0, z, .2);
+      [-2.3, 2.3].forEach(function (xx) { L(xx, 0, z0, xx, 0, ZR, .35); });
+      // red carrier arch around the unit
+      for (s = -1; s <= 1; s += 2) {
+        var o = [[s * (Xa + tw), .3], [s * (Xa + tw), Yt - .45], [s * (Xa - .38), Yt + tw], [0, Yt + tw], [0, Yt], [s * (Xa - .44), Yt], [s * Xa, Yt - .42], [s * Xa, .3]];
+        FP(o.map(function (p) { return [p[0], p[1], zc]; }), RED, .62, true);
+        for (var j = 0; j < o.length; j++) { if (j === 3) continue; var a = o[j], b = o[(j + 1) % o.length]; L(a[0], a[1], zc, b[0], b[1], zc, 1); }
+        L(s * (Xa + tw), .3, zc + .22, s * (Xa + tw), Yt - .45, zc + .22, .35); L(s * (Xa + tw), Yt - .45, zc + .22, s * (Xa - .38), Yt + tw, zc + .22, .35);
+        bx(s * (Xa - .12), s * (Xa + tw + .16), .12, .3, zc - .1, zc + .3, .9);
+        FQo(s * (Xa - .12), .12, zc - .1, s * (Xa + tw + .16), .12, zc - .1, s * (Xa + tw + .16), .3, zc - .1, s * (Xa - .12), .3, zc - .1, RED, .5);
+      }
+      L(-(Xa - .38), Yt + tw, zc, Xa - .38, Yt + tw, zc, 1);
+      FQo(-.42, Yt + tw, zc - .02, .42, Yt + tw, zc - .02, .42, Yt + tw + .3, zc - .02, -.42, Yt + tw + .3, zc - .02, PAPER, 0);
+      box(-.42, .42, Yt + tw, Yt + tw + .3, zc - .02, zc - .02, 1);
+      txt('001', 0, Yt + tw + .15, zc - .03, .1, INK);
+      bx(-.3, .3, Yt + tw + .3, Yt + tw + .55, zc - .1, zc + .2, .8);
+      L(0, Yt + tw + .55, zc + .05, 0, YH, zc + .05, .7);
+    }
+    function anchor(i, s, R) {
+      var mx = R.t + R.h / 2;
+      if (i === 1 || i === 3) return [s < 0 ? R.l - 16 : R.l + R.w + 16, mx];
+      if (i === 2) return [cx + s * ((R.w + 50) / 4), R.t - 26];
+      return [s < 0 ? R.l - 52 : R.l + R.w + 52, mx];
+    }
+    function ATT(i, s, zk) {
+      if (i < 1 || i > 4 || !rects[i]) return [s * (cHW + .1), midY, zk - .05];
+      var a = anchor(i, s, rects[i]);
+      return [(a[0] - cx) * DP / f, eyeY + (hy - a[1]) * DP / f, zk - .02];
+    }
+    function bolt(x, y) { ctx.beginPath(); ctx.arc(x, y, 2.2, 0, 6.283); ctx.fillStyle = PAPER; ctx.fill(); ctx.stroke(); }
+    function part(i, s, ax, ay, sc, R, al) {
+      ctx.save(); ctx.globalAlpha = al; ctx.translate(ax, ay); ctx.scale(sc * (i === 2 ? 1 : s), sc);
+      ctx.lineWidth = 1.3 / sc; ctx.strokeStyle = INK;
+      var hh = R.h / 2, k, y;
+      if (i === 1) {
+        var y0 = -hh - 34, y1 = hh + 12;
+        ctx.fillStyle = '#e7e2d8'; ctx.fillRect(-9, y0, 18, y1 - y0); ctx.strokeRect(-9, y0, 18, y1 - y0);
+        ctx.beginPath(); for (y = y0, k = 0; y < y1 - 14; y += 14, k++) { ctx.moveTo(k % 2 ? 9 : -9, y); ctx.lineTo(k % 2 ? -9 : 9, y + 14); } ctx.globalAlpha = al * .5; ctx.stroke(); ctx.globalAlpha = al;
+        bolt(0, y0 + 6); bolt(0, y1 - 6);
+      } else if (i === 2) {
+        var hw = (R.w + 50) / 4;
+        ctx.fillStyle = '#f3d6cb'; ctx.fillRect(-hw, -9, hw * 2, 18); ctx.strokeRect(-hw, -9, hw * 2, 18);
+        ctx.beginPath(); for (var x = -hw, k2 = 0; x < hw - 12; x += 16, k2++) { ctx.moveTo(x, k2 % 2 ? 9 : -9); ctx.lineTo(x + 16, k2 % 2 ? -9 : 9); } ctx.globalAlpha = al * .5; ctx.stroke(); ctx.globalAlpha = al;
+        bolt(-hw + 6, 0); bolt(hw - 6, 0);
+      } else if (i === 3) {
+        [[-hh - 26, 1], [hh + 4, -1]].forEach(function (q) {
+          var py0 = q[0];
+          ctx.fillStyle = '#f5e3ad'; ctx.beginPath(); ctx.moveTo(-13, py0 - 13); ctx.lineTo(13, py0 - 13); ctx.lineTo(13, py0 + 13); ctx.lineTo(-13, py0 + 13); ctx.closePath(); ctx.fill(); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(13, py0 + 13 * q[1]); ctx.lineTo(13 + 22, py0 + 13 * q[1]); ctx.lineTo(13, py0 + 13 * q[1] + 22 * q[1]); ctx.closePath(); ctx.fillStyle = '#f5e3ad'; ctx.fill(); ctx.stroke();
+          bolt(-7, py0 - 7); bolt(7, py0 - 7); bolt(-7, py0 + 7); bolt(7, py0 + 7);
+        });
+      } else if (i === 4) {
+        var ph = R.h * .42;
+        ctx.fillStyle = '#d9dee6'; ctx.fillRect(-17, -ph, 34, ph * 2); ctx.strokeRect(-17, -ph, 34, ph * 2);
+        ctx.strokeRect(-12, -ph + 6, 24, ph * .5);
+        ctx.beginPath(); for (y = -ph * .2; y < ph - 10; y += 8) { ctx.moveTo(-10, y); ctx.lineTo(10, y); } ctx.globalAlpha = al * .55; ctx.stroke(); ctx.globalAlpha = al;
+        ctx.beginPath(); ctx.moveTo(17, -ph + 10); ctx.lineTo(23, -ph + 10); ctx.moveTo(17, ph - 10); ctx.lineTo(23, ph - 10); ctx.stroke();
+      }
+      ctx.restore();
+    }
+    function drawParts(R, s) {
+      ctx.save(); ctx.setLineDash([]);
+      ctx.globalAlpha = 1; ctx.strokeStyle = INK; ctx.lineWidth = 1.3;
+      var sy0 = R.t + R.h + 4;
+      ctx.fillStyle = '#dde5f2'; ctx.fillRect(R.l - 30, sy0, R.w + 60, 11); ctx.strokeRect(R.l - 30, sy0, R.w + 60, 11);
+      for (var b = 0; b < 6; b++) bolt(R.l - 22 + b * (R.w + 44) / 5, sy0 + 5.5);
+      for (var i = 1; i <= 4; i++) {
+        [-1, 1].forEach(function (sd) {
+          if (s >= i - .015) { var a = anchor(i, sd, R); part(i, sd, a[0], a[1], 1, R, 1); }
+          else {
+            var tp = TIPS[i + '_' + sd]; if (!tp) return;
+            var d = tp[2] - camZ; if (d < NEAR + .3 || d > FAR) return;
+            part(i, sd, px(tp[0], d), py(tp[1], d), DP / d, R, fog(d));
+          }
+        });
+      }
+      if (s > N - 1.5) {
+        var k = sm((s - (N - 1.5)) / .45), pw = 168, ny = R.t - 26 - 32 - (1 - k) * 140;
+        ctx.globalAlpha = k; ctx.fillStyle = INK; ctx.fillRect(cx - pw / 2, ny, pw, 22);
+        ctx.beginPath(); ctx.moveTo(cx - 40, ny); ctx.lineTo(cx - 40, ny - 120 * (1 - k)); ctx.moveTo(cx + 40, ny); ctx.lineTo(cx + 40, ny - 120 * (1 - k)); ctx.stroke();
+        ctx.fillStyle = PAPER; ctx.font = "600 11px 'IBM Plex Mono',monospace"; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('UNIT 001 · R. CHAN', cx, ny + 11);
+      }
+      ctx.restore();
+    }
+    function wrect(Rr) { return { xl: (Rr.l - cx) * DP / f, xr: (Rr.l + Rr.w - cx) * DP / f, yt: eyeY + (hy - Rr.t) * DP / f, yb: eyeY + (hy - Rr.t - Rr.h) * DP / f }; }
+    var LEAD = [null, { side: -1, off: [-1.3, 0, 1.2] }, { side: -1, off: [-1.1, .25, 1.1] }, { side: 1, off: [1.1, .25, 1.1] }, { ov: 1, off: [0, .45, 1.4] }];
+    function gripPt(i, W) {
+      if (i === 1) return [-.74, W.yb - .37];
+      if (i === 2) return [W.xl - .3, W.yt - .5];
+      if (i === 3) return [W.xr + .3, W.yt - .5];
+      return [.45, W.yt + 1.06];
+    }
+    function fastenPts(i, W) {
+      if (i === 1) return [[-.55, W.yb - .1], [.55, W.yb - .1]];
+      if (i === 2) return [[W.xl - .04, W.yt - .32], null];
+      if (i === 3) return [null, [W.xr + .04, W.yt - .32]];
+      if (i === 4) return [[-.3, W.yt + .06], [.3, W.yt + .06]];
+      return [null, null];
+    }
+    function placed(i) { return CC >= i - .03; }
+    function pProg(i) { return sm((CC - (i - .83)) / .8); }
+    function partPlace(i) {
+      if (placed(i)) return { W: WR, ox: 0, oy: 0, z: camZ + DP - .03 };
+      var o = LEAD[i].off, k = 1 - pProg(i);
+      return { W: wrect(rects[i]), ox: o[0] * k, oy: o[1] * k, z: Z0 + i * GAP - .03 + o[2] * k };
+    }
+    function cPts(x, y, rx, ry, n, a0, a1) { var o = []; a0 = a0 || 0; a1 = a1 == null ? 6.2832 : a1; for (var k = 0; k <= n; k++) { var a = a0 + (a1 - a0) * k / n; o.push([x + Math.cos(a) * rx, y + Math.sin(a) * ry]); } return o; }
+    function rrPts(x0, y0, x1, y1, r) { r = Math.max(.001, Math.min(r, (x1 - x0) / 2, (y1 - y0) / 2)); var o = []; [[x1 - r, y1 - r, 0], [x0 + r, y1 - r, 1.5708], [x0 + r, y0 + r, 3.1416], [x1 - r, y0 + r, 4.7124]].forEach(function (c) { for (var k = 0; k <= 3; k++) { var a = c[2] + k / 3 * 1.5708; o.push([c[0] + Math.cos(a) * r, c[1] + Math.sin(a) * r]); } }); return o; }
+    function capPts(ax, ay, bx, by, w) { var a = Math.atan2(by - ay, bx - ax), o = [], k; for (k = 0; k <= 6; k++) { var t1 = a + 1.5708 + k / 6 * 3.1416; o.push([ax + Math.cos(t1) * w, ay + Math.sin(t1) * w]); } for (k = 0; k <= 6; k++) { var t2 = a - 1.5708 + k / 6 * 3.1416; o.push([bx + Math.cos(t2) * w, by + Math.sin(t2) * w]); } return o; }
+    function wp(pts, z, col, a, m, lc, open) { if (col) FP(pts.map(function (p) { return [p[0], p[1], z]; }), col, a, true); if (m) for (var k = 0; k < pts.length - (open ? 1 : 0); k++) { var p = pts[k], q = pts[(k + 1) % pts.length]; L(p[0], p[1], z, q[0], q[1], z, m, lc); } }
+    function screw(x, y, z, r, rot) { r = Math.max(r, .07); wp(cPts(x, y, r * 1.2, r * 1.2, 16), z, GREY, .35, .9); wp(cPts(x, y, r, r, 12), z, '#e7e2d8', .9, 1); var c = Math.cos(rot) * r * .62, s = Math.sin(rot) * r * .62; L(x - c, y - s, z, x + c, y + s, z, 1); L(x + s, y - c, z, x - s, y + c, z, 1); }
+    function fastOn(i) { return sm((CC - (i - .07)) / .05) * (1 - sm((CC - (i + .1)) / .15)) > .6; }
+    function spinScrew(i, x, y, z, r, rot) {
+      if (!fastOn(i)) { screw(x, y, z, r, rot); return; }
+      screw(x, y, z, r, rot + t * 9);
+      for (var q = 0; q < 3; q++) { var a1 = q / 3 * 6.283 + t * 9, a2 = a1 + .9, rr = Math.max(r, .07) * 1.7; L(x + Math.cos(a1) * rr, y + Math.sin(a1) * rr, z, x + Math.cos(a2) * rr, y + Math.sin(a2) * rr, z, .9); }
+    }
+    function drawPart(i, pl) {
+      var W = pl.W, ox = pl.ox, oy = pl.oy, z = pl.z;
+      if (z - camZ < NEAR + .2) return;
+      var xl = W.xl + ox, xr = W.xr + ox, yt = W.yt + oy, yb = W.yb + oy, done = CC >= i - .06, k;
+      if (i === 1) {
+        wp(rrPts(ox - .95, yb - .24, ox + .95, yb + .02, .1), z, SLATE, .45, 1);
+        for (k = -2; k <= 2; k++) L(ox + k * .14, yb - .17, z, ox + k * .14, yb - .05, z, .5);
+        var ft = .56 + oy;
+        [-1, 1].forEach(function (sd) {
+          var lx = ox + sd * .55, st = yb - .68, sb = ft + .02;
+          if (st > sb) {
+            wp(rrPts(lx - .07, sb, lx + .07, st, .02), z, GREY, .5, .9);
+            wp(rrPts(lx - .15, Math.max(sb, st - .26), lx + .15, st, .05), z, BLUE, .5, 1);
+          }
+          wp(rrPts(lx - .19, yb - .55, lx + .19, yb - .18, .09), z, BLUE, .55, 1);
+          L(lx - .12, yb - .3, z, lx + .12, yb - .3, z, .45);
+          wp(cPts(lx, yb - .62, .11, .11, 12), z, YEL, .7, 1); wp(cPts(lx, yb - .62, .04, .04, 8), z, null, 0, .7);
+          wp(rrPts(lx - .3 + sd * .04, ft - .2, lx + .3 + sd * .04, ft + .03, .1), z, BLUE, .55, 1);
+          L(lx - .3 + sd * .04, ft - .1, z, lx + .3 + sd * .04, ft - .1, z, .45);
+          for (k = 0; k < 5; k++) { var tx = lx - .2 + sd * .04 + k * .1; L(tx, ft - .2, z, tx, ft - .16, z, .6); }
+          if (done) spinScrew(i, lx, yb - .1, z, .055, .6);
+        });
+      } else if (i === 2 || i === 3) {
+        var sd = i === 2 ? -1 : 1, sx = (sd < 0 ? xl : xr) + sd * .04, sy = yt - .32;
+        var wave = i === 3 ? sm((CC - (N - 1.6)) / .5) : 0;
+        var el = [sx + sd * .5, sy - .38];
+        var hd = [el[0] + sd * (.06 + .22 * wave), el[1] - .42 * (1 - wave) + (.44 + Math.sin(t * 6) * .07) * wave];
+        wp(capPts(sx, sy, el[0], el[1], .13), z, BLUE, .55, 1);
+        wp(capPts(el[0], el[1], hd[0], hd[1], .1), z, BLUE, .55, 1);
+        var dx = hd[0] - el[0], dy = hd[1] - el[1], dl = Math.hypot(dx, dy) || 1, ux = dx / dl, uy = dy / dl, qx = -uy, qy = ux;
+        [1, -1].forEach(function (g) { wp(capPts(hd[0] + qx * .06 * g, hd[1] + qy * .06 * g, hd[0] + ux * .2 + qx * .1 * g, hd[1] + uy * .2 + qy * .1 * g, .04), z, GREY, .5, 1); });
+        wp(cPts(hd[0], hd[1], .12, .12, 12), z, GREY, .55, 1);
+        wp(cPts(el[0], el[1], .1, .1, 12), z, YEL, .7, 1);
+        wp(cPts(sx, sy, .19, .19, 14), z, YEL, .7, 1); wp(cPts(sx, sy, .1, .1, 10), z, null, 0, .6);
+        if (done) spinScrew(i, sx, sy, z, .055, .3);
+      } else if (i === 4) {
+        var c0 = ox, h0 = yt + .14, h1 = yt + 1.04;
+        wp(rrPts(c0 - .22, yt - .02, c0 + .22, h0, .03), z, GREY, .5, 1);
+        for (k = -1; k <= 1; k++) L(c0 + k * .1, yt, z, c0 + k * .1, h0 - .02, z, .45);
+        [-1, 1].forEach(function (s) { wp(cPts(c0 + s * 1.05, (h0 + h1) / 2, .15, .15, 12), z, YEL, .7, 1); if (done) screw(c0 + s * 1.05, (h0 + h1) / 2, z, .055, .4); });
+        wp(rrPts(c0 - 1.0, h0, c0 + 1.0, h1, .32), z, BLUE, .45, 1);
+        wp(rrPts(c0 - .74, h0 + .13, c0 + .74, h1 - .13, .2), z, INK, .95, 1);
+        var bl = (t % 4.2) < .14 ? .15 : 1;
+        [-1, 1].forEach(function (s) {
+          var ex = c0 + s * .34, ey = h0 + .52;
+          wp(cPts(ex, ey, .13, .17 * bl, 14), z, '#9fd0ff', .95, 1, '#9fd0ff');
+          if (bl > .5) wp(cPts(ex - .04, ey + .06, .04, .04, 8), z, '#ffffff', .95, 0);
+          wp(cPts(c0 + s * .55, h0 + .3, .09, .05, 10), z, '#f29bb5', .95, 0);
+        });
+        wp(cPts(c0, h0 + .36, .14, .08, 8, 3.7, 5.72), z, null, 0, 1, '#9fd0ff', true);
+        L(c0, h1, z, c0, h1 + .27, z, 1);
+        wp(cPts(c0, h1 + .33, .07, .07, 10), z, Math.floor(t * 2) % 2 ? OR : '#f7c3a6', .9, 1);
+        if (done) { spinScrew(i, c0 - .3, yt + .06, z, .05, 0); spinScrew(i, c0 + .3, yt + .06, z, .05, 0); }
+      }
+    }
+    function shape(v) { if (v >= N - 1) return N - 1; var k = Math.floor(v), u = v - k; return k + u - Math.sin(2 * Math.PI * u) / (2 * Math.PI) * .8; }
+    function belt() {
+      var zc = camZ + DP, z0 = zc - .75, z1 = zc + .75, xe = 1.2 + BELT * 34, y = .3, x;
+      FQ(1.2, y, z0, xe, y, z0, xe, y, z1, 1.2, y, z1, BLUE, .3);
+      L(1.2, y, z0, xe, y, z0, 1); L(1.2, y, z1, xe, y, z1, .8); L(1.2, y - .14, z0, xe, y - .14, z0, .8);
+      FQ(1.2, y - .14, z0, xe, y - .14, z0, xe, y, z0, 1.2, y, z0, GREY, .4);
+      for (x = 1.4; x < xe; x += .45) L(x, y, z0, x, y, z1, .45);
+      for (x = 2; x < xe; x += 2.2) { bx(x - .06, x + .06, 0, y - .14, z0 - .02, z0 + .1, .8); bx(x - .06, x + .06, 0, y - .14, z1 - .1, z1 + .02, .5); }
+      for (x = 2.5; x < xe - 1; x += 3) { L(x, .005, z0 - .45, x + .45, .005, z0 - .3, 1, OR); L(x + .45, .005, z0 - .3, x, .005, z0 - .15, 1, OR); }
+      L(xe, y, z0, xe, y, z1, 1);
+    }
+    function station(i, act, eng) {
+      var zk = Z0 + i * GAP; if (zk - camZ < -5 || zk - camZ > FAR + 5) return;
+      if (i === N - 1) { outbound(zk, i === act); return; }
+      if (i === 0) { intake(zk); return; }
+      var on = i === act, tl = TOOLS[i % TOOLS.length], YB = beamY + .75;
+      [-1, 1].forEach(function (s) {
+        var xa = s * 2.3, xb = s * 2.62;
+        L(xa, 0, zk - 1.8, xa, 0, zk + 3.4, .8); L(xb, 0, zk - 1.8, xb, 0, zk + 3.4, .8);
+        for (var z = zk - 1.8; z < zk + 3.3; z += .38) L(xa, 0, z, xb, 0, z + .26, .7);
+        FQ(xa, 0, zk - 1.8, xb, 0, zk - 1.8, xb, 0, zk + 3.4, xa, 0, zk + 3.4, YEL, .4);
+        FQ(xb, 0, zk - 1.8, s * 4.9, 0, zk - 1.8, s * 4.9, 0, zk + 3.4, xb, 0, zk + 3.4, WARM, .1);
+        L(xb, 0, zk - 1.8, s * 4.9, 0, zk - 1.8, .5); L(xb, 0, zk + 3.4, s * 4.9, 0, zk + 3.4, .5);
+        var fx = s * 4.35;
+        bx(fx - .12, fx + .12, 0, 2.2, zk - 1.0, zk - .76, .9); bx(fx - .12, fx + .12, 0, 2.2, zk + 2.7, zk + 2.94, .9);
+        bx(fx - .14, fx + .14, 2.2, 2.55, zk - 1.05, zk + 2.99, 1);
+        FQ(s * 4.21, 2.2, zk - 1.05, s * 4.21, 2.55, zk - 1.05, s * 4.21, 2.55, zk + 2.99, s * 4.21, 2.2, zk + 2.99, RED, .38);
+        FQ(fx - .12, 0, zk - 1.0, fx - .12, 2.2, zk - 1.0, fx + .12, 2.2, zk - 1.0, fx + .12, 0, zk - 1.0, GREY, .2); FQ(fx - .12, 0, zk + 2.7, fx - .12, 2.2, zk + 2.7, fx + .12, 2.2, zk + 2.7, fx + .12, 0, zk + 2.7, GREY, .2);
+        for (var k = 0; k < 4; k++) { var zc = zk - .75 + k * .9; L(s * 4.21, 2.28, zc, s * 4.21, 2.28, zc + .55, .5); L(s * 4.21, 2.47, zc, s * 4.21, 2.47, zc + .55, .5); L(s * 4.21, 2.28, zc, s * 4.21, 2.47, zc, .5); L(s * 4.21, 2.28, zc + .55, s * 4.21, 2.47, zc + .55, .5); }
+        bx(s * 2.95, s * 4.21, 2.25, 2.43, zk + .82, zk + .98, .9);
+        FQ(s * 2.95, 2.25, zk + .82, s * 4.21, 2.25, zk + .82, s * 4.21, 2.43, zk + .82, s * 2.95, 2.43, zk + .82, RED, .34);
+        [3.15, 3.65].forEach(function (cx0) {
+          var xx = s * cx0; L(xx, 2.25, zk + .9, xx, 1.78, zk + .9, .9);
+          bx(xx - .08, xx + .08, 1.62, 1.78, zk + .82, zk + .98, .9);
+          var sw = ambient ? Math.sin(t * 1.4 + cx0 + i) * .12 * eng : 0;
+          L(xx, 1.62, zk + .9, xx - s * (.18 + sw), 1.42, zk + .9, .9);
+          bez([s * 4.21, 2.3, zk + 1.6], [xx + s * .3, 2.9, zk + 1.3], [xx, 1.75, zk + .98], 6, .4);
+        });
+        var jx = s * 3.75;
+        [zk + 1.55, zk + 2.25].forEach(function (z) { L(s * 3.4, 0, z, jx, 1.4, z, .8); L(jx, 1.4, z, s * 4.1, 0, z, .8); L(s * 3.55, .55, z, s * 3.95, .55, z, .5); });
+        L(jx, 1.4, zk + 1.55, jx, 1.4, zk + 2.25, .8); bx(jx - .1, jx + .1, 1.4, 1.58, zk + 1.8, zk + 2.0, .8);
+        bx(s * 4.55, s * 4.95, 0, 1.7, zk + 3.0, zk + 3.6, .8);
+        FQ(s * 4.55, 0, zk + 3.0, s * 4.55, 1.7, zk + 3.0, s * 4.55, 1.7, zk + 3.6, s * 4.55, 0, zk + 3.6, SLATE, .2);
+        L(s * 4.55, .2, zk + 3.3, s * 4.55, 1.5, zk + 3.3, .4);
+        var yw = s > 0 ? Math.PI : 0;
+        var fp = fastenPts(i, WR)[s < 0 ? 0 : 1], ah = fp ? sm((CC - (i - .07)) / .05) * (1 - sm((CC - (i + .1)) / .15)) : 0;
+        robot(s * 2.95, 0, zk - .55, 1, yw, fp ? [fp[0], fp[1], camZ + DP - .05] : null, ah, 'drive', i * 3 + s);
+        if (fp && ah > .6) { var zf = camZ + DP - .06; screw(fp[0], fp[1], zf, .075, t * 9); for (var q2 = 0; q2 < 3; q2++) { var a1 = q2 / 3 * 6.283 + t * 9, a2 = a1 + .9; L(fp[0] + Math.cos(a1) * .13, fp[1] + Math.sin(a1) * .13, zf, fp[0] + Math.cos(a2) * .13, fp[1] + Math.sin(a2) * .13, zf, .8); } }
+        if (s < 0 && LEAD[i]) {
+          var Wl = wrect(rects[i]), g = gripPt(i, Wl), o = LEAD[i].off, kk = 1 - pProg(i), tg, rl;
+          if (!placed(i)) { tg = [g[0] + o[0] * kk, g[1] + o[1] * kk, zk + o[2] * kk]; rl = 1; } else { var rk = sm((CC - (i - .03)) / .25); tg = [g[0] + (LEAD[i].ov ? 0 : LEAD[i].side * .8 * rk), g[1] + 1.2 * rk, zk + .8 * rk]; rl = sm(1 - (CC - i) / .45); }
+          if (LEAD[i].ov) { bx(-.35, .35, YB, YB + .25, zk + .1, zk + .7, .8); L(0, YB + .25, zk + .4, 0, CE, zk + .4, .4); robot(0, YB, zk + .4, -1, -Math.PI / 2, tg, rl, 'grip', i * 7); }
+          else robot(LEAD[i].side * 3.0, 0, zk + 1.3, 1, LEAD[i].side > 0 ? Math.PI : 0, tg, rl, 'grip', i * 5);
+        }
+      });
+      var b0 = 5.0;
+      [-1, 1].forEach(function (s) {
+        bx(s * b0 - .18, s * b0 + .18, 0, YB, zk - .36, zk, 1);
+        bx(s * b0 - .32, s * b0 + .32, 0, .08, zk - .5, zk + .14, .7);
+        L(s * b0 - .18 * s, .6, zk - .18, s * (b0 - .7), YB - .05, zk - .18, .3);
+        L(s * b0, YB, zk, s * b0, CE, zk, .3);
+      });
+      bx(-b0 - .3, b0 + .3, YB, YB + .6, zk - .38, zk + .02, 1);
+      FQ(-b0 - .3, YB, zk - .38, b0 + .3, YB, zk - .38, b0 + .3, YB + .6, zk - .38, -b0 - .3, YB + .6, zk - .38, RED, .5);
+      [-1, 1].forEach(function (s) { FQ(s * b0 - .18, 0, zk - .36, s * b0 + .18, 0, zk - .36, s * b0 + .18, YB, zk - .36, s * b0 - .18, YB, zk - .36, RED, .42); });
+      var x;
+      L(-b0, YB + .72, zk - .3, b0, YB + .72, zk - .3, .5); L(-b0, YB + .82, zk - .3, b0, YB + .82, zk - .3, .5);
+      for (x = -b0; x < b0; x += .4) L(x, YB + .6, zk - .3, x, YB + .82, zk - .3, .25);
+      box(-1.05, 1.05, YB + .1, YB + .5, zk - .4, zk - .4, 1, on ? OR : INK);
+      txt('STN ' + pad(i * 10) + ' · ' + names[i], 0, YB + .3, zk - .4, .17, on ? '#d9480f' : INK);
+      DOTS.push([b0 - .55, YB + .3, zk - .4, .09, on && Math.floor(t * 2) % 2 === 0]);
+    }
+
+    var target = 0, disp = 0, t0 = performance.now(), lastHud = -1, cardO = cards.map(function () { return -1; });
+    function readScroll() {
+      var r = track.getBoundingClientRect(), span = r.height - window.innerHeight;
+      target = Math.max(0, Math.min(1, -r.top / span)) * (N - 1);
+    }
+
+    function frame(now) {
+      t = (now - t0) / 1000;
+      readScroll();
+      var tp = 0;
+      if (REV) {
+        target = disp = REV.s; var rp = Math.min(1, (now - REV.t0) / 2600);
+        var zo = cl01(rp / .45); ZM = 1 + 4 * Math.pow(1 - zo, 3);
+        TXV = sm((rp - .3) / .2);
+        var ce2 = cl01((rp - .45) / .4); CAMX = 18 * (1 - (ce2 < .5 ? 4 * ce2 * ce2 * ce2 : 1 - Math.pow(-2 * ce2 + 2, 3) / 2));
+        BELT = 1 - sm((rp - .82) / .18);
+        fadeEl.style.opacity = (1 - sm(rp / .22)).toFixed(3); fadeEl.style.pointerEvents = rp < .15 ? 'auto' : 'none';
+        if (rp >= 1) { REV = null; CAMX = 0; BELT = 0; ZM = 1; TXV = 1; fadeEl.style.opacity = '0'; }
+      }
+      if (TRN) {
+        target = disp = TRN.s; tp = Math.min(1, (now - TRN.t0) / 2600);
+        BELT = sm(tp / .18); var ce = cl01((tp - .12) / .43); CAMX = 18 * (ce < .5 ? 4 * ce * ce * ce : 1 - Math.pow(-2 * ce + 2, 3) / 2);
+        var zi = cl01((tp - .5) / .5); ZM = 1 + 4 * zi * zi * zi;
+        TXV = 1 - sm((tp - .5) / .22);
+        var fo = sm((tp - .8) / .2); fadeEl.style.opacity = fo.toFixed(3); fadeEl.style.pointerEvents = fo > .1 ? 'auto' : 'none';
+        if (tp >= .93 && !TRN.go) { TRN.go = true; window.location.href = TRN.href; }
+      }
+      if (TRN || REV || ZM !== 1 || lastZ !== ZM) { var zs0 = ZM > 1.0005 ? ' scale(' + ZM.toFixed(4) + ')' : ''; cards.forEach(function (c) { c.style.transform = 'translate(-50%,-50%)' + zs0; }); lastZ = ZM; }
+      disp += (target - disp) * 0.12; if (Math.abs(target - disp) < 1e-4) disp = target;
+      var s = disp; CC = shape(disp); camZ = Z0 + CC * GAP - DP; SHUT = sm((s - .04) / .32);
+      var act = Math.round(s), maxO = 0, kf = Math.min(N - 2, Math.floor(s)), frac = s - kf;
+      var ra = rects[kf], rb = rects[kf + 1], rm = sm((frac - .38) / .24); if (ra && rb) WR = wrect({ l: ra.l + (rb.l - ra.l) * rm, t: ra.t + (rb.t - ra.t) * rm, w: ra.w + (rb.w - ra.w) * rm, h: ra.h + (rb.h - ra.h) * rm });
+      cards.forEach(function (c, i) {
+        var o = sm((0.46 - Math.abs(s - i)) / 0.08); maxO = Math.max(maxO, o);
+        var oo = o * TXV;
+        if (Math.abs(oo - cardO[i]) > 0.004) {
+          c.style.opacity = oo.toFixed(3); c.style.translate = '0 0';
+          c.style.pointerEvents = oo > .6 ? 'auto' : 'none'; cardO[i] = oo;
+        }
+      });
+      if (act !== lastHud) {
+        hud.forEach(function (b, i) { b.style.color = i === act ? '#d9480f' : '#8a8a84'; b.querySelector('.hudDot').style.background = i === act ? '#f0561d' : 'transparent'; });
+        lastHud = act;
+      }
+      hint.style.opacity = s < 0.08 && rects[0] && rects[0].t + rects[0].h + 60 < H ? '1' : '0';
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H); if (ZM > 1.0005) ctx.setTransform(dpr * ZM, 0, 0, dpr * ZM, (1 - ZM) * cx * dpr, (1 - ZM) * cardCY * dpr); ctx.lineCap = 'round';
+      TX = []; DOTS = []; TIPS = {};
+      var z, x, j, zs = camZ, ze = camZ + FAR, zs2 = Math.max(camZ, ZR);
+      // floor
+      for (z = Math.ceil(zs2 / 2) * 2; z < ze; z += 2) L(-8, 0, z, 8, 0, z, .2);
+      [-8, -5, 5, 8].forEach(function (xx) { ZL(xx, 0, zs2, ze, .3); }); [-1.15, 1.15].forEach(function (xx) { ZL(xx, 0, zs, ze, .3); });
+      [-.8, -.7, .7, .8].forEach(function (xx) { ZL(xx, 0, zs, ze, .9); });
+      for (z = Math.max(zs + NEAR + .1, Math.floor(zs / 6) * 6); z < ze; z += 6) { FQ(-1.15, 0, z, 1.15, 0, z, 1.15, 0, z + 6, -1.15, 0, z + 6, BLUE, .16); FQ(-.8, 0, z, -.7, 0, z, -.7, 0, z + 6, -.8, 0, z + 6, BLUE, .45); FQ(.7, 0, z, .8, 0, z, .8, 0, z + 6, .7, 0, z + 6, BLUE, .45); if (z >= ZR) [-1, 1].forEach(function (sd) { FQ(sd * 5.6, 5.35, z, sd * 8, 5.35, z, sd * 8, 5.35, z + 6, sd * 5.6, 5.35, z + 6, WARM, .12); }); }
+      for (z = Math.ceil(zs / .55) * .55; z < ze; z += .55) { L(-.95, 0, z, -.55, 0, z, .45); L(.55, 0, z, .95, 0, z, .45); }
+      var ch = ambient ? (t * 1.2) % 1 : 0;
+      for (z = Math.floor(zs) + ch; z < ze; z += 1) L(0, 0, z, 0, 0, z + .5, .35);
+      // mezzanines
+      [-1, 1].forEach(function (sd) {
+        var xi = sd * 5.6, xo = sd * 8, yd = 5.6;
+        ZL(xi, yd, zs2, ze, .9); ZL(xi, yd - .25, zs2, ze, .7); ZL(xi, yd + 1.0, zs2, ze, .8); ZL(xi, yd + .5, zs2, ze, .5); ZL(xi, yd + .15, zs2, ze, .5);
+        for (z = Math.ceil(zs2 / 1.2) * 1.2; z < ze; z += 1.2) L(xi, yd, z, xi, yd + 1.0, z, .55);
+        for (z = Math.ceil(zs2 / 3) * 3; z < ze; z += 3) L(xi, yd - .25, z, xo, yd - .25, z, .3);
+        for (z = Math.ceil(zs2 / 6) * 6; z < ze; z += 6) {
+          bx(xi - .12 * sd, xi + .12 * sd, 0, yd - .25, z, z + .24, .7);
+          L(xi, yd - 1.1, z + .12, sd * 6.5, yd - .25, z + .12, .4);
+          L(xo, 0, z, xo, CE, z, .4);
+        }
+        ZL(xo, yd + 3.4, zs2, ze, .35); ZL(xo, yd + 1.7, zs2, ze, .25);
+        for (z = Math.ceil(zs2 / .7) * .7; z < ze; z += .7) L(xo, yd, z, xo, yd + 3.4, z, .2);
+      });
+      // ceiling
+      [-6, -3, 0, 3, 6].forEach(function (xx) { ZL(xx, CE, zs2, ze, .35); });
+      ZL(0, CE - .6, zs2, ze, .35);
+      for (z = Math.ceil(zs2 / 1.5) * 1.5; z < ze; z += 1.5) { var odd = Math.round(z / 1.5) % 2; L(0, odd ? CE : CE - .6, z, 0, odd ? CE - .6 : CE, z + 1.5, .3); }
+      for (z = Math.ceil(zs2 / 6) * 6; z < ze; z += 6) { L(-8, CE, z, 8, CE, z, .35); }
+      for (z = Math.ceil(zs2 / 9) * 9; z < ze; z += 9) { [-2.4, 2.4].forEach(function (xx) { L(xx - .6, CE - .3, z, xx + .6, CE - .3, z, .5); L(xx - .6, CE - .3, z + 1.6, xx + .6, CE - .3, z + 1.6, .5); L(xx - .6, CE - .3, z, xx - .6, CE - .3, z + 1.6, .5); L(xx + .6, CE - .3, z, xx + .6, CE - .3, z + 1.6, .5); }); }
+      // hook conveyors
+      var hk = 2.4, o1 = ambient ? (t * .9) % hk : 0;
+      [[-1.9, 1], [1.9, -1]].forEach(function (cfg) {
+        var xx = cfg[0]; ZL(xx, 6.9, zs2, ze, .8);
+        var off = cfg[1] > 0 ? o1 : hk - o1;
+        for (var zz = Math.floor(zs2 / hk) * hk + off; zz < ze; zz += hk) { L(xx, 6.9, zz + .25, xx, 6.45, zz + .25, .8); L(xx - .25, 6.45, zz + .25, xx + .25, 6.45, zz + .25, .8); bx(xx - .45, xx + .45, 5.65, 6.4, zz - .1, zz + .6, 1); L(xx - .45, 6.02, zz - .1, xx + .45, 6.02, zz - .1, .55); L(xx, 5.65, zz - .1, xx, 6.4, zz - .1, .4); FQ(xx - .45, 5.65, zz - .1, xx + .45, 5.65, zz - .1, xx + .45, 6.4, zz - .1, xx - .45, 6.4, zz - .1, BLUE, .48); FQ(xx - .45 * cfg[1], 5.65, zz - .1, xx - .45 * cfg[1], 5.65, zz + .6, xx - .45 * cfg[1], 6.4, zz + .6, xx - .45 * cfg[1], 6.4, zz - .1, BLUE, .32); FQ(xx - .45, 5.65, zz - .1, xx + .45, 5.65, zz - .1, xx + .45, 5.65, zz + .6, xx - .45, 5.65, zz + .6, BLUE, .22); }
+      });
+      // AGVs in aisles
+      var span = (N - 1) * GAP + 50;
+      [-1, 1].forEach(function (sd) {
+        for (var k = 0; k < 3; k++) {
+          var pz = ((ambient ? t * 1.5 * sd : 0) + k * span / 3) % span; if (pz < 0) pz += span; var zA = Z0 - 12 + pz;
+          if (zA - camZ < 1 || zA - camZ > FAR || zA < ZR + .5) continue;
+          var xa = sd * 6.4, xb = sd * 7.3;
+          bx(xa, xb, .08, .42, zA, zA + 1.4, .8); L(xa, .3, zA, xb, .3, zA, .4); FQ(xa, .08, zA, xb, .08, zA, xb, .42, zA, xa, .42, zA, YEL, .3);
+          bx(xa + sd * .1, xb - sd * .1, .42, 1.7, zA + .15, zA + 1.25, .5);
+          for (j = 0; j < 3; j++) L(sd * 6.85, .55 + j * .4, zA + .25, sd * 6.85, .9 + j * .4, zA + 1.15, .5);
+        }
+      });
+      // end wall
+      var ZE = Z0 + (N - 1) * GAP + 20;
+      box(-8, 8, 0, CE, ZE, ZE, .5);
+      // between-station equipment
+      for (var i = 0; i < N - 1; i++) {
+        var zg = Z0 + i * GAP + GAP / 2 + .5;
+        if (zg - camZ < -6 || zg - camZ > FAR + 6) continue;
+        if (i % 2 === 0) { arch(zg); rack(-1, zg - 4.2, zg - 1.2); rack(1, zg + 1.6, zg + 4.6); }
+        else { liftConv(zg); rack(1, zg - 4.2, zg - 1.2); rack(-1, zg + 1.6, zg + 4.6); }
+      }
+      // stations
+      for (i = N - 1; i >= 0; i--) station(i, act, sm(1 - Math.abs(s - i) / 0.55));
+      for (i = 1; i <= 4; i++) { TOPF = placed(i) ? true : 'near'; RIDE = placed(i); drawPart(i, partPlace(i)); } TOPF = false; RIDE = false;
+      if (BELT > 0) belt();
+
+      // carrier (rides with the camera)
+      RIDE = true;
+      var R, a0 = rects[kf], b0 = rects[kf + 1], mm = sm((frac - .38) / .24);
+      R = { l: a0.l + (b0.l - a0.l) * mm, t: a0.t + (b0.t - a0.t) * mm, w: a0.w + (b0.w - a0.w) * mm, h: a0.h + (b0.h - a0.h) * mm };
+      var czc = camZ + DP, ycb = eyeY - (R.t + R.h + 6 - hy) * DP / f;
+      box(-1.05, 1.05, .16, .34, czc - .55, czc + .55, 1);
+      FQ(-1.05, .16, czc - .55, 1.05, .16, czc - .55, 1.05, .34, czc - .55, -1.05, .34, czc - .55, BLUE, .35); FQ(-1.05, .34, czc - .55, 1.05, .34, czc - .55, 1.05, .34, czc + .55, -1.05, .34, czc + .55, GREY, .3);
+      L(-1.05, .25, czc - .2, 1.05, .25, czc - .2, .5); L(-1.05, .25, czc + .2, 1.05, .25, czc + .2, .5);
+      if (CC < 1) [-.85, .85].forEach(function (xx) {
+        bx(xx - .06, xx + .06, .34, ycb, czc - .26, czc - .14, 1);
+        L(xx, .34, czc + .3, xx, ycb, czc - .2, .5);
+        bx(xx - .16, xx + .16, ycb - .05, ycb, czc - .3, czc - .1, .9);
+        FQo(xx - .06, .34, czc - .26, xx + .06, .34, czc - .26, xx + .06, ycb, czc - .26, xx - .06, ycb, czc - .26, GREY, .45); FQo(xx - .06, .34, czc - .26, xx - .06, .34, czc - .14, xx - .06, ycb, czc - .14, xx - .06, ycb, czc - .26, GREY, .3); FQo(xx + .06, .34, czc - .26, xx + .06, .34, czc - .14, xx + .06, ycb, czc - .14, xx + .06, ycb, czc - .26, GREY, .3);
+        FQo(xx - .16, ycb - .05, czc - .3, xx + .16, ycb - .05, czc - .3, xx + .16, ycb, czc - .3, xx - .16, ycb, czc - .3, GREY, .5); FQo(xx - .16, ycb, czc - .3, xx + .16, ycb, czc - .3, xx + .16, ycb, czc - .1, xx - .16, ycb, czc - .1, GREY, .35);
+      });
+      [-.75, .75].forEach(function (xx) { [czc - .45, czc + .45].forEach(function (zz) { L(xx, .16, zz - .08, xx, .02, zz, .7); L(xx, .02, zz, xx, .16, zz + .08, .7); }); });
+
+      RIDE = false;
+      LBL = function () {
+      ctx.lineWidth = 1;
+      DOTS.forEach(function (d0) {
+        var d = d0[2] - camZ; if (d < NEAR + .3 || d > FAR) return; if (camZ < ZR && d0[2] > ZR + .05 && SHUT < .6) return;
+        ctx.globalAlpha = fog(d); ctx.beginPath(); ctx.arc(px(d0[0], d), py(d0[1], d), Math.max(1.5, f * d0[3] / d), 0, Math.PI * 2);
+        ctx.fillStyle = d0[4] ? OR : PAPER; ctx.fill(); ctx.strokeStyle = INK; ctx.stroke();
+      });
+      TX.forEach(function (q) {
+        var d = q[3] - camZ; if (d < NEAR + .6 || d > FAR) return; if (camZ < ZR && q[3] > ZR + .05 && SHUT < .6) return;
+        var p = f * q[4] / d; if (p < 4) return;
+        ctx.globalAlpha = fog(d); ctx.fillStyle = q[5]; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.font = '600 ' + p.toFixed(1) + "px 'IBM Plex Mono',monospace"; ctx.fillText(q[0], px(q[1], d), py(q[2], d));
+      });
+      };
+      render();
+      ctx.lineWidth = 1;
+      ctx.globalAlpha = 1; ctx.fillStyle = '#f6f3ec'; ctx.fillRect(R.l, R.t, R.w, R.h); ctx.strokeStyle = INK; ctx.lineWidth = 1.5; ctx.setLineDash([]); ctx.strokeRect(R.l, R.t, R.w, R.h);
+      var aOut = 1 - maxO;
+      if (aOut > 0.02) {
+        
+        
+                var ph2 = (t * .55) % 2, uu = ph2 < 1 ? ph2 : 2 - ph2, dir = ph2 < 1 ? 1 : -1; uu = sm(uu);
+        var syy = R.t + 8 + (R.h - 16) * uu, tr = 54 * dir;
+        var gr = ctx.createLinearGradient(0, syy, 0, syy - tr); gr.addColorStop(0, 'rgba(240,86,29,.26)'); gr.addColorStop(1, 'rgba(240,86,29,0)');
+        ctx.globalAlpha = aOut; ctx.fillStyle = gr; ctx.fillRect(R.l + 1, Math.min(syy, syy - tr), R.w - 2, Math.abs(tr));
+        ctx.globalAlpha = .18 * aOut; ctx.strokeStyle = OR; ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(R.l, syy); ctx.lineTo(R.l + R.w, syy); ctx.stroke();
+        ctx.globalAlpha = aOut; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(R.l - 6, syy); ctx.lineTo(R.l + R.w + 6, syy); ctx.stroke();
+        ctx.strokeStyle = INK; ctx.lineWidth = 1.2;
+        [R.l - 14, R.l + R.w + 6].forEach(function (ex) { ctx.fillStyle = PAPER; ctx.fillRect(ex, syy - 5, 8, 10); ctx.strokeRect(ex, syy - 5, 8, 10); ctx.fillStyle = OR; ctx.fillRect(ex + 2.5, syy - 1.5, 3, 3); });
+        ctx.lineWidth = 1.6; ctx.beginPath();
+        [[R.l, R.t, 1, 1], [R.l + R.w, R.t, -1, 1], [R.l, R.t + R.h, 1, -1], [R.l + R.w, R.t + R.h, -1, -1]].forEach(function (c) { ctx.moveTo(c[0] + 16 * c[2], c[1]); ctx.lineTo(c[0], c[1]); ctx.lineTo(c[0], c[1] + 16 * c[3]); });
+        ctx.stroke();
+        ctx.globalAlpha = .5 * aOut; ctx.lineWidth = 1; ctx.beginPath();
+        for (var tk = 0; tk <= 20; tk++) { var ty2 = R.t + 8 + (R.h - 16) * tk / 20; ctx.moveTo(R.l + R.w - 4, ty2); ctx.lineTo(R.l + R.w - (tk % 5 ? 8 : 14), ty2); }
+        ctx.stroke();
+        ctx.globalAlpha = aOut; ctx.fillStyle = '#d9480f'; ctx.font = "600 10px 'IBM Plex Mono',monospace"; ctx.textAlign = 'right'; ctx.textBaseline = 'top';
+        ctx.fillText('SCAN ' + Math.round(uu * 100) + '%', R.l + R.w - 18, R.t + 12);
+        var nxt = Math.min(N - 1, Math.max(kf + 1, Math.ceil(s)));
+        ctx.globalAlpha = aOut; ctx.fillStyle = '#5d5f63'; ctx.font = "500 11px 'IBM Plex Mono',monospace"; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+        ctx.fillText('ASSEMBLING → STN ' + pad(nxt * 10) + ' · ' + names[nxt], R.l + 14, R.t + 12);
+      }
+      self._raf = requestAnimationFrame(frame);
+    }
+
+    measure();
+    this._onResize = measure;
+    window.addEventListener('resize', this._onResize);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    var img = document.querySelector('.introSticker'); if (img && !img.complete) img.addEventListener('load', measure);
+    setTimeout(measure, 800);
+    hud.forEach(function (b, i) {
+      b.onclick = function () {
+        var r = track.getBoundingClientRect(), sp = r.height - window.innerHeight;
+        window.scrollTo({ top: r.top + window.scrollY + sp * i / (N - 1), behavior: 'smooth' });
+      };
+    });
+    document.querySelectorAll('.inspectBtn').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); if (TRN) return; try { sessionStorage.setItem('lineHome', '/m'); } catch (er) {} fadeLab.textContent = '→ ' + (a.dataset.stn || 'INSPECTION'); TRN = { t0: performance.now(), s: disp, href: a.getAttribute('href') }; });
+    });
+    var fadeEl = document.getElementById('fadeOut'), fadeBar = document.getElementById('fadeBar'), fadeLab = document.getElementById('fadeLab');
+    var HMAP = { welcome: .0001, work: 1, projects: 2, story: 3, toolkit: 4, resume: 4, contact: 5 }, hk0 = HMAP[(location.hash || '').slice(1)];
+    if (!hk0) document.documentElement.classList.remove('arriving');
+    if (hk0) { fadeEl.style.opacity = '1'; BELT = 1; CAMX = 18; ZM = 5; TXV = 0; setTimeout(function () { var r = track.getBoundingClientRect(), sp = r.height - window.innerHeight; window.scrollTo(0, r.top + window.scrollY + sp * hk0 / (N - 1)); readScroll(); disp = target; REV = { t0: performance.now(), s: disp }; document.documentElement.classList.remove('arriving'); }, 0); }
+    ['/m/work', '/m/projects', '/support.js'].forEach(function (u) { var l = document.createElement('link'); l.rel = 'prefetch'; l.href = u; document.head.appendChild(l); });
+    var ts = document.getElementById('toStart'); if (ts) ts.onclick = function () { window.scrollTo({ top: 0, behavior: 'smooth' }); };
+    cards.forEach(function (c) { c.style.transition = 'none'; });
+    this._raf = requestAnimationFrame(frame);
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    window.removeEventListener('resize', this._onResize);
+  }
+  renderVals() { return {}; }
+}
+
+</script>
+</body>
+</html>

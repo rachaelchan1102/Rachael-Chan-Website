@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/device-route.js"></script>
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<script src="/image-slot.js"></script>
+<style>
+html,body{margin:0;background:#f3f0e8;color:#26272a}
+a{color:#26272a;text-decoration:none}a:hover{color:#d9480f}
+@media (max-width:760px){.projGrid{grid-template-columns:1fr !important}}
+</style>
+<script src="/page-fade.js"></script>
+</helmet>
+
+<header style="position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px clamp(20px,4vw,48px);font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;background:rgba(243,240,232,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #c9c5ba">
+<a href="/" style="display:flex;align-items:center;gap:10px">
+<span style="width:10px;height:10px;background:#f0561d;display:block"></span>
+<span>R. Chan</span>
+</a>
+<nav style="display:flex;gap:clamp(14px,2.4vw,32px);flex-wrap:wrap;justify-content:flex-end">
+<a href="/work" style="display:flex;gap:6px"><span style="color:#8a8a84">10</span>Work</a>
+<a href="/projects" style="display:flex;gap:6px;color:#d9480f"><span>20</span>Projects</a>
+<a href="/story" style="display:flex;gap:6px"><span style="color:#8a8a84">30</span>Story</a>
+<a href="/resume" style="display:flex;gap:6px"><span style="color:#8a8a84">40</span>Resume</a>
+</nav>
+</header>
+
+<main id="projMain" style="max-width:1100px;margin:0 auto;padding:clamp(20px,3vh,32px) clamp(20px,4vw,48px) 60px;box-sizing:border-box">
+
+<a href="/#projects" style="display:inline-flex;gap:8px;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">← BACK TO LINE</a>
+
+<div style="margin-top:28px;padding-bottom:18px;border-bottom:1.5px solid #26272a">
+<h1 style="margin:0;font-family:Archivo,sans-serif;font-weight:800;font-stretch:72%;font-size:clamp(52px,7.5vw,96px);line-height:.86;text-transform:uppercase;display:flex;align-items:flex-end"><span id="typeWord">Projects</span><span id="typeCaret" style="display:inline-block;width:.09em;height:.78em;margin-left:.06em;margin-bottom:.04em;background:#f0561d"></span></h1>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:stretch;justify-content:space-between;margin-top:22px">
+<div style="display:flex;flex-wrap:nowrap;gap:8px;flex:none">
+<button type="button" class="topicChip" data-topic="" style="padding:0 14px;min-height:44px;border:1.5px solid #26272a;background:transparent;color:#26272a;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;cursor:pointer">ALL</button>
+<button type="button" class="topicChip" data-topic="optimization" style="padding:0 14px;min-height:44px;border:1.5px solid #26272a;background:transparent;color:#26272a;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;cursor:pointer">OPTIMIZATION</button>
+<button type="button" class="topicChip" data-topic="data" style="padding:0 14px;min-height:44px;border:1.5px solid #26272a;background:transparent;color:#26272a;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;cursor:pointer">DATA</button>
+<button type="button" class="topicChip" data-topic="ai" style="padding:0 14px;min-height:44px;border:1.5px solid #26272a;background:transparent;color:#26272a;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;cursor:pointer">AI</button>
+</div>
+</div>
+<div id="noMatch" style="display:none;padding:30px 0 0;font:400 14px/1.5 'IBM Plex Mono',monospace;color:#5d5f63">No projects use that yet.</div>
+<div class="projGrid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:32px">
+
+<a href="/projects/pso" class="projCard" data-topics="optimization|simulation" data-skills="Sequencing|Scheduling|Python|FlexSim|SimPy|Discrete-event simulation|Monte Carlo simulation|OR-Tools|CP-SAT|CNC" style="display:flex;flex-direction:column;border:1.5px solid #26272a;background:#f6f3ec;color:#26272a;transition:translate .3s ease" style-hover="translate:0 -4px">
+<div style="position:relative;aspect-ratio:16/9;flex:none;overflow:hidden;background:#e7e2d8;border-bottom:1.5px solid #26272a">
+<img src="/results/fig_tradeoff.png" alt="Changeover minutes and lateness by scheduling rule at three loads" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fcfcfb;padding:10px;box-sizing:border-box;display:block">
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 20px">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:clamp(20px,2vw,24px);line-height:1.05;text-transform:uppercase">Production Sequence Optimization</div>
+<p style="margin:0;font:400 14px/1.55 'IBM Plex Mono',monospace;color:#5d5f63;text-wrap:pretty">A SimPy simulation and OR-Tools sequencer that cuts CNC changeover time 52% versus earliest-due-date scheduling.</p>
+<span style="font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#d9480f;margin-top:4px">LEARN MORE →</span>
+</div>
+</a>
+
+<a href="/projects/rosterflow" class="projCard" data-topics="optimization|data" data-skills="Scheduling|Python|FastAPI|pandas|OR-Tools|CP-SAT|Constraint programming|Monte Carlo simulation|React|TypeScript|Vite|Leaflet|Recharts|Postgres|Vercel" style="display:flex;flex-direction:column;border:1.5px solid #26272a;background:#f6f3ec;color:#26272a;transition:translate .3s ease" style-hover="translate:0 -4px">
+<div style="position:relative;aspect-ratio:16/9;flex:none;overflow:hidden;background:#e7e2d8;border-bottom:1.5px solid #26272a">
+<img src="/assets/projects/rosterflow-app.png" alt="RosterFlow sites and travel screen" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block">
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 20px">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:clamp(20px,2vw,24px);line-height:1.05;text-transform:uppercase">RosterFlow</div>
+<p style="margin:0;font:400 14px/1.55 'IBM Plex Mono',monospace;color:#5d5f63;text-wrap:pretty">A scheduling tool that staffs volunteer musicians across 7 long-term care homes for a non-profit.</p>
+<span style="font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#d9480f;margin-top:4px">LEARN MORE →</span>
+</div>
+</a>
+
+<a href="/projects/fsae" class="projCard" data-topics="data" data-skills="Telemetry|FSAE|Formula SAE|T-SQL|SQL|SQL Server|SSMS|Power BI" style="display:flex;flex-direction:column;border:1.5px solid #26272a;background:#f6f3ec;color:#26272a;transition:translate .3s ease" style-hover="translate:0 -4px">
+<div style="position:relative;aspect-ratio:16/9;flex:none;overflow:hidden;background:#e7e2d8;border-bottom:1.5px solid #26272a">
+<img src="/assets/projects/fsae-traction.png" alt="Traction circle comparing two drivers" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#ffffff;padding:10px;box-sizing:border-box;display:block">
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 20px">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:clamp(20px,2vw,24px);line-height:1.05;text-transform:uppercase">FSAE Telemetry Tracker</div>
+<p style="margin:0;font:400 14px/1.55 'IBM Plex Mono',monospace;color:#5d5f63;text-wrap:pretty">Automated telemetry reporting for driver comparison on the FSAE car.</p>
+<span style="font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#d9480f;margin-top:4px">LEARN MORE →</span>
+</div>
+</a>
+
+<a href="/projects/oum" class="projCard" data-topics="data" data-skills="Next.js|TypeScript|PostgreSQL|TypeScript ETL|Web scraping|Token-set matching" style="display:flex;flex-direction:column;border:1.5px solid #26272a;background:#f6f3ec;color:#26272a;transition:translate .3s ease" style-hover="translate:0 -4px">
+<div style="position:relative;aspect-ratio:16/9;flex:none;overflow:hidden;background:#e7e2d8;border-bottom:1.5px solid #26272a">
+<img src="/assets/projects/oum-app.png" alt="Ontario University Metrics app screen" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block">
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 20px">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:clamp(20px,2vw,24px);line-height:1.05;text-transform:uppercase">Ontario University Metrics</div>
+<p style="margin:0;font:400 14px/1.55 'IBM Plex Mono',monospace;color:#5d5f63;text-wrap:pretty">Admissions analytics across 600+ Ontario programs, used by 10,000+ students.</p>
+<span style="font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#d9480f;margin-top:4px">LEARN MORE →</span>
+</div>
+</a>
+
+<a href="/projects/convospark" class="projCard" data-topics="ai|data" data-skills="Python|Flask|Socket.IO|Google Web Speech API|OpenAI embeddings|gpt-4o-mini|NumPy|SQLite" style="display:flex;flex-direction:column;border:1.5px solid #26272a;background:#f6f3ec;color:#26272a;transition:translate .3s ease" style-hover="translate:0 -4px">
+<div style="position:relative;aspect-ratio:16/9;flex:none;overflow:hidden;background:#e7e2d8;border-bottom:1.5px solid #26272a">
+<img src="/assets/projects/convospark-app.png" alt="ConvoSpark AI app screen" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;display:block">
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 20px">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:clamp(20px,2vw,24px);line-height:1.05;text-transform:uppercase">ConvoSpark AI</div>
+<p style="margin:0;font:400 14px/1.55 'IBM Plex Mono',monospace;color:#5d5f63;text-wrap:pretty">Conversation recall for people with Alzheimer’s. First of 78 nominees at YRSTF.</p>
+<span style="font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#d9480f;margin-top:4px">LEARN MORE →</span>
+</div>
+</a>
+
+</div>
+
+<footer style="margin-top:60px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:16px;border-top:1.5px solid #26272a;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">
+<span>TORONTO, ON</span>
+<span style="display:flex;gap:16px"><a href="https://github.com/rachaelchan1102" target="_blank" rel="noopener">GITHUB</a><a href="https://linkedin.com/in/rachael-chan-01726b334/" target="_blank" rel="noopener">LINKEDIN</a><a href="mailto:rachaelchan1102@gmail.com">EMAIL</a></span>
+</footer>
+</main>
+<div id="leaveFade" style="position:fixed;inset:0;z-index:80;background:#f3f0e8;opacity:0;pointer-events:none;transition:opacity .5s ease;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#5d5f63"><span>← BACK TO LINE</span><span style="width:180px;height:2px;background:#c9c5ba;display:block;position:relative;overflow:hidden"><span id="leaveBar" style="position:absolute;left:0;top:0;bottom:0;width:0;background:#f0561d;display:block;transition:width .55s linear .1s"></span></span></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    var tw = document.getElementById('typeWord'), tc = document.getElementById('typeCaret'), self = this, full = 'Projects';
+    if (tw) {
+      this._type = function () {
+        clearInterval(self._ti); clearInterval(self._blink); clearTimeout(self._start);
+        var n = 0; tw.textContent = ''; tc.style.display = 'inline-block'; tc.style.opacity = '1';
+        self._blink = setInterval(function () { tc.style.opacity = tc.style.opacity === '0' ? '1' : '0'; }, 530);
+        self._start = setTimeout(function () {
+          self._ti = setInterval(function () {
+            n++; tw.textContent = full.slice(0, n);
+            if (n >= full.length) {
+              clearInterval(self._ti); clearInterval(self._blink); tc.style.opacity = '1'; var bl = 0;
+              self._blink = setInterval(function () { tc.style.opacity = tc.style.opacity === '0' ? '1' : '0'; if (tc.style.opacity === '0' && ++bl >= 3) { clearInterval(self._blink); tc.style.display = 'none'; } }, 450);
+            }
+          }, 200);
+        }, 400);
+      };
+      tw.parentElement.style.cursor = 'pointer';
+      tw.parentElement.addEventListener('click', this._type);
+      this._type();
+    }
+    var inp = document.getElementById('skillSearch'), nm = document.getElementById('noMatch'), topic = '';
+    var chips = Array.from(document.querySelectorAll('.topicChip'));
+    var apply = function () {
+      var q = inp ? inp.value.trim().toLowerCase() : '', shown = 0;
+      document.querySelectorAll('.projCard').forEach(function (c) {
+        var hay = (c.dataset.skills + ' ' + c.textContent).toLowerCase();
+        var ok = (!q || hay.indexOf(q) >= 0) && (!topic || c.dataset.topics.split('|').indexOf(topic) >= 0);
+        c.style.display = ok ? 'flex' : 'none'; if (ok) shown++;
+      });
+      nm.style.display = shown ? 'none' : 'block';
+      chips.forEach(function (ch) { var on = (ch.dataset.topic || '') === topic; ch.style.background = on ? '#26272a' : 'transparent'; ch.style.color = on ? '#f3f0e8' : '#26272a'; });
+    };
+    if (inp) inp.addEventListener('input', apply);
+    apply();
+    chips.forEach(function (ch) { ch.addEventListener('click', function () { topic = ch.dataset.topic || ''; apply(); }); });
+    var lf = document.getElementById('leaveFade');
+    try { var lh0 = sessionStorage.getItem('lineHome'); if (lh0) { var pl = document.createElement('link'); pl.rel = 'prefetch'; pl.href = lh0; document.head.appendChild(pl); } } catch (er) {}
+    document.querySelectorAll('a[href="/"],a[href^="/#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); var lh = null; try { lh = sessionStorage.getItem('lineHome'); } catch (er) {} var to = a.getAttribute('href'); if (lh) to = to.replace('/', lh); if (to.indexOf('#') < 0) to += '#welcome'; var zoomy = lh === '/'; var main = document.querySelector('main'); if (zoomy) { Array.from(lf.children).forEach(function (ch) { ch.style.display = 'none'; }); if (main) { main.style.transformOrigin = '50% 30%'; main.style.transition = 'opacity .5s ease,scale .6s cubic-bezier(.5,0,.75,0)'; main.style.opacity = '0'; main.style.scale = '.92'; } lf.style.transition = 'opacity .55s ease .1s'; } else if (main) { main.style.transition = 'opacity .45s ease,translate .5s cubic-bezier(.5,0,.75,0)'; main.style.opacity = '0'; main.style.translate = '-40px 0'; } lf.style.pointerEvents = 'auto'; lf.style.opacity = '1'; if (!zoomy) document.getElementById('leaveBar').style.width = '100%'; setTimeout(function () { window.location.href = to; }, zoomy ? 650 : 700); });
+    });
+    var m = document.getElementById('projMain');
+    if (m) { var zin = false; try { zin = (sessionStorage.getItem('lineHome') || '') === '/' && /^[a-z]+:\/\/[^\/]+\/(index\.html)?$/.test(document.referrer); } catch (er) {} m.style.opacity = '0'; m.style.transformOrigin = '50% 20%'; if (zin) { m.style.scale = '1.08'; m.style.transition = 'opacity .7s ease,scale .9s cubic-bezier(.2,.8,.2,1)'; } else { m.style.translate = '0 16px'; m.style.transition = 'opacity .6s ease,translate .7s cubic-bezier(.2,.8,.2,1)'; } setTimeout(function () { m.style.opacity = '1'; m.style.translate = '0 0'; m.style.scale = '1'; }, 40); }
+  }
+  componentWillUnmount() { clearInterval(this._ti); clearInterval(this._blink); clearTimeout(this._start); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

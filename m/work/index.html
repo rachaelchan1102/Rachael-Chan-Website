@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/device-route.js"></script>
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+html,body{margin:0;background:#f3f0e8;color:#26272a}
+a{color:#26272a;text-decoration:none}a:hover{color:#d9480f}
+input::placeholder{color:#8a8a84}
+@media (max-width:720px){.roleRow{grid-template-columns:64px minmax(0,1fr) !important}.roleRow img{width:64px !important;height:64px !important}.roleDates{grid-column:2 !important;justify-self:start !important}}
+@media (max-width:720px){.rolePanel{padding-left:0 !important}}
+@media (max-width:900px){.panelCols{grid-template-columns:minmax(0,1fr) !important}.colL{padding-right:0 !important;border-right:0 !important}.colR{padding-left:0 !important;order:-1}}
+@media (max-width:600px){header{padding:16px 14px !important;gap:10px !important;letter-spacing:.02em !important;font-size:14px !important}header nav{gap:11px !important}header>a span:first-child{width:12px !important;height:12px !important}header nav a>span:first-child{display:none !important}}
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+@media (max-width:600px){header>a,header nav a{min-height:44px !important;display:flex !important;align-items:center !important}header{padding-top:4px !important;padding-bottom:4px !important}.stCard a{min-height:44px !important;box-sizing:border-box !important;align-items:center !important}.inspectBtn{min-height:44px !important}button,[role="button"],.jumpLink,#jumpBar a{min-height:44px !important;box-sizing:border-box !important}#jumpBar a,.jumpLink{display:flex !important;align-items:center !important}.pillRow{height:48px !important}footer a,footer span a{display:inline-flex !important;align-items:center !important;min-height:44px !important;padding:0 4px !important}main>a:first-child,[style*="ALL PROJECTS"]{min-height:44px !important}a[href$="/projects"]:not(header a){min-height:44px;display:inline-flex;align-items:center}.projCard{min-height:44px}}
+@media (max-width:600px){main>a:first-child+div{margin-top:6px !important}main{padding-top:8px !important}}
+@media (max-width:600px){.loc{display:none !important}:has(> .loc){justify-content:center !important;padding-top:10px !important}:has(> .loc) a{font-size:0 !important;width:44px;height:44px;display:inline-block !important;background:center/22px no-repeat}:has(> .loc) span{gap:18px !important}}
+@media (max-width:600px){:has(> .loc) span{align-items:center !important}:has(> .loc) a{box-sizing:border-box !important;padding:0 !important;margin:0 !important;width:44px !important;height:44px !important;min-height:44px !important;background-size:22px 22px !important;background-position:center !important;vertical-align:middle !important;flex:none !important}:has(> .loc) a:nth-child(1){background-size:23px 23px !important}:has(> .loc) a:nth-child(3){background-size:24px 24px !important}}
+@media (max-width:600px){#jumpBar a[target="_blank"],#jumpBar a[href="#"]:not(.jumpLink){font-size:0 !important;padding:0 13px !important;gap:0 !important}#jumpBar a[target="_blank"] svg,#jumpBar a[href="#"]:not(.jumpLink) svg{width:18px !important;height:18px !important}#jumpBar a span[style*="border-radius"]{width:10px !important;height:10px !important}#jumpBar>div{gap:6px !important}#jumpBar>div>div:first-child{gap:6px !important}:has(> .loc) a:nth-child(1){background-size:27px 27px !important}}
+.socIco{display:inline-flex !important;align-items:center !important;justify-content:center !important;width:44px !important;height:44px !important;background:none !important;font-size:0 !important;padding:0 !important}
+</style>
+<script src="/page-fade.js"></script>
+</helmet>
+
+<header style="position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px clamp(20px,4vw,48px);font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;background:rgba(243,240,232,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #c9c5ba">
+<a href="/m" style="display:flex;align-items:center;gap:10px">
+<span style="width:10px;height:10px;background:#f0561d;display:block"></span>
+<span>R. Chan</span>
+</a>
+<nav style="display:flex;gap:clamp(14px,2.4vw,32px);flex-wrap:wrap;justify-content:flex-end">
+<a href="/m/work" style="display:flex;gap:6px;color:#d9480f"><span>10</span>Work</a>
+<a href="/m/projects" style="display:flex;gap:6px"><span style="color:#8a8a84">20</span>Projects</a>
+<a href="/m/story" style="display:flex;gap:6px"><span style="color:#8a8a84">30</span>Story</a>
+<a href="/m/resume" style="display:flex;gap:6px"><span style="color:#8a8a84">40</span>Resume</a>
+</nav>
+</header>
+
+<main id="workMain" style="max-width:1000px;margin:0 auto;padding:clamp(20px,3vh,32px) clamp(20px,4vw,48px) 60px;box-sizing:border-box">
+
+<a href="/m#work" style="display:inline-flex;gap:8px;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">← BACK TO LINE</a>
+
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-top:28px;padding-bottom:18px;border-bottom:1.5px solid #26272a">
+<div>
+<h1 style="margin:0;font-family:Archivo,sans-serif;font-weight:800;font-stretch:72%;font-size:clamp(52px,7.5vw,96px);line-height:.86;text-transform:uppercase;display:flex;align-items:flex-end"><span id="typeWord">Work</span><span id="typeCaret" style="display:inline-block;width:.09em;height:.78em;margin-left:.06em;margin-bottom:.04em;background:#f0561d"></span></h1>
+</div>
+</div>
+
+<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:22px 0 8px">
+<div style="display:flex;flex-wrap:nowrap;gap:12px;flex:none;align-self:stretch">
+<sc-for list="{{ chips }}" as="c" hint-placeholder-count="3">
+<button type="button" onClick="{{ c.toggle }}" style="align-self:stretch;padding:13px 14px;border:1.5px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;cursor:pointer">{{ c.label }}</button>
+</sc-for>
+</div>
+</div>
+
+<sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+<div style="padding:40px 0;font:400 14px/1.5 'IBM Plex Mono',monospace;color:#5d5f63">No matching roles. <button type="button" onClick="{{ clearQuery }}" style="border:0;background:none;padding:0;font:inherit;color:#d9480f;cursor:pointer;text-decoration:underline">Clear filters</button></div>
+</sc-if>
+
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ roles }}" as="r" hint-placeholder-count="0">
+<div class="roleWrap" data-idx="{{ r.idx }}" style="border-bottom:1px solid #c9c5ba">
+<div role="button" tabindex="0" onClick="{{ r.toggle }}" aria-expanded="{{ r.open }}" class="roleRow" style="display:grid;grid-template-columns:88px minmax(0,1fr) auto;gap:8px 24px;align-items:start;padding:24px 0;color:#26272a;cursor:pointer" style-hover="background:rgba(240,86,29,.05)">
+<img src="{{ r.logo }}" alt="{{ r.company }} logo" style="width:88px;height:88px;object-fit:contain;display:block;align-self:start">
+<span style="display:flex;flex-direction:column;gap:7px;min-width:0">
+<span style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:clamp(22px,2.8vw,32px);line-height:1.02;text-transform:uppercase;text-wrap:pretty">{{ r.role }}</span>
+<span style="font:500 14px/1.4 'IBM Plex Mono',monospace;color:#3d3e42">{{ r.company }} · <span style="color:#5d5f63">{{ r.dates }}</span></span>
+<span style="font:400 14px/1.55 'IBM Plex Mono',monospace;color:#5d5f63;text-wrap:pretty">{{ r.focus }}</span>
+</span>
+<span class="roleDates" style="font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#d9480f;white-space:nowrap;justify-self:end;align-self:center">{{ r.moreLabel }}</span>
+</div>
+<div style="display:grid;grid-template-rows:{{ r.rows }};opacity:{{ r.op }};transition:{{ r.tr }}">
+<div style="overflow:hidden;min-height:0">
+<div class="rolePanel" style="padding:0 0 28px 112px;display:flex;flex-direction:column;gap:22px">
+<div class="panelCols" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px 0;align-items:stretch">
+<div class="colL" style="display:flex;flex-direction:column;padding-right:32px;border-right:1px solid #c9c5ba">
+<div style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#d9480f;margin-bottom:12px">REFLECTION</div>
+<div style="flex:1;border-top:1px solid #c9c5ba;border-bottom:1px solid #c9c5ba;padding:12px 0"><p style="margin:0;font:400 13px/1.6 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">{{ r.reflection }}</p><sc-if value="{{ r.img1 }}" hint-placeholder-val="{{ false }}"><div style="margin-top:12px;padding-top:12px;border-top:1px solid #c9c5ba"><img src="{{ r.img1 }}" alt="{{ r.img1Alt }}" style="width:100%;aspect-ratio:16/9;object-fit:{{ r.imgFit }};object-position:center 65%;background:{{ r.imgBg }};display:block"></div></sc-if></div>
+</div>
+<div class="colR" style="display:flex;flex-direction:column;padding-left:32px">
+<div style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#d9480f;margin-bottom:12px">WHAT I DID</div>
+<div style="flex:1;display:flex;flex-direction:column;border-top:1px solid #c9c5ba">
+<sc-for list="{{ r.bullets }}" as="b" hint-placeholder-count="2">
+<div style="flex:1;display:flex;align-items:center;padding:12px 0;border-bottom:1px solid #c9c5ba;font:400 13px/1.6 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">{{ b }}</div>
+</sc-for>
+</div>
+</div>
+</div>
+<sc-if value="{{ r.gallery }}" hint-placeholder-val="{{ true }}"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:560px">
+<div style="position:relative;aspect-ratio:{{ r.imgRatio }};grid-column:{{ r.imgSpan }};border:1px solid #c9c5ba;background:#ebe7de;overflow:hidden"><sc-if value="{{ r.img1 }}" hint-placeholder-val="{{ false }}"><img src="{{ r.img1 }}" alt="{{ r.img1Alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></sc-if><sc-if value="{{ r.noImg1 }}" hint-placeholder-val="{{ true }}"><image-slot id="work-{{ r.key }}-1" shape="rect" fit="cover" placeholder="Drop an image" style="position:absolute;inset:0;width:100%;height:100%;display:block"></image-slot></sc-if></div>
+<sc-if value="{{ r.noImg1 }}" hint-placeholder-val="{{ true }}"><div style="position:relative;aspect-ratio:4/3;border:1px solid #c9c5ba;background:#ebe7de;overflow:hidden"><image-slot id="work-{{ r.key }}-2" shape="rect" fit="cover" placeholder="Drop an image" style="position:absolute;inset:0;width:100%;height:100%;display:block"></image-slot></div></sc-if>
+</div></sc-if>
+</div>
+</div>
+</div>
+</div>
+</sc-for>
+</div>
+
+<footer style="margin-top:60px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:16px;border-top:1.5px solid #26272a;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">
+<span class="loc">TORONTO, ON</span>
+<span style="display:flex;gap:16px"><a href="https://github.com/rachaelchan1102" target="_blank" rel="noopener" aria-label="GitHub" class="socIco"><svg width="22" height="22" viewBox="0 0 16 16" fill="#26272a" aria-hidden="true" style="display:block"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a><a href="https://linkedin.com/in/rachael-chan-01726b334/" target="_blank" rel="noopener" aria-label="LinkedIn" class="socIco"><svg width="21" height="21" viewBox="0 0 24 24" fill="#26272a" aria-hidden="true" style="display:block"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg></a><a href="mailto:rachaelchan1102@gmail.com" aria-label="Email" class="socIco"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#26272a" stroke-width="2" aria-hidden="true" style="display:block"><rect x="2.5" y="4.5" width="19" height="15"></rect><path d="M3 5.5l9 7 9-7"></path></svg></a></span>
+</footer>
+</main>
+<div id="leaveFade" style="position:fixed;inset:0;z-index:80;background:#f3f0e8;opacity:0;pointer-events:none;transition:opacity .5s ease;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#5d5f63"><span>← BACK TO LINE</span><span style="width:180px;height:2px;background:#c9c5ba;display:block;position:relative;overflow:hidden"><span id="leaveBar" style="position:absolute;left:0;top:0;bottom:0;width:0;background:#f0561d;display:block;transition:width .55s linear .1s"></span></span></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const DATA = [
+  { href: 'work-yncn.dc.html', noImages: true, logo: '/assets/logos/logo-yncn.png', role: 'Data Engineer', company: 'You’re Next Career Network', kind: 'Extracurricular', dates: 'MAY 2026 – PRESENT',
+    focus: 'Building semantic matching for a student-recruiter career fair platform.',
+    tags: ['NLP', 'Python', 'Semantic Search', 'Data Engineering'],
+    reflection: 'I joined because I wanted to help make the career search easier for students at UofT, and I liked the idea of building something that could actually contribute to that. What I didn’t expect was how much I’d get out of the club itself. Working the career fairs, I met so many students, recruiters, and teammates who were all chasing the same goal of landing jobs and helping each other get there. Hearing from them directly shaped how I thought about the products I was building, and being around people that driven has made the whole job search feel a lot less lonely.',
+    bullets: ['Served as a club representative to employer and recruiter partners, volunteering across career fairs and networking initiatives to help students access job opportunities.', 'Owned semantic matching for the Career Fair’s Unified Data Engine, a co-built recruiter platform, using OpenAI embeddings to match students to job descriptions across recruiters.', 'Implemented Supabase authentication and role-based access control, securing recruiter and student data and enforcing separate permission scopes across the platform.'] },
+  { href: 'work-ai-data-intern.dc.html', img1: '/assets/work/pi-intern-presentation.jpg', img1Alt: 'Rachael and fellow interns at their summer internship presentation, Developing AI Skill Library', logo: '/assets/logos/logo-constellation.png', role: 'Process Improvement Intern', company: 'Constellation Homebuilder Systems', kind: 'Internship', dates: 'MAY – AUG 2026',
+    focus: 'Automating data product development and data workflows.',
+    tags: ['React', 'Microsoft Fabric', 'Automation', 'Python'],
+    reflection: 'Coming back a year after my data analyst internship, I could see how much AI had changed what was possible: work I used to do by hand could now be rebuilt as automations with proper checks built in. With that shift, the most important step became mapping each process first, so every fix targeted a real bottleneck instead of automating something that wouldn’t actually speed anything up.',
+    bullets: ['Redesigned a manual benchmarking data workflow into a shorter process by using failure mode analysis to build validation safeguards into a Python automation and cut rework.', 'Built AI agents that generate complete Power BI paginated reports and dashboards over an MCP server, cutting report creation time and greatly increasing how many reports the team can deliver.', 'Cleared a bottleneck caused by manually re-entering client goals by mapping the process with flow diagrams, then building a client-facing React portal for direct data entry.'] },
+  { href: 'work-utfr.dc.html', img1: '/assets/work/utfr-car.png', img1Alt: 'University of Toronto Formula Racing car at the Michigan competition track', logo: '/assets/logos/logo-utfr.png', role: 'Senior Race Engineering Member', company: 'UofT Formula Racing Team', kind: 'Extracurricular', dates: 'JAN 2026 – PRESENT',
+    focus: 'Data infrastructure and analysis for race performance improvements.',
+    tags: ['SQL', 'Power BI', 'Telemetry', 'Algorithms'],
+    reflection: 'Joining a design team showed me how much a group of undergrad students can actually build, and it pushed me to keep learning well beyond what we cover in class. On the race engineering side, the work is about squeezing as much as possible out of the car, and digging through the data to find where the next bit of performance is hiding.',
+    bullets: ['Analyzed high-frequency driver telemetry (MoTeC) with root cause analysis, building SQL pipelines and Power BI KPI dashboards that pinpointed throttle-control gaps and informed targeted improvements across sessions.', 'Built a speed-threshold classifier in Python that automatically segments session data into driving stints, cutting manual data preparation and producing standardized datasets for the dashboards.', 'Assisted with on-track testing, recording test data for the team’s data management, and helped manufacture car parts through manual machining.'] },
+  { href: 'work-findnext.dc.html', img1: '/assets/work/tpm-meal-system.png', img1Alt: 'CAD model of the heated-plate meal system with dimensions', imgFit: 'contain', imgBg: '#ffffff', logo: '/assets/logos/logo-findnext.png', role: 'Technical Project Manager', company: 'FindNext Inc.', kind: 'Internship', dates: 'JAN – APR 2026',
+    focus: 'Led design lifecycle for a meal assistive device.',
+    tags: ['Project Management', 'Prototyping', 'Arduino', 'Stakeholders'],
+    reflection: 'This was my first time taking a project from client requirements all the way to a working prototype. I loved the PM side: talking with clients, turning their needs into project requirements and conceptual design specifications, and sketching more than a hundred ideas before we narrowed them down. Later, running time studies on our own assembly and comparing suppliers showed me that the way something is built and sourced matters as much as the design itself, and it’s what got me interested in physical products and the processes behind them.',
+    bullets: ['Led a cross-functional team as project manager for a meal assistive device, driving the full design lifecycle from definition through prototyping and narrowing 128 ideas to a final client-ready design.', 'Defined design requirements by communicating directly with the client and care-setting stakeholders to gather and translate their needs into project specifications.', 'Reduced prototype assembly and cleaning time by 35% by conducting time studies to identify bottlenecks and applying DFA principles in SolidWorks to consolidate 4 assemblies into 2.', 'Lowered projected BOM cost per unit 13% by sourcing each component from the lowest-cost ISO 9001-certified supplier that met temperature, dimensional and food-grade material requirements.', 'Validated the heat retention performance of the selected design against client specifications using Arduino-based temperature sensors.'] },
+  { href: 'work-constellation-analyst.dc.html', img1: '/assets/work/analyst-interns.png', img1Alt: 'Rachael with the Constellation Homebuilder Systems intern cohort', logo: '/assets/logos/logo-constellation.png', role: 'Data Analyst Intern', company: 'Constellation Homebuilder Systems', kind: 'Internship', dates: 'MAY – AUG 2025',
+    focus: 'Dashboards, reports, and standardizing legacy data for business decisions.',
+    tags: ['SQL', 'SSRS', 'Data Warehouse', 'Reporting'],
+    reflection: 'I built everything here mostly manually, before AI was built into every IDE and super integrated in my workflows. It was slow, but it meant I truly understood every step of how raw records turned into a report. It also gave me a baseline: a year later, I could see exactly how much of that work could be automated.',
+    bullets: ['Built a SQL and SSRS pipeline that transforms raw ticket and time log data into client-ready invoices with budget vs. billed breakdowns, replacing hours of manual reporting each month.', 'Developed an SSRS report that aggregates over a million ticket and defect records into one place, making it much faster to look up past issues.', 'Unified four legacy systems into a data warehouse, standardizing schemas to enable consistent downstream reporting.'] },
+  { href: 'work-mftga.dc.html', img1: '/assets/work/mftga-volunteers.png', img1Alt: 'Music for the Golden Age volunteer musicians with the program banner at a long-term care home', logo: '/assets/logos/logo-mftga.png', role: 'Co-Founder & Operations Lead', company: 'Music for the Golden Age', kind: 'Extracurricular', dates: 'JUL 2022 – PRESENT',
+    focus: 'Live music in GTA long-term care homes.',
+    tags: ['Leadership', 'Community', 'Operations'],
+    reflection: 'This started as a way to keep sharing music after I finished my ARCT. Hearing about how much residents enjoy our music is something that is extremely fulfilling. Behind every show, there’s a lot to sort out: coordinating with each home, matching musicians to dates, arranging rides, and filling last-minute cancellations, but it’s a really cool logistics problem to have to figure out.',
+    bullets: ['Helped grow our volunteer music program from zero to seven long-term care homes, building partnerships with each home and recruiting and onboarding volunteer musicians.', 'Run scheduling, staffing, and transportation across all seven homes, assigning musicians under pianist-coverage and minimum-staffing requirements and backfilling last-minute cancellations.', 'Built RosterFlow, an optimization and simulation tool that plans our shows, schedules backup volunteers, and groups musicians into shared rides.'] }
+];
+const CHIPS = ['All', 'Internships', 'Extracurriculars'];
+
+class Component extends DCLogic {
+  state = { query: '', filter: 'All', open: null, instant: false };
+  componentDidMount() {
+    var self = this;
+    var hk = (location.hash || '').slice(1);
+    if (hk) { var oi = DATA.findIndex(function (p) { return p.href === 'work-' + hk + '.dc.html'; });
+      if (oi >= 0) this.setState({ open: oi, instant: true }, function () {
+        requestAnimationFrame(function () { var el = document.querySelector('.roleWrap[data-idx="' + oi + '"]');
+          if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 90);
+          requestAnimationFrame(function () { self.setState({ instant: false }); }); }); }); }
+    this._past = function () {
+      if (self.state.open == null) return;
+      var w = document.querySelector('.roleWrap[data-idx="' + self.state.open + '"]'); if (!w) return;
+      if (w.getBoundingClientRect().bottom < 60) {
+        var nx = w.nextElementSibling || w.parentElement.nextElementSibling, refTop = nx ? nx.getBoundingClientRect().top : 0;
+        self.setState({ open: null, instant: true }, function () {
+          if (nx) window.scrollBy(0, nx.getBoundingClientRect().top - refTop);
+          requestAnimationFrame(function () { self.setState({ instant: false }); });
+        });
+      }
+    };
+    window.addEventListener('scroll', this._past, { passive: true });
+    var tw = document.getElementById('typeWord'), tc = document.getElementById('typeCaret');
+    if (tw) {
+      var self = this, full = 'Work';
+      this._type = function () {
+        clearInterval(self._ti); clearInterval(self._blink); clearTimeout(self._hide); clearTimeout(self._start);
+        var n = 0; tw.textContent = ''; tc.style.display = 'inline-block'; tc.style.opacity = '1';
+        self._blink = setInterval(function () { tc.style.opacity = tc.style.opacity === '0' ? '1' : '0'; }, 530);
+        self._start = setTimeout(function () {
+          self._ti = setInterval(function () {
+            n++; tw.textContent = full.slice(0, n);
+            if (n >= full.length) { clearInterval(self._ti); clearInterval(self._blink); tc.style.opacity = '1'; var bl = 0; self._blink = setInterval(function () { tc.style.opacity = tc.style.opacity === '0' ? '1' : '0'; if (tc.style.opacity === '0' && ++bl >= 3) { clearInterval(self._blink); tc.style.display = 'none'; } }, 450); }
+          }, 260);
+        }, 400);
+      };
+      tw.parentElement.style.cursor = 'pointer';
+      tw.parentElement.addEventListener('click', this._type);
+      this._type();
+    }
+    var lf = document.getElementById('leaveFade');
+    try { var lh0 = sessionStorage.getItem('lineHome'); if (lh0) { var pl = document.createElement('link'); pl.rel = 'prefetch'; pl.href = lh0; document.head.appendChild(pl); } } catch (er) {}
+    document.querySelectorAll('a[href="/m"],a[href^="/m#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); var lh = null; try { lh = sessionStorage.getItem('lineHome'); } catch (er) {} var to = a.getAttribute('href'); if (lh) to = to.replace('/m', lh); if (to.indexOf('#') < 0) to += '#welcome'; var zoomy = lh === '/m'; var main = document.querySelector('main'); if (zoomy) { Array.from(lf.children).forEach(function (ch) { ch.style.display = 'none'; }); if (main) { main.style.transformOrigin = '50% 30%'; main.style.transition = 'opacity .5s ease,scale .6s cubic-bezier(.5,0,.75,0)'; main.style.opacity = '0'; main.style.scale = '.92'; } lf.style.transition = 'opacity .55s ease .1s'; } else if (main) { main.style.transition = 'opacity .45s ease,translate .5s cubic-bezier(.5,0,.75,0)'; main.style.opacity = '0'; main.style.translate = '-40px 0'; } lf.style.pointerEvents = 'auto'; lf.style.opacity = '1'; if (!zoomy) document.getElementById('leaveBar').style.width = '100%'; setTimeout(function () { window.location.href = to; }, zoomy ? 650 : 700); });
+    });
+    var m = document.getElementById('workMain');
+    if (m) { var zin = false; try { zin = (sessionStorage.getItem('lineHome') || '') === '/m' && /^[a-z]+:\/\/[^\/]+\/(index\.html)?$/.test(document.referrer); } catch (er) {} m.style.opacity = '0'; m.style.transformOrigin = '50% 20%'; if (zin) { m.style.scale = '1.08'; m.style.transition = 'opacity .7s ease,scale .9s cubic-bezier(.2,.8,.2,1)'; } else { m.style.translate = '0 16px'; m.style.transition = 'opacity .6s ease,translate .7s cubic-bezier(.2,.8,.2,1)'; } setTimeout(function () { m.style.opacity = '1'; m.style.translate = '0 0'; m.style.scale = '1'; }, 40); }
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this._past); clearInterval(this._ti); clearInterval(this._blink); clearTimeout(this._hide); clearTimeout(this._start); }
+  matches(p) {
+    var q = this.state.query.trim().toLowerCase();
+    var hay = [p.role, p.company, p.focus, p.reflection, p.tags.join(' '), p.bullets.join(' ')].join(' ').toLowerCase();
+    if (q && hay.indexOf(q) < 0) return false;
+    if (this.state.filter === 'Internships' && p.kind !== 'Internship') return false;
+    if (this.state.filter === 'Extracurriculars' && p.kind !== 'Extracurricular') return false;
+    return true;
+  }
+  renderVals() {
+    var ORD = ['work-ai-data-intern.dc.html', 'work-findnext.dc.html', 'work-constellation-analyst.dc.html', 'work-utfr.dc.html', 'work-mftga.dc.html', 'work-yncn.dc.html'];
+    var self = this, shown = DATA.slice().sort(function (a, b) { return ORD.indexOf(a.href) - ORD.indexOf(b.href); }).filter(function (p) { return self.matches(p); });
+    return {
+      query: this.state.query,
+      onQuery: function (e) { self.setState({ query: e.target.value }); },
+      clearQuery: function () { self.setState({ query: '', filter: 'All' }); },
+      empty: shown.length === 0,
+      countLabel: shown.length === DATA.length ? DATA.length + ' ROLES' : shown.length + ' OF ' + DATA.length + ' ROLES',
+      chips: CHIPS.map(function (label) {
+        var on = self.state.filter === label;
+        return { label: label.toUpperCase(), bg: on ? '#26272a' : 'transparent', fg: on ? '#f3f0e8' : '#26272a', border: '#26272a',
+          toggle: function () { self.setState({ filter: label }); } };
+      }),
+      roles: shown.map(function (p) {
+        var idx = DATA.indexOf(p), open = self.state.open === idx;
+        return Object.assign({}, p, { idx: idx, key: p.href.replace('work-', '').replace('.dc.html', ''), open: open, rows: open ? '1fr' : '0fr', op: open ? '1' : '0', tr: self.state.instant ? 'none' : 'grid-template-rows .55s cubic-bezier(.2,.8,.2,1),opacity .4s ease', moreLabel: open ? 'CLOSE −' : 'LEARN MORE +', bullets: p.bullets || [], img1: p.img1 || '', img1Alt: p.img1Alt || '', noImg1: !p.img1, gallery: !p.img1 && !p.noImages, imgFit: p.imgFit || 'cover', imgBg: p.imgBg || 'transparent', imgRatio: p.img1 ? '4/3' : '4/3', imgSpan: p.img1 ? '1 / -1' : 'auto',
+          toggle: function () { self.setState({ open: open ? null : idx }); } });
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/device-route.js"></script>
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="/image-slot.js"></script>
+<style>
+body{margin:0;background:#f3f0e8;font-family:'IBM Plex Mono',monospace}
+a{color:#26272a;text-decoration:none}a:hover{color:#d9480f}
+@media (max-width:520px){.stackRow{grid-template-columns:1fr !important}}
+.csGrid{display:block}
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:112px}
+.pillRow::-webkit-scrollbar{display:none}
+@media (max-width:820px){.csGrid{grid-template-columns:1fr;gap:14px}}
+@media (min-width:1000px){.takeGrid{grid-template-columns:repeat(3,minmax(0,1fr)) !important}}
+</style>
+<script src="/page-fade.js"></script>
+</helmet>
+
+<div id="csMain" style="background-color:#f3f0e8;color:#26272a;min-height:100vh;position:relative;overflow-x:clip">
+<div style="position:absolute;left:0;right:0;top:0;height:230px;background:transparent;pointer-events:none;z-index:0"></div>
+
+<div id="headerGlass" style="position:fixed;left:0;right:0;top:0;height:120px;z-index:45;pointer-events:none;opacity:0;transition:opacity .4s;background:rgba(243,240,232,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 72%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 72%,transparent 100%)"></div>
+<header id="navBar" style="position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px clamp(20px,4vw,48px);font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;background:rgba(243,240,232,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #c9c5ba">
+<a href="/" style="display:flex;align-items:center;gap:10px">
+<span style="width:10px;height:10px;background:#f0561d;display:block"></span>
+<span>R. Chan</span>
+</a>
+<nav style="display:flex;gap:clamp(14px,2.4vw,32px);flex-wrap:wrap;justify-content:flex-end">
+<a href="/work" style="display:flex;gap:6px"><span style="color:#8a8a84">10</span>Work</a>
+<a href="/projects" style="display:flex;gap:6px;color:#d9480f"><span>20</span>Projects</a>
+<a href="/story" style="display:flex;gap:6px"><span style="color:#8a8a84">30</span>Story</a>
+<a href="/resume" style="display:flex;gap:6px"><span style="color:#8a8a84">40</span>Resume</a>
+</nav>
+</header>
+
+<div style="width:min(92%,1100px);box-sizing:border-box;margin:0 auto;padding:0 44px;position:relative;z-index:2;padding-top:20px;padding-bottom:32px">
+<a href="/projects" style="font:400 13px/1 'IBM Plex Mono',monospace;letter-spacing:.16em;color:#26272a" style-hover="color:#d9480f">← ALL PROJECTS</a>
+</div>
+
+<div style="width:min(92%,1100px);box-sizing:border-box;margin:0 auto;padding:0 44px;position:relative;z-index:2">
+<div style="position:relative;padding:clamp(26px,3.6vw,44px) clamp(26px,5vw,64px);border-radius:0;background:rgba(255,253,249,.62);-webkit-backdrop-filter:blur(20px) saturate(1.5);backdrop-filter:blur(20px) saturate(1.5);box-shadow:0 0 0 1.5px #26272a">
+<div style="display:flex;align-items:center;gap:clamp(20px,3vw,40px);flex-wrap:wrap">
+<img src="/assets/logos/logo-oum.png" alt="Ontario University Metrics mascot" style="flex:none;width:clamp(96px,11vw,150px);height:auto;display:block">
+<div style="flex:1;min-width:260px">
+<h1 style="margin:0;font:800 clamp(34px,3.8vw,46px)/1.05 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#26272a;">Ontario University Metrics</h1>
+<p style="margin:14px 0 0;font:400 16px/1.6 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">A public web app where students can explore real university admissions data across 600+ Ontario programs.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div style="width:min(92%,1100px);box-sizing:border-box;margin:0 auto;padding:0 44px;position:relative;z-index:2;padding-top:30px">
+<div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:28px 44px">
+<div style="width:100%;border-top:1.5px dashed #c9c5ba;border-bottom:1.5px dashed #c9c5ba">
+<div class="stackRow" style="display:grid;grid-template-columns:150px minmax(0,1fr);align-items:center;gap:8px 20px;padding:16px 4px;">
+<div style="font:400 14px/1.3 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#26272a">FRONTEND</div>
+<div style="display:flex;flex-wrap:wrap;gap:4px 12px"><span style="font:400 13px/1.5 'IBM Plex Mono',monospace;color:#26272a;white-space:nowrap">Next.js</span><span aria-hidden="true" style="font:400 13px/1.5 'IBM Plex Mono',monospace;color:#8a8a84">·</span><span style="font:400 13px/1.5 'IBM Plex Mono',monospace;color:#26272a;white-space:nowrap">TypeScript</span></div>
+</div>
+<div class="stackRow" style="display:grid;grid-template-columns:150px minmax(0,1fr);align-items:center;gap:8px 20px;padding:16px 4px;border-top:1.5px dashed #ddd2bd;">
+<div style="font:400 14px/1.3 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#26272a">DATABASE</div>
+<div style="display:flex;flex-wrap:wrap;gap:4px 12px"><span style="font:400 13px/1.5 'IBM Plex Mono',monospace;color:#26272a;white-space:nowrap">PostgreSQL</span></div>
+</div>
+<div class="stackRow" style="display:grid;grid-template-columns:150px minmax(0,1fr);align-items:center;gap:8px 20px;padding:16px 4px;border-top:1.5px dashed #ddd2bd;">
+<div style="font:400 14px/1.3 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#26272a">DATA PIPELINE</div>
+<div style="display:flex;flex-wrap:wrap;gap:4px 12px"><span style="font:400 13px/1.5 'IBM Plex Mono',monospace;color:#26272a;white-space:nowrap">TypeScript ETL</span><span aria-hidden="true" style="font:400 13px/1.5 'IBM Plex Mono',monospace;color:#8a8a84">·</span><span style="font:400 13px/1.5 'IBM Plex Mono',monospace;color:#26272a;white-space:nowrap">Web scraping</span><span aria-hidden="true" style="font:400 13px/1.5 'IBM Plex Mono',monospace;color:#8a8a84">·</span><span style="font:400 13px/1.5 'IBM Plex Mono',monospace;color:#26272a;white-space:nowrap">Token-set matching</span></div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="jumpBar" style="position:sticky;top:49px;z-index:50;margin-top:24px">
+<div style="width:min(92%,1100px);box-sizing:border-box;margin:0 auto;padding:4px 44px 6px;display:flex;align-items:center;gap:8px;flex-wrap:nowrap">
+<div style="display:flex;gap:8px;flex:none">
+<a id="backPill" href="/projects" title="All projects" aria-label="All projects" style="display:none;align-items:center;justify-content:center;width:40px;height:40px;box-sizing:border-box;border-radius:0;background:rgba(255,253,249,.72);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 0 0 1.5px #26272a;font:400 17px/1 'IBM Plex Mono',monospace;color:#26272a;transition:background .3s,color .3s" style-hover="background:rgba(63,97,136,.14);color:#d9480f">←</a>
+<a href="https://www.ontariouniversitymetrics.com/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:6px;height:40px;box-sizing:border-box;padding:0 14px;border-radius:0;background:rgba(255,253,249,.72);transition:background .3s,color .3s;-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 0 0 1.5px #26272a;font:400 14px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;white-space:nowrap;color:#26272a" style-hover="background:rgba(63,97,136,.14);color:#d9480f"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" style="display:block;flex:none"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19"/><path d="M12 2.5c2.6 2.6 3.9 5.8 3.9 9.5s-1.3 6.9-3.9 9.5c-2.6-2.6-3.9-5.8-3.9-9.5S9.4 5.1 12 2.5z"/></svg>LIVE SITE</a>
+<a href="https://github.com/rachaelchan1102/OntarioUniversityMetrics" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:6px;height:40px;box-sizing:border-box;padding:0 14px;border-radius:0;background:rgba(255,253,249,.72);transition:background .3s,color .3s;-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 0 0 1.5px #26272a;font:400 14px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;white-space:nowrap;color:#26272a" style-hover="background:rgba(63,97,136,.14);color:#d9480f"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style="display:block;flex:none"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GITHUB</a>
+</div>
+<div class="pillRow" style="display:flex;flex-wrap:nowrap;min-width:0;overflow-x:auto;scrollbar-width:none;gap:0;height:40px;box-sizing:border-box;align-items:center;padding:0 4px;border-radius:0;flex:0 1 auto;background:rgba(255,253,249,.72);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 0 0 1.5px #26272a">
+<a href="#problem" class="jumpLink" data-sec="problem" style="font:400 14px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;white-space:nowrap;color:#26272a;padding:8px 8px;border-radius:0;transition:background .3s,color .3s" style-hover="background:rgba(63,97,136,.14);color:#d9480f">PROBLEM</a>
+<a href="#approach" class="jumpLink" data-sec="approach" style="font:400 14px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;white-space:nowrap;color:#26272a;padding:8px 8px;border-radius:0;transition:background .3s,color .3s" style-hover="background:rgba(63,97,136,.14);color:#d9480f">APPROACH</a>
+<a href="#challenge" class="jumpLink" data-sec="challenge" style="font:400 14px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;white-space:nowrap;color:#26272a;padding:8px 8px;border-radius:0;transition:background .3s,color .3s" style-hover="background:rgba(63,97,136,.14);color:#d9480f">CHALLENGE</a>
+<a href="#outcome" class="jumpLink" data-sec="outcome" style="font:400 14px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;white-space:nowrap;color:#26272a;padding:8px 8px;border-radius:0;transition:background .3s,color .3s" style-hover="background:rgba(63,97,136,.14);color:#d9480f">OUTCOME</a>
+<a href="#takeaways" class="jumpLink" data-sec="takeaways" style="font:400 14px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;white-space:nowrap;color:#26272a;padding:8px 8px;border-radius:0;transition:background .3s,color .3s" style-hover="background:rgba(63,97,136,.14);color:#d9480f">TAKEAWAYS</a>
+</div>
+</div>
+</div>
+
+<section id="problem" style="width:min(92%,1100px);box-sizing:border-box;margin:0 auto;padding-left:44px;padding-right:44px;position:relative;z-index:2;padding-top:40px">
+<div class="csGrid">
+<h2 class="secHead" style="margin:0 0 20px;font:800 26px/1.05 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#26272a;">The Problem</h2>
+<div><p style="margin:0 0 20px;font:400 16px/1.7 'IBM Plex Mono',monospace;color:#26272a;text-wrap:pretty">High school students applying to Ontario universities have almost no reliable way to know what grades actually get someone into a program.</p><div style="display:flex;flex-direction:column;gap:12px;margin:4px 0 22px">
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;margin-top:11px;width:6px;height:6px;border-radius:50%;background:#d9480f"></span><span style="font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42">Crowdsourced Reddit spreadsheets are the best available resource, but entries are often missing a program code or name, making it hard to search and get accurate results, with no historical view or fast way to compare across programs or years.</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;margin-top:11px;width:6px;height:6px;border-radius:50%;background:#d9480f"></span><span style="font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42">University pages publish their own estimated minimum cutoffs, but these don’t always reflect what students are actually getting in with.</span></div>
+</div><p style="margin:0 0 18px;font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">Students are left manually cross-referencing scattered spreadsheets and official pages just to guess their odds.</p></div>
+</div>
+</section>
+
+<section id="approach" style="width:min(92%,1100px);box-sizing:border-box;margin:0 auto;padding-left:44px;padding-right:44px;position:relative;z-index:2;padding-top:64px">
+<div class="csGrid">
+<h2 class="secHead" style="margin:0 0 20px;font:800 26px/1.05 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#26272a;">Approach</h2>
+<div><p style="margin:0 0 18px;font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">The underlying data was sourced from two places: crowdsourced admissions spreadsheets, which track real self-reported admission results and feed the core data and visualizations, and official university pages, which publish targeted averages representing each program’s estimated minimum cutoff. These served as a benchmark, allowing the platform to show how far official estimates were from actual admitted grades. Both sources came in inconsistent formats with no shared structure across schools or years. Before any analytics could be built, this raw data had to be reconciled into a single consistent dataset and cross-referenced, so the platform could show reported admission averages alongside official published ranges.</p><p style="margin:0 0 18px;font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">The pipeline runs in three stages: scrape, clean, and normalize.</p><div style="position:relative;aspect-ratio:16/9;margin:10px 0 26px;border-radius:0;overflow:hidden;background:#f3f0e8;border:1px solid #c9c5ba;box-sizing:border-box"><image-slot id="oum-diagram-pipeline" src="/assets/diagrams/oum_pipeline_diagram.svg" shape="rect" fit="contain" placeholder="Drop the data pipeline diagram"></image-slot></div></div>
+</div>
+</section>
+
+<section id="challenge" style="width:min(92%,1100px);box-sizing:border-box;margin:0 auto;padding-left:44px;padding-right:44px;position:relative;z-index:2;padding-top:64px">
+<div class="csGrid">
+<h2 class="secHead" style="margin:0 0 20px;font:800 26px/1.05 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#26272a;">Key Challenge</h2>
+<div><p style="margin:0 0 18px;font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">The hardest problem was matching the data correctly. The same program could appear under different names depending on the source:</p><div style="display:flex;flex-direction:column;gap:12px;margin:4px 0 22px">
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;margin-top:11px;width:6px;height:6px;border-radius:50%;background:#d9480f"></span><span style="font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42">Flipped word order (e.g. “Computer Engineering” vs. “Engineering, Computer”)</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;margin-top:11px;width:6px;height:6px;border-radius:50%;background:#d9480f"></span><span style="font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42">Abbreviations or added specializations</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;margin-top:11px;width:6px;height:6px;border-radius:50%;background:#d9480f"></span><span style="font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42">Inconsistent formatting</span></div>
+<div style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;margin-top:11px;width:6px;height:6px;border-radius:50%;background:#d9480f"></span><span style="font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42">Missing codes, missing names, or misspellings</span></div>
+</div><p style="margin:0 0 18px;font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">An exact string match against a canonical program list only worked about 75% of the time, dropping or mismatching a quarter of the data.</p><p style="margin:0 0 18px;font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">To fix this, program and university names were normalized and broken into word tokens, then matched using token-set similarity.</p><div style="position:relative;aspect-ratio:16/9;margin:10px 0 26px;border-radius:0;overflow:hidden;background:#f3f0e8;border:1px solid #c9c5ba;box-sizing:border-box"><image-slot id="oum-diagram-tokens" src="/assets/diagrams/token_matching_diagram.svg" shape="rect" fit="contain" placeholder="Drop the token-set similarity diagram"></image-slot></div><p style="margin:0 0 18px;font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">This process raised match accuracy from 75% to 95%.</p></div>
+</div>
+</section>
+
+<section id="outcome" style="width:min(92%,1100px);box-sizing:border-box;margin:0 auto;padding-left:44px;padding-right:44px;position:relative;z-index:2;padding-top:64px">
+<div class="csGrid">
+<h2 class="secHead" style="margin:0 0 20px;font:800 26px/1.05 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#26272a;">Outcome</h2>
+<div><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin:4px 0 28px;background:#c9c5ba;border:1px solid #c9c5ba;border-radius:0;overflow:hidden">
+<div style="padding:22px 20px;background:#f3f0e8;"><div style="font:800 30px/1 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#d9480f">10,000+</div><div style="margin-top:10px;font:400 14px/1.5 'IBM Plex Mono',monospace;color:#26272a">users total</div></div>
+<div style="padding:22px 20px;background:#f3f0e8;"><div style="font:800 30px/1 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#d9480f">1,500+</div><div style="margin-top:10px;font:400 14px/1.5 'IBM Plex Mono',monospace;color:#26272a">users in the first 24 hours</div></div>
+<div style="padding:22px 20px;background:#f3f0e8;"><div style="font:800 30px/1 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#d9480f">600+</div><div style="margin-top:10px;font:400 14px/1.5 'IBM Plex Mono',monospace;color:#26272a">programs tracked</div></div>
+<div style="padding:22px 20px;background:#f3f0e8;"><div style="font:800 30px/1 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#d9480f">21</div><div style="margin-top:10px;font:400 14px/1.5 'IBM Plex Mono',monospace;color:#26272a">universities</div></div>
+</div><p style="margin:0 0 18px;font:400 15px/1.7 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">The platform launched on Reddit and quickly gained traction among students researching admissions. Feedback highlighted a limitation: since the data is self-reported, students with higher grades are more likely to post their results, which can skew average admitted grades higher than reality. This is a known bias in crowdsourced admissions data, and future versions could address it by weighting or flagging self-reported entries differently from verified sources.</p></div>
+</div>
+</section>
+
+<section id="takeaways" style="width:min(92%,1100px);box-sizing:border-box;margin:0 auto;padding-left:44px;padding-right:44px;position:relative;z-index:2;padding-top:64px">
+<div class="csGrid">
+<h2 class="secHead" style="margin:0 0 20px;font:800 26px/1.05 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#26272a;">Personal Takeaways</h2>
+<div><div style="display:grid;grid-template-columns:1fr;gap:16px" class="takeGrid">
+<div style="padding:26px 24px;border-radius:0;background:rgba(255,253,249,.42);-webkit-backdrop-filter:blur(20px) saturate(1.5);backdrop-filter:blur(20px) saturate(1.5);box-shadow:0 0 0 1.5px #26272a"><div style="font:800 20px/1.05 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#26272a">First live deploy</div><p style="margin:12px 0 0;font:400 15px/1.6 'IBM Plex Mono',monospace;color:#4a4036">Learned to ship to the real public and keep it reliable, not just demo-ready.</p></div>
+<div style="padding:26px 24px;border-radius:0;background:rgba(255,253,249,.42);-webkit-backdrop-filter:blur(20px) saturate(1.5);backdrop-filter:blur(20px) saturate(1.5);box-shadow:0 0 0 1.5px #26272a"><div style="font:800 20px/1.05 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#26272a">Users shape products</div><p style="margin:12px 0 0;font:400 15px/1.6 'IBM Plex Mono',monospace;color:#4a4036">Users surfaced issues I’d missed, like self-reporting bias, and kept me iterating.</p></div>
+<div style="padding:26px 24px;border-radius:0;background:rgba(255,253,249,.42);-webkit-backdrop-filter:blur(20px) saturate(1.5);backdrop-filter:blur(20px) saturate(1.5);box-shadow:0 0 0 1.5px #26272a"><div style="font:800 20px/1.05 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#26272a">Solved a problem I had</div><p style="margin:12px 0 0;font:400 15px/1.6 'IBM Plex Mono',monospace;color:#4a4036">Built the admissions tool I’d wished for in high school, which hooked me on fixing problems.</p></div>
+</div></div>
+</div>
+</section>
+
+<div style="width:min(92%,1100px);box-sizing:border-box;margin:0 auto;padding-left:44px;padding-right:44px;position:relative;z-index:2;padding-top:80px;padding-bottom:40px">
+<a href="/projects/convospark" style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 30px;border-radius:0;background:rgba(255,253,249,.42);-webkit-backdrop-filter:blur(20px) saturate(1.5);backdrop-filter:blur(20px) saturate(1.5);box-shadow:0 0 0 1.5px #26272a" style-hover="box-shadow:0 0 0 1.5px #26272a">
+<div><div style="font:400 13px/1 'IBM Plex Mono',monospace;letter-spacing:.18em;color:#26272a">NEXT PROJECT</div><div style="margin-top:10px;font:800 22px/1.05 Archivo,sans-serif;font-stretch:76%;text-transform:uppercase;color:#26272a;">ConvoSpark AI</div></div>
+<span style="font:400 19px/1.5 'IBM Plex Mono',monospace;color:#d9480f">→</span>
+</a>
+</div>
+
+<div style="width:min(92%,1100px);box-sizing:border-box;margin:0 auto;padding:0 44px;position:relative;z-index:2;padding-top:20px;padding-bottom:60px;display:flex;justify-content:space-between;align-items:center;font:400 13px/1.5 'IBM Plex Mono',monospace;color:#26272a">
+<span>TORONTO, ON</span><span>GITHUB · LINKEDIN · EMAIL</span>
+</div>
+
+</div>
+<div id="leaveFade" style="position:fixed;inset:0;z-index:80;background:#f3f0e8;opacity:0;pointer-events:none;transition:opacity .5s ease;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#5d5f63"><span>← BACK TO LINE</span><span style="width:180px;height:2px;background:#c9c5ba;display:block;position:relative;overflow:hidden"><span id="leaveBar" style="position:absolute;left:0;top:0;bottom:0;width:0;background:#f0561d;display:block;transition:width .55s linear .1s"></span></span></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    var lf = document.getElementById('leaveFade');
+    try { var lh0 = sessionStorage.getItem('lineHome'); if (lh0) { var pl = document.createElement('link'); pl.rel = 'prefetch'; pl.href = lh0; document.head.appendChild(pl); } } catch (er) {}
+    document.querySelectorAll('a[href="/"],a[href^="/#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); var lh = null; try { lh = sessionStorage.getItem('lineHome'); } catch (er) {} var to = a.getAttribute('href'); if (lh) to = to.replace('/', lh); if (to.indexOf('#') < 0) to += '#welcome'; var zoomy = lh === '/'; var main = document.getElementById('csMain'); if (zoomy) { Array.from(lf.children).forEach(function (ch) { ch.style.display = 'none'; }); if (main) { main.style.transformOrigin = '50% 30%'; main.style.transition = 'opacity .5s ease,scale .6s cubic-bezier(.5,0,.75,0)'; main.style.opacity = '0'; main.style.scale = '.92'; } lf.style.transition = 'opacity .55s ease .1s'; } else if (main) { main.style.transition = 'opacity .45s ease,translate .5s cubic-bezier(.5,0,.75,0)'; main.style.opacity = '0'; main.style.translate = '-40px 0'; } lf.style.pointerEvents = 'auto'; lf.style.opacity = '1'; if (!zoomy) document.getElementById('leaveBar').style.width = '100%'; setTimeout(function () { window.location.href = to; }, zoomy ? 650 : 700); });
+    });
+    var m = document.getElementById('csMain');
+    if (m) { var zin = false; try { zin = (sessionStorage.getItem('lineHome') || '') === '/' && /^[a-z]+:\/\/[^\/]+\/(index\.html)?$/.test(document.referrer); } catch (er) {} m.style.opacity = '0'; m.style.transformOrigin = '50% 20%'; if (zin) { m.style.scale = '1.08'; m.style.transition = 'opacity .7s ease,scale .9s cubic-bezier(.2,.8,.2,1)'; } else { m.style.translate = '0 16px'; m.style.transition = 'opacity .6s ease,translate .7s cubic-bezier(.2,.8,.2,1)'; } setTimeout(function () { m.style.opacity = '1'; m.style.translate = '0 0'; m.style.scale = '1'; }, 40); setTimeout(function () { m.style.transition = ''; m.style.translate = ''; m.style.scale = ''; m.style.transformOrigin = ''; m.style.opacity = ''; }, 1000); }
+    this._spy = () => {
+      const links = document.querySelectorAll('.jumpLink');
+      let active = null;
+      const pr = document.querySelector('.pillRow'); if (pr) pr.classList.toggle('over', pr.scrollWidth > pr.clientWidth + 4);
+      const barEl = document.getElementById('jumpBar'); if (!barEl || barEl.getBoundingClientRect().height === 0) return;
+      if (window.scrollY > 0) links.forEach(l => { const s = document.getElementById(l.dataset.sec); if (s && s.getBoundingClientRect().height > 0 && s.getBoundingClientRect().top < 150) active = l.dataset.sec; });
+      const nav = document.getElementById('navBar');
+      const bar = document.getElementById('jumpBar');
+      const glass = document.getElementById('headerGlass');
+      if (bar && glass) { const r = bar.getBoundingClientRect(); const stuck = r.top <= 50 && window.scrollY > 0; glass.style.opacity = stuck ? '1' : '0'; const bp = document.getElementById('backPill'); if (bp) bp.style.display = stuck ? 'flex' : 'none'; glass.style.height = Math.round(r.bottom + 12) + 'px'; }
+      if (active !== this._lastSec) { this._lastSec = active; const prc = document.querySelector('.pillRow'), al = active && document.querySelector('.jumpLink[data-sec="' + active + '"]'); if (prc && prc.scrollWidth > prc.clientWidth + 4) { if (al) { const a = al.getBoundingClientRect(), p = prc.getBoundingClientRect(); prc.scrollBy({ left: (a.left + a.width / 2) - (p.left + p.width / 2), behavior: 'smooth' }); } else prc.scrollTo({ left: 0, behavior: 'smooth' }); } }
+      links.forEach(l => { const on = l.dataset.sec === active; l.style.background = on ? '#d9480f' : ''; l.style.color = on ? '#f6f3ec' : '#26272a'; });
+    };
+    this._fit = () => { const pr = document.querySelector('.pillRow'); if (pr && pr.clientWidth > 0) pr.classList.toggle('over', pr.scrollWidth > pr.clientWidth + 4); };
+    const pr0 = document.querySelector('.pillRow');
+    if (pr0 && window.ResizeObserver) { this._ro = new ResizeObserver(this._fit); this._ro.observe(pr0); }
+    window.addEventListener('load', this._fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this._fit);
+    setTimeout(this._fit, 400);
+    const hideRing = () => document.querySelectorAll('image-slot').forEach(s => { const sr = s.shadowRoot; if (!sr || sr.querySelector('style[data-noring]')) return; const st = document.createElement('style'); st.setAttribute('data-noring', ''); st.textContent = '.ring{display:none !important}'; sr.appendChild(st); });
+    hideRing(); setTimeout(hideRing, 300); setTimeout(hideRing, 1200);
+    window.addEventListener('scroll', this._spy, { passive: true });
+    window.addEventListener('resize', this._spy);
+    window.addEventListener('load', this._spy);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this._spy);
+    requestAnimationFrame(() => requestAnimationFrame(this._spy));
+    setTimeout(this._spy, 400);
+  }
+  componentWillUnmount() { if (this._ro) this._ro.disconnect(); window.removeEventListener('load', this._fit); window.removeEventListener('scroll', this._spy); window.removeEventListener('resize', this._spy); window.removeEventListener('load', this._spy); }
+}
+</script>
+</body>
+</html>

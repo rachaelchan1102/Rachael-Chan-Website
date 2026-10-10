@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/device-route.js"></script>
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<script src="/page-fade.js"></script>
+<style>
+html,body{margin:0;background:#f3f0e8;color:#26272a}
+a{color:#26272a;text-decoration:none}a:hover{color:#d9480f}
+.flowNode{transition:opacity .6s ease,translate .7s cubic-bezier(.2,.8,.2,1)}
+@media (max-width:620px){.par{flex-direction:column !important}.par [role="button"]{flex:0 0 auto !important;height:auto !important;width:100% !important}}
+@media (max-width:600px){header{padding:16px 14px !important;gap:10px !important;letter-spacing:.02em !important;font-size:14px !important}header nav{gap:11px !important}header>a span:first-child{width:12px !important;height:12px !important}header nav a>span:first-child{display:none !important}}
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+@media (max-width:600px){header>a,header nav a{min-height:44px !important;display:flex !important;align-items:center !important}header{padding-top:4px !important;padding-bottom:4px !important}.stCard a{min-height:44px !important;box-sizing:border-box !important;align-items:center !important}.inspectBtn{min-height:44px !important}button,[role="button"],.jumpLink,#jumpBar a{min-height:44px !important;box-sizing:border-box !important}#jumpBar a,.jumpLink{display:flex !important;align-items:center !important}.pillRow{height:48px !important}footer a,footer span a{display:inline-flex !important;align-items:center !important;min-height:44px !important;padding:0 4px !important}main>a:first-child,[style*="ALL PROJECTS"]{min-height:44px !important}a[href$="/projects"]:not(header a){min-height:44px;display:inline-flex;align-items:center}.projCard{min-height:44px}}
+@media (max-width:600px){main>a:first-child+div{margin-top:6px !important}main{padding-top:8px !important}}
+@media (max-width:600px){.loc{display:none !important}:has(> .loc){justify-content:center !important;padding-top:10px !important}:has(> .loc) a{font-size:0 !important;width:44px;height:44px;display:inline-block !important;background:center/22px no-repeat}:has(> .loc) span{gap:18px !important}}
+@media (max-width:600px){:has(> .loc) span{align-items:center !important}:has(> .loc) a{box-sizing:border-box !important;padding:0 !important;margin:0 !important;width:44px !important;height:44px !important;min-height:44px !important;background-size:22px 22px !important;background-position:center !important;vertical-align:middle !important;flex:none !important}:has(> .loc) a:nth-child(1){background-size:23px 23px !important}:has(> .loc) a:nth-child(3){background-size:24px 24px !important}}
+@media (max-width:600px){#jumpBar a[target="_blank"],#jumpBar a[href="#"]:not(.jumpLink){font-size:0 !important;padding:0 13px !important;gap:0 !important}#jumpBar a[target="_blank"] svg,#jumpBar a[href="#"]:not(.jumpLink) svg{width:18px !important;height:18px !important}#jumpBar a span[style*="border-radius"]{width:10px !important;height:10px !important}#jumpBar>div{gap:6px !important}#jumpBar>div>div:first-child{gap:6px !important}:has(> .loc) a:nth-child(1){background-size:27px 27px !important}}
+.socIco{display:inline-flex !important;align-items:center !important;justify-content:center !important;width:44px !important;height:44px !important;background:none !important;font-size:0 !important;padding:0 !important}
+</style>
+</helmet>
+
+<header style="position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px clamp(20px,4vw,48px);font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;background:rgba(243,240,232,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #c9c5ba">
+<a href="/m" style="display:flex;align-items:center;gap:10px">
+<span style="width:10px;height:10px;background:#f0561d;display:block"></span>
+<span>R. Chan</span>
+</a>
+<nav style="display:flex;gap:clamp(14px,2.4vw,32px);flex-wrap:wrap;justify-content:flex-end">
+<a href="/m/work" style="display:flex;gap:6px"><span style="color:#8a8a84">10</span>Work</a>
+<a href="/m/projects" style="display:flex;gap:6px"><span style="color:#8a8a84">20</span>Projects</a>
+<a href="/m/story" style="display:flex;gap:6px;color:#d9480f"><span>30</span>Story</a>
+<a href="/m/resume" style="display:flex;gap:6px"><span style="color:#8a8a84">40</span>Resume</a>
+</nav>
+</header>
+
+<main style="max-width:1080px;margin:0 auto;padding:clamp(20px,3vh,32px) clamp(20px,4vw,48px) 80px;box-sizing:border-box">
+
+<a href="/m#story" style="display:inline-flex;gap:8px;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">← BACK TO LINE</a>
+
+<div style="margin-top:28px;padding-bottom:18px;border-bottom:1.5px solid #26272a;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap">
+<h1 style="margin:0;font-family:Archivo,sans-serif;font-weight:800;font-stretch:72%;font-size:clamp(52px,7.5vw,96px);line-height:.86;text-transform:uppercase;display:flex;align-items:flex-end"><span id="typeWord">Story</span><span id="typeCaret" style="display:inline-block;width:.09em;height:.78em;margin-left:.06em;margin-bottom:.04em;background:#f0561d"></span></h1>
+
+</div>
+
+<div style="margin-top:18px;display:flex;gap:14px;flex-wrap:wrap;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#5d5f63">
+<span style="display:flex;align-items:center;gap:6px"><span style="width:18px;height:10px;border:1.5px solid #26272a;border-radius:10px;background:#f7c3a6;display:block"></span>START / END</span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:10px;border:1.5px solid #26272a;transform:skewX(-18deg);background:#f5e3ad;display:block"></span>INPUT / OUTPUT</span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:14px;height:10px;border:1.5px solid #26272a;background:#dde5f2;display:block"></span>STEP</span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border:1.5px solid #26272a;rotate:45deg;background:#f3d6cb;display:block"></span>DECISION</span>
+</div>
+<p style="margin:18px 0 0;font:400 13px/1.55 'IBM Plex Mono',monospace;color:#5d5f63;text-wrap:pretty">I've noticed that my experiences don't seem to have a "focus" at first glance, so I thought this process map might help you make more sense of it.</p>
+<p style="margin:8px 0 0;font:600 11px/1.4 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#d9480f;text-transform:uppercase">Click each shape to learn more about each step.</p>
+
+<div id="flow" style="display:flex;flex-direction:column;padding-top:36px">
+<sc-for list="{{ steps }}" as="s" hint-placeholder-count="6">
+<div style="display:flex;flex-direction:column;align-items:center;min-width:0">
+<sc-if value="{{ s.notFirst }}" hint-placeholder-val="{{ true }}">
+<div class="flowLink" style="position:relative;width:2px;height:56px;background:#c9c5ba">
+<div class="flowFill" style="position:absolute;left:0;top:0;width:100%;height:100%;background:#f0561d;transform-origin:top;scale:1 0"></div>
+<span class="flowHead" style="position:absolute;left:-5px;bottom:0;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #c9c5ba;transition:border-top-color .2s"></span>
+</div>
+</sc-if>
+<div class="flowNode" data-idx="{{ s.idx }}" role="button" tabindex="0" onClick="{{ s.toggle }}" aria-expanded="{{ s.open }}" style="width:100%;display:flex;flex-direction:column;align-items:center;opacity:0;translate:0 24px;cursor:pointer">
+
+<sc-if value="{{ s.isTerm }}" hint-placeholder-val="{{ false }}">
+<div style="width:{{ s.termW }};max-width:100%;box-sizing:border-box;padding:14px 28px;border:1.5px solid #26272a;border-radius:{{ s.termR }};background:#26272a;color:#f3f0e8;text-align:center;transition:width .5s cubic-bezier(.2,.8,.2,1)">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:22px;line-height:1;text-transform:uppercase">{{ s.title }}</div>
+<div style="display:grid;grid-template-rows:{{ s.rows }};opacity:{{ s.op }};transition:{{ s.tr }}"><div style="overflow:hidden;min-height:0"><p style="margin:0;padding-top:12px;font:400 13px/1.55 'IBM Plex Mono',monospace;color:#e7e2d8;text-align:left;text-wrap:pretty">{{ s.note }}</p></div></div>
+
+<sc-if value="{{ s.isEnd }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-rows:{{ s.rows }};opacity:{{ s.op }};transition:{{ s.tr }}"><div style="overflow:hidden;min-height:0"><div style="padding-top:14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+<a href="mailto:rachaelchan1102@gmail.com" onClick="{{ s.stop }}" style="padding:10px 14px;border:1.5px solid #f0561d;background:#f0561d;color:#f3f0e8;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em">EMAIL ME →</a>
+<a href="/m/resume#request" onClick="{{ s.stop }}" style="padding:10px 14px;border:1.5px solid #f3f0e8;color:#f3f0e8;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em">REQUEST MY RESUME →</a>
+</div></div></div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.isIO }}" hint-placeholder-val="{{ false }}">
+<div style="width:min(100%,460px);box-sizing:border-box;padding:18px 34px;border:1.5px solid #26272a;background:{{ s.ioBg }};color:{{ s.ioFg }};transform:skewX(-12deg);transition:background .3s">
+<div style="transform:skewX(12deg);text-align:left">
+<div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start">
+<sc-if value="{{ s.when }}" hint-placeholder-val="{{ false }}"><span style="font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;color:#f3f0e8;background:#26272a;padding:6px 8px;white-space:nowrap">{{ s.when }}</span></sc-if>
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:clamp(19px,2.2vw,24px);line-height:1.05;text-transform:uppercase">{{ s.title }}</div>
+</div>
+<div style="display:grid;grid-template-rows:{{ s.rows }};opacity:{{ s.op }};transition:{{ s.tr }}"><div style="overflow:hidden;min-height:0"><p style="margin:0;padding-top:12px;font:400 13px/1.55 'IBM Plex Mono',monospace;color:{{ s.ioNote }};text-align:left;text-wrap:pretty">{{ s.note }}</p></div></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.isStep }}" hint-placeholder-val="{{ true }}">
+<div style="width:min(100%,460px);box-sizing:border-box;padding:16px 20px;border:1.5px solid #26272a;background:{{ s.sBg }};display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 14px;align-items:start;transition:background .3s">
+<span style="font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;color:#f3f0e8;background:#26272a;padding:6px 8px;white-space:nowrap">{{ s.when }}</span>
+<div>
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:clamp(19px,2.2vw,24px);line-height:1.05;text-transform:uppercase">{{ s.title }}</div>
+<sc-if value="{{ s.org }}" hint-placeholder-val="{{ true }}"><div style="margin-top:4px;font:500 13px/1.4 'IBM Plex Mono',monospace;color:#5d5f63">{{ s.org }}</div></sc-if>
+</div>
+<div style="grid-column:1/-1"><div style="display:grid;grid-template-rows:{{ s.rows }};opacity:{{ s.op }};transition:{{ s.tr }}"><div style="overflow:hidden;min-height:0"><p style="margin:0;padding-top:14px;font:400 13px/1.55 'IBM Plex Mono',monospace;color:#5d5f63;text-align:left;text-wrap:pretty">{{ s.note }}</p></div></div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.isPar }}" hint-placeholder-val="{{ false }}">
+<div class="par" style="width:min(100%,600px);display:flex;gap:12px;justify-content:center;align-items:stretch">
+<sc-for list="{{ s.items }}" as="p" hint-placeholder-count="2">
+<div role="button" tabindex="0" onClick="{{ p.toggle }}" style="flex:1 1 0;min-width:0;width:100%;box-sizing:border-box;padding:14px 16px;border:1.5px solid #26272a;background:{{ p.bg }};cursor:pointer;transition:background .3s">
+<span style="font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;color:#f3f0e8;background:#26272a;padding:5px 7px">{{ p.when }}</span>
+<div style="margin-top:12px;font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:18px;line-height:1.05;text-transform:uppercase">{{ p.title }}</div>
+<div style="margin-top:4px;font:500 12px/1.4 'IBM Plex Mono',monospace;color:#5d5f63">{{ p.org }}</div>
+<div style="display:grid;grid-template-rows:{{ p.rows }};opacity:{{ p.op }};transition:{{ p.tr }}"><div style="overflow:hidden;min-height:0"><p style="margin:0;padding-top:12px;font:400 13px/1.55 'IBM Plex Mono',monospace;color:#5d5f63;text-align:left;text-wrap:pretty">{{ p.note }}</p></div></div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ s.isDecision }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;align-items:center;width:100%">
+<div style="width:190px;height:190px;display:flex;align-items:center;justify-content:center;position:relative">
+<div style="position:absolute;inset:28px;border:1.5px solid #26272a;background:{{ s.dBg }};rotate:45deg;transition:background .3s"></div>
+<div style="position:relative;width:124px;text-align:center;font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:18px;line-height:1.05;text-transform:uppercase;text-wrap:balance">{{ s.title }}</div>
+</div>
+<div style="width:min(100%,460px);display:grid;grid-template-rows:{{ s.rows }};opacity:{{ s.op }};transition:{{ s.tr }}"><div style="overflow:hidden;min-height:0"><div style="margin-top:14px;padding:14px 18px;border:1.5px solid #26272a;background:#fbe3d6"><p style="margin:0;font:400 13px/1.55 'IBM Plex Mono',monospace;color:#3d3e42;text-align:left;text-wrap:pretty">{{ s.note }}</p></div></div></div>
+<sc-if value="{{ s.yes }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;width:2px;height:40px;background:#f0561d"><span style="position:absolute;left:-5px;bottom:0;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #f0561d"></span></div>
+<div role="button" tabindex="0" onClick="{{ s.toggleYes }}" style="width:min(100%,460px);box-sizing:border-box;padding:12px 16px;border:1.5px solid #26272a;background:{{ s.yBg }};cursor:pointer;transition:background .3s">
+<div style="display:flex;align-items:center;justify-content:center;gap:10px;text-align:center">
+<sc-if value="{{ s.when }}" hint-placeholder-val="{{ false }}"><span style="font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;color:#f3f0e8;background:#26272a;padding:6px 8px;white-space:nowrap;flex:none">{{ s.when }}</span></sc-if>
+<span style="font:600 13px/1.4 'IBM Plex Mono',monospace;color:#26272a;text-wrap:pretty">{{ s.yes }}</span>
+</div>
+<div style="display:grid;grid-template-rows:{{ s.yRows }};opacity:{{ s.yOp }};transition:{{ s.tr }}"><div style="overflow:hidden;min-height:0"><p style="margin:0;padding-top:12px;font:400 13px/1.55 'IBM Plex Mono',monospace;color:#5d5f63;text-align:left;text-wrap:pretty">{{ s.yesNote }}</p></div></div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-for>
+
+</div>
+
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const STEPS = [
+  { kind: 'term', tag: 'START', title: 'Start', note: 'I was born! Don’t worry, from here on out everything’s fast-forwarded a bunch of years.' },
+  { kind: 'io', tag: 'INPUTS', when: 'F13', title: 'I became a competitive pianist', note: 'I started competing in piano at 6, and years of competitions taught me to perform under pressure and figure out the most efficient way to prepare when time was short. After finishing my ARCT (piano diploma), I went looking for other ways to keep sharing music with people.' },
+  { kind: 'step', tag: 'STEP 01', when: 'S22', title: 'Co-founded Music for the Golden Age', org: '', note: 'Music for the Golden Age is a non-profit that brings live music performances to seniors in long-term care homes, and it became my way to keep sharing piano. Helping run it showed me how much work goes into scheduling volunteer musicians, coordinating with care homes and growing a non-profit. Along the way I realized I really enjoyed finding better ways to organize all of it and get things done faster.' },
+  { kind: 'decision', tag: 'DECISION', title: 'What should I study?', when: 'F25', yesNote: 'I ended up choosing industrial engineering because I liked how many different fields it could lead to. I also liked the idea of being in the heart of Toronto and finally trying all the food spots I kept seeing on social media.', yes: 'Industrial Engineering, University of Toronto', no: 'Another engineering discipline', note: 'Looking at the last two steps, you can probably tell I liked optimizing things. But in high school I had a really hard time choosing a major, so I applied to pretty much everything.' },
+  { kind: 'step', tag: 'STEP 02', when: 'S25', title: 'Data Analyst Intern', org: 'Constellation Homebuilder Systems', note: 'I landed a data analytics internship the summer before starting university. I liked seeing how messy data had to be cleaned and processed before anyone could actually use it, and I built a lot of the dashboards and reports by hand, back before AI was built into every IDE. It ended up being a great benchmark for what I could do the next summer, and for how much AI changed the way I work in just a year.' },
+  { kind: 'step', tag: 'STEP 03', when: 'W26', title: 'Technical Project Manager', org: 'FindNext Inc.', note: 'I was the project manager for a meal-assistive device designed to help people with dementia. It was my first time taking a project from client requirements all the way to a working prototype. It made me realize how much I love designing physical products and seeing them through almost end to end, everything short of real production.' },
+  { kind: 'par', tag: 'IN PARALLEL', items: [
+    { when: 'W26', title: 'Senior Race Engineering Member', org: 'UofT Formula Racing', note: 'I joined my school’s Formula Racing team and gravitated towards race engineering, because I liked figuring out how to get the most out of the car on track. I also learned how to machine parts along the way.' },
+    { when: 'S26', title: 'Data Engineer', org: 'You’re Next Career Network', note: 'I joined UofT’s career club because I wanted to make the job search easier for students, and I liked the idea of building products that help with that. It’s also been a great way to meet people who are working toward the same goal: landing a job and helping others land theirs.' }
+  ], note: 'Telemetry is the noisiest data I’ve worked with and the fastest feedback loop, because the driver is waiting. At YNCN, the hard part of matching students and recruiters is deciding what a good match even is.' },
+  { kind: 'step', tag: 'STEP 04', when: 'S26', title: 'Process Improvement Intern', org: 'Constellation Homebuilder Systems', note: 'The next summer I came back to the same company with access to a Claude Max plan, and it opened my eyes to how much AI had changed in a year. Work I’d done by hand the summer before could now be automated, so I spent a lot of my time finding the processes that were eating up the most time and rebuilding them. Power BI reports and dashboards I used to build manually could now be fully automated using AI agents, and data workflows that used to be done by hand could run on their own with proper validation checks built in. Seeing those two summers side by side made it clear how rapidly AI is changing, and how much I love being able to improve processes and prototype things fast.' },
+  { kind: 'decision', tag: 'DECISION', title: 'What do I want to do next?', yes: '', no: 'Pure software or data roles', note: 'My two favourite parts of the last few years were improving processes during my last internship and working on something physical as a TPM. I want to find the perfect combination of the two, which means improving physical processes. I love finding where processes waste time or money and fixing it with data, whether that’s through lean tools, simulation or optimization models. I’m looking for industrial, process and TPM engineering internships for Summer 2027.' },
+  { kind: 'term', tag: 'END', title: 'Next: your team?', note: 'If any of this sounds like a fit for your team, I’d love to chat.', isEnd: true }
+];
+
+class Component extends DCLogic {
+  state = { open: {}, openY: {}, openP: {}, instant: false };
+  componentDidMount() {
+    var self = this;
+    var tw = document.getElementById('typeWord'), tc = document.getElementById('typeCaret'), full = 'Story';
+    if (tw) {
+      this._type = function () {
+        clearInterval(self._ti); clearInterval(self._blink); clearTimeout(self._start);
+        var n = 0; tw.textContent = ''; tc.style.display = 'inline-block'; tc.style.opacity = '1';
+        self._blink = setInterval(function () { tc.style.opacity = tc.style.opacity === '0' ? '1' : '0'; }, 530);
+        self._start = setTimeout(function () {
+          self._ti = setInterval(function () {
+            n++; tw.textContent = full.slice(0, n);
+            if (n >= full.length) {
+              clearInterval(self._ti); clearInterval(self._blink); tc.style.opacity = '1'; var bl = 0;
+              self._blink = setInterval(function () { tc.style.opacity = tc.style.opacity === '0' ? '1' : '0'; if (tc.style.opacity === '0' && ++bl >= 3) { clearInterval(self._blink); tc.style.display = 'none'; } }, 450);
+            }
+          }, 240);
+        }, 400);
+      };
+      tw.parentElement.style.cursor = 'pointer';
+      tw.parentElement.addEventListener('click', this._type);
+      this._type();
+    }
+    this._onScroll = function () {
+      var vh = window.innerHeight;
+      var endNow = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      document.querySelectorAll('.flowFill').forEach(function (f) {
+        var r = f.parentElement.getBoundingClientRect(), p = endNow && r.bottom <= vh ? 1 : (vh * .72 - r.top) / r.height;
+        f.style.scale = '1 ' + Math.max(0, Math.min(1, p)).toFixed(3);
+        var hd = f.parentElement.querySelector('.flowHead'); if (hd) hd.style.borderTopColor = p >= .97 ? '#f0561d' : '#c9c5ba';
+      });
+      var past = [];
+      document.querySelectorAll('.flowNode[data-idx]').forEach(function (n) { if (n.getBoundingClientRect().bottom < 0) past.push(n.getAttribute('data-idx')); });
+      var st = self.state, any = past.some(function (k) { if (st.open[k] || st.openY[k]) return true; return Object.keys(st.openP).some(function (pk) { return st.openP[pk] && pk.split('-')[0] === k; }); });
+      if (any) {
+        var ref = null, refTop = 0;
+        document.querySelectorAll('.flowNode[data-idx]').forEach(function (n) { if (!ref && n.getBoundingClientRect().bottom >= 0) { ref = n; refTop = n.getBoundingClientRect().top; } });
+        var o = Object.assign({}, st.open), oy = Object.assign({}, st.openY), op = Object.assign({}, st.openP);
+        past.forEach(function (k) { o[k] = false; oy[k] = false; Object.keys(op).forEach(function (pk) { if (pk.split('-')[0] === k) op[pk] = false; }); });
+        self.setState({ open: o, openY: oy, openP: op, instant: true }, function () {
+          if (ref) window.scrollBy(0, ref.getBoundingClientRect().top - refTop);
+          requestAnimationFrame(function () { self.setState({ instant: false }); });
+        });
+      }
+      var atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      document.querySelectorAll('.flowNode').forEach(function (n) {
+        var on = atEnd || n.getBoundingClientRect().top < vh - 40;
+        n.style.opacity = on ? '1' : '0'; n.style.translate = on ? '0 0' : '0 24px';
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onScroll);
+    [100, 400, 1000, 2000].forEach(function (ms) { setTimeout(self._onScroll, ms); });
+    window.addEventListener('load', this._onScroll);
+  }
+  componentDidUpdate() { if (this._onScroll) this._onScroll(); }
+  componentWillUnmount() {
+    clearInterval(this._ti); clearInterval(this._blink); clearTimeout(this._start);
+    window.removeEventListener('scroll', this._onScroll); window.removeEventListener('resize', this._onScroll); window.removeEventListener('load', this._onScroll);
+  }
+  renderVals() {
+    var self = this;
+    return {
+      steps: STEPS.map(function (s, i) {
+        var dec = s.kind === 'decision', open = !!self.state.open[i];
+        return Object.assign({}, s, {
+          open: open, showNote: open && !dec && s.kind !== 'par', rows: open ? '1fr' : '0fr', op: open ? '1' : '0', termW: open ? 'min(100%,460px)' : '200px', termR: '27px', sBg: open ? '#fbe3d6' : '#f6f3ec', ioNote: s.dark ? '#e7e2d8' : '#5d5f63', yRows: self.state.openY[i] && s.yesNote ? '1fr' : '0fr', yOp: self.state.openY[i] && s.yesNote ? '1' : '0', idx: i, tr: self.state.instant ? 'none' : 'grid-template-rows .5s cubic-bezier(.2,.8,.2,1),opacity .4s ease', decNote: open && dec, isEnd: !!s.isEnd, stop: function (e) { e.stopPropagation(); }, yesOpen: dec && !!self.state.openY[i] && !!s.yesNote, yBg: self.state.openY[i] && s.yesNote ? '#fbe3d6' : '#f6f3ec', yesNote: s.yesNote || '', toggleYes: function (e) { e.stopPropagation(); if (!s.yesNote) return; self.setState(function (st) { var o = Object.assign({}, st.openY); o[i] = !o[i]; return { openY: o }; }); }, arrowGap: open && dec ? '14px' : '0', whyLabel: open ? 'CLOSE −' : 'MORE +', dBg: open ? '#fbe3d6' : '#f6f3ec', noteLine: open && !dec && s.kind !== 'par' ? '#f0561d' : 'transparent',
+          toggle: function () { self.setState(function (st) { var o = Object.assign({}, st.open); o[i] = !o[i]; return { open: o }; }); },
+          notFirst: i > 0, isTerm: s.kind === 'term', isIO: s.kind === 'io', isStep: s.kind === 'step', isPar: s.kind === 'par', isDecision: s.kind === 'decision',
+          items: (s.items || []).map(function (p, j) { var k = i + '-' + j, po = !!self.state.openP[k]; return Object.assign({}, p, { tr: self.state.instant ? 'none' : 'grid-template-rows .5s cubic-bezier(.2,.8,.2,1),opacity .4s ease', open: po, rows: po ? '1fr' : '0fr', op: po ? '1' : '0', bg: po ? '#fbe3d6' : '#f6f3ec', toggle: function (e) { e.stopPropagation(); self.setState(function (st) { var o = Object.assign({}, st.openP); o[k] = !o[k]; return { openP: o }; }); } }); }),
+          ioBg: s.dark ? '#26272a' : (open ? '#fbe3d6' : '#f6f3ec'), ioFg: s.dark ? '#f3f0e8' : '#26272a'
+        });
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

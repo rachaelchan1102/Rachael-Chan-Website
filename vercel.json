@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/case/convospark-ai", "destination": "/projects/convospark", "permanent": true },
+    { "source": "/case/ontario-university-metrics", "destination": "/projects/oum", "permanent": true }
+  ]
+}

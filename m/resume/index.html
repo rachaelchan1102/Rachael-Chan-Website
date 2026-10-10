@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/device-route.js"></script>
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+html,body{margin:0;background:#f3f0e8;color:#26272a}
+a{color:#26272a;text-decoration:none}a:hover{color:#d9480f}
+input::placeholder,textarea::placeholder{color:#8a8a84}
+@media (max-width:760px){.skillRow{grid-template-columns:1fr !important;gap:10px !important}.formGrid{grid-template-columns:1fr !important}}
+@media (max-width:600px){header{padding:16px 14px !important;gap:10px !important;letter-spacing:.02em !important;font-size:14px !important}header nav{gap:11px !important}header>a span:first-child{width:12px !important;height:12px !important}header nav a>span:first-child{display:none !important}}
+html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+@media (max-width:600px){header>a,header nav a{min-height:44px !important;display:flex !important;align-items:center !important}header{padding-top:4px !important;padding-bottom:4px !important}.stCard a{min-height:44px !important;box-sizing:border-box !important;align-items:center !important}.inspectBtn{min-height:44px !important}button,[role="button"],.jumpLink,#jumpBar a{min-height:44px !important;box-sizing:border-box !important}#jumpBar a,.jumpLink{display:flex !important;align-items:center !important}.pillRow{height:48px !important}footer a,footer span a{display:inline-flex !important;align-items:center !important;min-height:44px !important;padding:0 4px !important}main>a:first-child,[style*="ALL PROJECTS"]{min-height:44px !important}a[href$="/projects"]:not(header a){min-height:44px;display:inline-flex;align-items:center}.projCard{min-height:44px}}
+@media (max-width:600px){main>a:first-child+div{margin-top:6px !important}main{padding-top:8px !important}}
+@media (max-width:600px){.loc{display:none !important}:has(> .loc){justify-content:center !important;padding-top:10px !important}:has(> .loc) a{font-size:0 !important;width:44px;height:44px;display:inline-block !important;background:center/22px no-repeat}:has(> .loc) span{gap:18px !important}}
+@media (max-width:600px){:has(> .loc) span{align-items:center !important}:has(> .loc) a{box-sizing:border-box !important;padding:0 !important;margin:0 !important;width:44px !important;height:44px !important;min-height:44px !important;background-size:22px 22px !important;background-position:center !important;vertical-align:middle !important;flex:none !important}:has(> .loc) a:nth-child(1){background-size:23px 23px !important}:has(> .loc) a:nth-child(3){background-size:24px 24px !important}}
+@media (max-width:600px){#jumpBar a[target="_blank"],#jumpBar a[href="#"]:not(.jumpLink){font-size:0 !important;padding:0 13px !important;gap:0 !important}#jumpBar a[target="_blank"] svg,#jumpBar a[href="#"]:not(.jumpLink) svg{width:18px !important;height:18px !important}#jumpBar a span[style*="border-radius"]{width:10px !important;height:10px !important}#jumpBar>div{gap:6px !important}#jumpBar>div>div:first-child{gap:6px !important}:has(> .loc) a:nth-child(1){background-size:27px 27px !important}}
+.socIco{display:inline-flex !important;align-items:center !important;justify-content:center !important;width:44px !important;height:44px !important;background:none !important;font-size:0 !important;padding:0 !important}
+</style>
+<script src="/page-fade.js"></script>
+</helmet>
+
+<header style="position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px clamp(20px,4vw,48px);font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;background:rgba(243,240,232,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #c9c5ba">
+<a href="/m" style="display:flex;align-items:center;gap:10px">
+<span style="width:10px;height:10px;background:#f0561d;display:block"></span>
+<span>R. Chan</span>
+</a>
+<nav style="display:flex;gap:clamp(14px,2.4vw,32px);flex-wrap:wrap;justify-content:flex-end">
+<a href="/m/work" style="display:flex;gap:6px"><span style="color:#8a8a84">10</span>Work</a>
+<a href="/m/projects" style="display:flex;gap:6px"><span style="color:#8a8a84">20</span>Projects</a>
+<a href="/m/story" style="display:flex;gap:6px"><span style="color:#8a8a84">30</span>Story</a>
+<a href="/m/resume" style="display:flex;gap:6px;color:#d9480f"><span>40</span>Resume</a>
+</nav>
+</header>
+
+<main id="resMain" style="max-width:1000px;margin:0 auto;padding:clamp(20px,3vh,32px) clamp(20px,4vw,48px) 60px;box-sizing:border-box">
+
+<a href="/m#resume" style="display:inline-flex;gap:8px;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">← BACK TO LINE</a>
+
+<div style="margin-top:28px;padding-bottom:18px;border-bottom:1.5px solid #26272a">
+<h1 style="margin:0;font-family:Archivo,sans-serif;font-weight:800;font-stretch:72%;font-size:clamp(52px,7.5vw,96px);line-height:.86;text-transform:uppercase;display:flex;align-items:flex-end"><span id="typeWord">Skills</span><span id="typeCaret" style="display:inline-block;width:.09em;height:.78em;margin-left:.06em;margin-bottom:.04em;background:#f0561d"></span></h1>
+</div>
+
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ skills }}" as="g" hint-placeholder-count="5">
+<div class="skillRow" style="display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:24px;align-items:baseline;padding:24px 0;border-bottom:1px solid #c9c5ba">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:clamp(20px,2.2vw,26px);line-height:1.05;text-transform:uppercase;text-wrap:pretty">{{ g.cat }}</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ g.items }}" as="s" hint-placeholder-count="4">
+<span style="padding:8px 11px;border:1px solid #26272a;background:#f6f3ec;font:500 13px/1 'IBM Plex Mono',monospace;color:#26272a">{{ s }}</span>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+
+<section id="request" style="margin-top:56px;border:1.5px solid #26272a;background:#f6f3ec">
+<div style="padding:22px clamp(18px,3vw,28px) 26px">
+<h2 style="margin:0 0 8px;font-family:Archivo,sans-serif;font-weight:800;font-stretch:75%;font-size:clamp(30px,4vw,44px);line-height:1;text-transform:uppercase">Request my resume</h2>
+<p style="margin:0 0 22px;font:400 15px/1.55 'IBM Plex Mono',monospace;color:#3d3e42;text-wrap:pretty">If you like what you see, I'd love to send you my resume.</p>
+
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+<form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:14px">
+<div class="formGrid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<label style="display:flex;flex-direction:column;gap:7px;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">YOUR NAME
+<input name="name" required value="{{ f.name }}" onChange="{{ set.name }}" style="border:1.5px solid #26272a;background:#f3f0e8;padding:12px;font:400 14px/1.3 'IBM Plex Mono',monospace;color:#26272a;outline:0">
+</label>
+<label style="display:flex;flex-direction:column;gap:7px;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">YOUR EMAIL
+<input name="email" type="email" required value="{{ f.email }}" onChange="{{ set.email }}" style="border:1.5px solid #26272a;background:#f3f0e8;padding:12px;font:400 14px/1.3 'IBM Plex Mono',monospace;color:#26272a;outline:0">
+</label>
+<label style="display:flex;flex-direction:column;gap:7px;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">ROLE &amp; ORGANIZATION
+<input name="who" value="{{ f.who }}" onChange="{{ set.who }}" placeholder="e.g. Hiring manager at your company" style="border:1.5px solid #26272a;background:#f3f0e8;padding:12px;font:400 14px/1.3 'IBM Plex Mono',monospace;color:#26272a;outline:0">
+</label>
+<label style="display:flex;flex-direction:column;gap:7px;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">WHAT IT’S FOR
+<input name="role" value="{{ f.role }}" onChange="{{ set.role }}" placeholder="e.g. A role, project or just to connect" style="border:1.5px solid #26272a;background:#f3f0e8;padding:12px;font:400 14px/1.3 'IBM Plex Mono',monospace;color:#26272a;outline:0">
+</label>
+</div>
+<label style="display:flex;flex-direction:column;gap:7px;font:600 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">ANYTHING ELSE
+<textarea name="msg" rows="4" placeholder="Optional" value="{{ f.msg }}" onChange="{{ set.msg }}" style="border:1.5px solid #26272a;background:#f3f0e8;padding:12px;font:400 14px/1.5 'IBM Plex Mono',monospace;color:#26272a;outline:0;resize:vertical"></textarea>
+</label>
+<div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+<button type="submit" style="display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border:1.5px solid #f0561d;background:#f0561d;color:#f3f0e8;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;cursor:pointer" style-hover="background:#d9480f;border-color:#d9480f">{{ btnLabel }}</button>
+<span style="font:400 13px/1.4 'IBM Plex Mono',monospace;color:#b5341a">{{ err }}</span>
+</div>
+</form>
+</sc-if>
+
+<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:8px;padding:18px;border:1.5px solid #26272a;background:#f3f0e8">
+<div style="font-family:Archivo,sans-serif;font-weight:800;font-stretch:78%;font-size:24px;text-transform:uppercase">Sent, thank you!</div>
+<p style="margin:0;font:400 14px/1.55 'IBM Plex Mono',monospace;color:#3d3e42">I'll get back to you with my resume soon.</p>
+</div>
+</sc-if>
+</div>
+</section>
+
+<footer style="margin-top:60px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:16px;border-top:1.5px solid #26272a;font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#5d5f63">
+<span class="loc">TORONTO, ON</span>
+<span style="display:flex;gap:16px"><a href="https://github.com/rachaelchan1102" target="_blank" rel="noopener" aria-label="GitHub" class="socIco"><svg width="22" height="22" viewBox="0 0 16 16" fill="#26272a" aria-hidden="true" style="display:block"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a><a href="https://linkedin.com/in/rachael-chan-01726b334/" target="_blank" rel="noopener" aria-label="LinkedIn" class="socIco"><svg width="21" height="21" viewBox="0 0 24 24" fill="#26272a" aria-hidden="true" style="display:block"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path></svg></a><a href="mailto:rachaelchan1102@gmail.com" aria-label="Email" class="socIco"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#26272a" stroke-width="2" aria-hidden="true" style="display:block"><rect x="2.5" y="4.5" width="19" height="15"></rect><path d="M3 5.5l9 7 9-7"></path></svg></a></span>
+</footer>
+</main>
+<div id="leaveFade" style="position:fixed;inset:0;z-index:80;background:#f3f0e8;opacity:0;pointer-events:none;transition:opacity .5s ease"></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SKILLS = [
+  { cat: 'Process Improvement', items: ['Lean Six Sigma', 'Value Stream Mapping', 'FMEA', 'SPC', 'DFMA', 'Minitab'] },
+  { cat: 'Simulation & Optimization', items: ['FlexSim', 'Gurobi', 'OR-Tools', 'SimPy'] },
+  { cat: 'Programming & Analytics', items: ['Python', 'SQL', 'R', 'Java', 'Excel (Power Query, VBA)', 'Power BI', 'Tableau'] },
+  { cat: 'Engineering', items: ['SolidWorks', 'AutoCAD', 'Manual Machining'] },
+  { cat: 'Project & Program Management', items: ['Agile/Scrum', 'Kanban', 'Waterfall', 'Jira', 'Confluence', 'Git'] }
+];
+const TO = 'rachaelchan1102@gmail.com';
+
+class Component extends DCLogic {
+  state = { f: { name: '', email: '', who: '', role: '', msg: '' }, status: 'idle', err: '' };
+  componentDidMount() {
+    var tw = document.getElementById('typeWord'), tc = document.getElementById('typeCaret'), self = this, full = 'Skills';
+    if (tw) {
+      this._type = function () {
+        clearInterval(self._ti); clearInterval(self._blink); clearTimeout(self._start);
+        var n = 0; tw.textContent = ''; tc.style.display = 'inline-block'; tc.style.opacity = '1';
+        self._blink = setInterval(function () { tc.style.opacity = tc.style.opacity === '0' ? '1' : '0'; }, 530);
+        self._start = setTimeout(function () {
+          self._ti = setInterval(function () {
+            n++; tw.textContent = full.slice(0, n);
+            if (n >= full.length) {
+              clearInterval(self._ti); clearInterval(self._blink); tc.style.opacity = '1'; var bl = 0;
+              self._blink = setInterval(function () { tc.style.opacity = tc.style.opacity === '0' ? '1' : '0'; if (tc.style.opacity === '0' && ++bl >= 3) { clearInterval(self._blink); tc.style.display = 'none'; } }, 450);
+            }
+          }, 220);
+        }, 400);
+      };
+      tw.parentElement.style.cursor = 'pointer';
+      tw.parentElement.addEventListener('click', this._type);
+      this._type();
+    }
+    var lf = document.getElementById('leaveFade');
+    try { var lh0 = sessionStorage.getItem('lineHome'); if (lh0) { var pl = document.createElement('link'); pl.rel = 'prefetch'; pl.href = lh0; document.head.appendChild(pl); } } catch (er) {}
+    document.querySelectorAll('a[href="/m"],a[href^="/m#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var lh = null; try { lh = sessionStorage.getItem('lineHome'); } catch (er) {}
+        var to = a.getAttribute('href'); if (lh) to = to.replace('/m', lh); if (to.indexOf('#') < 0) to += '#welcome';
+        var main = document.getElementById('resMain'); if (main) { main.style.transformOrigin = '50% 30%'; main.style.transition = 'opacity .5s ease,scale .6s cubic-bezier(.5,0,.75,0)'; main.style.opacity = '0'; main.style.scale = '.92'; }
+        lf.style.pointerEvents = 'auto'; lf.style.opacity = '1';
+        setTimeout(function () { window.location.href = to; }, 650);
+      });
+    });
+    var m = document.getElementById('resMain');
+    if (m) { m.style.opacity = '0'; m.style.transformOrigin = '50% 20%'; m.style.scale = '1.06'; m.style.transition = 'opacity .7s ease,scale .9s cubic-bezier(.2,.8,.2,1)'; setTimeout(function () { m.style.opacity = '1'; m.style.scale = '1'; }, 40); }
+    if (location.hash === '#request') setTimeout(function () { var r = document.getElementById('request'); if (r) window.scrollTo({ top: r.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' }); }, 500);
+  }
+  componentWillUnmount() { clearInterval(this._ti); clearInterval(this._blink); clearTimeout(this._start); }
+  submit(e) {
+    e.preventDefault();
+    var f = this.state.f, self = this;
+    if (!f.name.trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.trim())) { this.setState({ err: 'Please add your name and a valid email.' }); return; }
+    this.setState({ status: 'sending', err: '' });
+    fetch('https://formsubmit.co/ajax/' + TO, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ _subject: 'I want your resume!', _template: 'table', _captcha: 'false', _replyto: f.email, Name: f.name, Email: f.email, 'Role & organization': f.who, 'What it’s for': f.role, 'Anything else': f.msg })
+    }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) { if (res.ok && String(res.j.success) !== 'false') self.setState({ status: 'sent' }); else throw new Error(); })
+      .catch(function () {
+        var body = 'Hi Rachael,\n\nRole & organization: ' + f.who + '\n\nWhat it’s for: ' + f.role + '\n\nAnything else: ' + f.msg + '\n\nThanks!\n' + f.name + ' (' + f.email + ')';
+        window.location.href = 'mailto:' + TO + '?subject=' + encodeURIComponent('I want your resume!') + '&body=' + encodeURIComponent(body);
+        self.setState({ status: 'idle', err: 'Opened your email app instead. Just hit send!' });
+      });
+  }
+  renderVals() {
+    var self = this, f = this.state.f;
+    var mk = function (k) { return function (e) { var v = e.target.value; self.setState(function (s) { var n = Object.assign({}, s.f); n[k] = v; return { f: n }; }); }; };
+    return {
+      skills: SKILLS, f: f,
+      set: { name: mk('name'), email: mk('email'), who: mk('who'), role: mk('role'), msg: mk('msg') },
+      onSubmit: function (e) { self.submit(e); },
+      btnLabel: this.state.status === 'sending' ? 'SENDING…' : 'SEND REQUEST →',
+      err: this.state.err,
+      sent: this.state.status === 'sent', notSent: this.state.status !== 'sent'
+    };
+  }
+}
+</script>
+</body>
+</html>
