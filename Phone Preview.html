@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Phone preview</title>
+<style>
+html,body{margin:0;height:100%;background:#d9d5cc;font:500 12px/1 'IBM Plex Mono',monospace;color:#26272a}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+button{font:inherit;letter-spacing:.06em;padding:8px 12px;border:1.5px solid #26272a;background:#f3f0e8;cursor:pointer}
+button.on{background:#26272a;color:#f3f0e8}
+.phone{padding:12px;background:#26272a;border-radius:44px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+iframe{display:block;border:0;border-radius:32px;background:#f3f0e8}
+</style>
+</head>
+<body>
+<div class="bar" id="sizes"></div>
+<div class="phone"><iframe id="f" src="/m"></iframe></div>
+<script>
+var S=[['iPhone 15',393,852],['iPhone SE',375,667],['Pixel 8',412,915]],f=document.getElementById('f'),bar=document.getElementById('sizes');
+function fit(w,h){var k=Math.min(1,(innerHeight-90)/(h+24));f.style.width=w+'px';f.style.height=h+'px';document.querySelector('.phone').style.zoom=k;}
+S.forEach(function(s,i){var b=document.createElement('button');b.textContent=s[0]+' · '+s[1]+'×'+s[2];b.onclick=function(){[].forEach.call(bar.children,function(x){x.classList.remove('on')});b.classList.add('on');cur=s;fit(s[1],s[2]);};bar.appendChild(b);if(!i)b.classList.add('on');});
+var cur=S[0];fit(cur[1],cur[2]);addEventListener('resize',function(){fit(cur[1],cur[2]);});
+</script>
+</body>
+</html>

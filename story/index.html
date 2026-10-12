@@ -12,6 +12,9 @@
 <body>
 <x-dc>
 <helmet>
+
+<title>Rachael Chan · Portfolio</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <script src="/page-fade.js"></script>
@@ -21,6 +24,7 @@ a{color:#26272a;text-decoration:none}a:hover{color:#d9480f}
 .flowNode{transition:opacity .6s ease,translate .7s cubic-bezier(.2,.8,.2,1)}
 @media (max-width:620px){.par{flex-direction:column !important}.par [role="button"]{flex:0 0 auto !important;height:auto !important;width:100% !important}}
 </style>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href="/"],a[href^="/#"],a[href="/m"],a[href^="/m#"]');if(!a||e.metaKey||e.ctrlKey)return;var to=a.getAttribute('href');if(to.indexOf('#')<0)to+='#welcome';e.preventDefault();var m=document.querySelector('main');if(m){m.style.transformOrigin='50% 30%';m.style.transition='opacity .5s ease,scale .6s cubic-bezier(.5,0,.75,0)';m.style.opacity='0';m.style.scale='.92';}var f=document.createElement('div');f.style.cssText='position:fixed;inset:0;z-index:80;background:#f3f0e8;opacity:0;transition:opacity .55s ease .1s;pointer-events:auto';document.body.appendChild(f);requestAnimationFrame(function(){f.style.opacity='1';});setTimeout(function(){location.href=to;},650);},true);</script>
 </helmet>
 
 <header style="position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px clamp(20px,4vw,48px);font:500 12px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;background:rgba(243,240,232,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #c9c5ba">
@@ -144,6 +148,7 @@ a{color:#26272a;text-decoration:none}a:hover{color:#d9480f}
 <span>TORONTO, ON</span>
 <span style="display:flex;gap:16px"><a href="https://github.com/rachaelchan1102" target="_blank" rel="noopener">GITHUB</a><a href="https://linkedin.com/in/rachael-chan-01726b334/" target="_blank" rel="noopener">LINKEDIN</a><a href="mailto:rachaelchan1102@gmail.com" target="_blank" rel="noopener">EMAIL</a></span>
 </footer>
+
 </main>
 </x-dc>
 <script type="text/x-dc" data-dc-script>

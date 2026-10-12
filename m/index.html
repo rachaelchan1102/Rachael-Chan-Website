@@ -12,6 +12,9 @@
 <body>
 <x-dc>
 <helmet>
+
+<title>Rachael Chan · Portfolio</title>
+
 <script>if (location.hash && location.hash.length > 1) document.documentElement.classList.add("arriving");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -31,6 +34,7 @@ html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{d
 @media (max-width:600px){:has(> .loc) span{align-items:center !important}:has(> .loc) a{box-sizing:border-box !important;padding:0 !important;margin:0 !important;width:44px !important;height:44px !important;min-height:44px !important;background-size:22px 22px !important;background-position:center !important;vertical-align:middle !important;flex:none !important}:has(> .loc) a:nth-child(1){background-size:23px 23px !important}:has(> .loc) a:nth-child(3){background-size:24px 24px !important}}
 @media (max-width:600px){#jumpBar a[target="_blank"],#jumpBar a[href="#"]:not(.jumpLink){font-size:0 !important;padding:0 13px !important;gap:0 !important}#jumpBar a[target="_blank"] svg,#jumpBar a[href="#"]:not(.jumpLink) svg{width:18px !important;height:18px !important}#jumpBar a span[style*="border-radius"]{width:10px !important;height:10px !important}#jumpBar>div{gap:6px !important}#jumpBar>div>div:first-child{gap:6px !important}:has(> .loc) a:nth-child(1){background-size:27px 27px !important}}
 .socIco{display:inline-flex !important;align-items:center !important;justify-content:center !important;width:44px !important;height:44px !important;background:none !important;font-size:0 !important;padding:0 !important}
+@keyframes hintBob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}.hintArrow{animation:hintBob 1.3s ease-in-out infinite}
 </style>
 <script src="/page-fade.js"></script>
 </helmet>
@@ -132,7 +136,7 @@ html,body{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{d
 </div>
 
 <div id="fadeOut" style="position:fixed;inset:0;z-index:80;background:#f3f0e8;opacity:0;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font:600 12px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#5d5f63"><span id="fadeLab" style="display:none">→ INSPECTION</span><span style="display:none;width:180px;height:2px;background:#c9c5ba;position:relative;overflow:hidden"><span id="fadeBar" style="position:absolute;left:0;top:0;bottom:0;width:0;background:#f0561d;display:block"></span></span></div>
-<div id="scrollHint" style="position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;color:#5d5f63;transition:opacity .4s;white-space:nowrap">SCROLL TO RUN THE LINE ↓</div>
+<div id="scrollHint" style="position:absolute;left:50%;bottom:28px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;transition:opacity .4s;white-space:nowrap;pointer-events:none"><div style="display:flex;align-items:center;gap:10px;padding:12px 18px;background:#26272a;color:#f3f0e8;font:600 13px/1 'IBM Plex Mono',monospace;letter-spacing:.12em">SWIPE UP TO RUN THE LINE</div><div class="hintArrow" style="font:600 22px/1 'IBM Plex Mono',monospace;color:#d9480f">↓</div></div>
 </div>
 </div>
 </x-dc>
@@ -771,6 +775,40 @@ class Component extends DCLogic {
     }
 
     var target = 0, disp = 0, t0 = performance.now(), lastHud = -1, cardO = cards.map(function () { return -1; });
+    var tw = null, tgtK = 0, lockUntil = 0, wheelLock = false, wheelAcc = 0, wheelQuiet = null, tStartY = null, tDir = 0;
+    function trackInfo() { var r = track.getBoundingClientRect(), top = r.top + window.scrollY, span = r.height - window.innerHeight; return { top: top, span: span, p: (window.scrollY - top) / span }; }
+    function curK() { var t = trackInfo(); return Math.round(Math.max(0, Math.min(1, t.p)) * (N - 1)); }
+    function inTrack() { var p = trackInfo().p; return p > -0.002 && p < 1.002; }
+    function goK(k) {
+      tgtK = k; var t = trackInfo(), y = t.top + t.span * k / (N - 1), y0 = window.scrollY, t0s = performance.now(), D = 1200;
+      if (tw) cancelAnimationFrame(tw);
+      (function step(now) { var q = Math.min(1, (now - t0s) / D), e = q * q * q * (q * (q * 6 - 15) + 10); window.scrollTo(0, y0 + (y - y0) * e); tw = q < 1 ? requestAnimationFrame(step) : null; })(t0s);
+      lockUntil = performance.now() + D;
+    }
+    function tryStep(dir) {
+      if (REV || TRN || !inTrack()) return false;
+      var k = (tw ? tgtK : curK()) + dir; if (k < 0 || k > N - 1) return false;
+      goK(k); return true;
+    }
+    window.addEventListener('wheel', function (e) {
+      if (REV || TRN || !inTrack()) return;
+      if (Math.abs(e.deltaY) < 1) return;
+      var dir = e.deltaY > 0 ? 1 : -1, k = (tw ? tgtK : curK()) + dir; if (k < 0 || k > N - 1) return;
+      e.preventDefault(); clearTimeout(wheelQuiet); wheelQuiet = setTimeout(function () { wheelLock = false; }, 160);
+      if (wheelLock && (performance.now() < lockUntil || wheelAcc === dir)) return;
+      wheelLock = true; wheelAcc = dir; goK(k);
+    }, { passive: false });
+    window.addEventListener('touchstart', function (e) { tStartY = e.touches[0].clientY; tDir = 0; }, { passive: true });
+    window.addEventListener('touchmove', function (e) {
+      if (tStartY == null || REV || TRN || !inTrack()) return;
+      var dy = tStartY - e.touches[0].clientY; if (!tDir && Math.abs(dy) > 4) tDir = dy > 0 ? 1 : -1;
+      var k = curK() + (tDir || 1); if (tDir && (k < 0 || k > N - 1)) return;
+      e.preventDefault();
+    }, { passive: false });
+    window.addEventListener('touchend', function (e) {
+      if (tStartY == null) return; var dy = tStartY - ((e.changedTouches[0] || {}).clientY || tStartY); tStartY = null;
+      if (Math.abs(dy) >= 6) tryStep(dy > 0 ? 1 : -1);
+    }, { passive: true });
     function readScroll() {
       var r = track.getBoundingClientRect(), span = r.height - window.innerHeight;
       target = Math.max(0, Math.min(1, -r.top / span)) * (N - 1);

@@ -3,3 +3,6 @@ Line Video.dc.html
 Phone Preview.html
 
 node_modules/
+
+# Import script, not part of the site
+tools/

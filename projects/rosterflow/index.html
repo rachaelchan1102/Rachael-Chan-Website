@@ -12,6 +12,9 @@
 <body>
 <x-dc>
 <helmet data-dc-atomics>
+
+<title>Rachael Chan · Portfolio</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -181,7 +184,7 @@ class Component extends DCLogic {
     var lf = document.getElementById('leaveFade');
     try { var lh0 = sessionStorage.getItem('lineHome'); if (lh0) { var pl = document.createElement('link'); pl.rel = 'prefetch'; pl.href = lh0; document.head.appendChild(pl); } } catch (er) {}
     document.querySelectorAll('a[href="/"],a[href^="/#"]').forEach(function (a) {
-      a.addEventListener('click', function (e) { e.preventDefault(); var lh = null; try { lh = sessionStorage.getItem('lineHome'); } catch (er) {} var to = a.getAttribute('href'); if (lh) to = to.replace('/', lh); if (to.indexOf('#') < 0) to += '#welcome'; var zoomy = lh === '/'; var main = document.getElementById('csMain'); if (zoomy) { Array.from(lf.children).forEach(function (ch) { ch.style.display = 'none'; }); if (main) { main.style.transformOrigin = '50% 30%'; main.style.transition = 'opacity .5s ease,scale .6s cubic-bezier(.5,0,.75,0)'; main.style.opacity = '0'; main.style.scale = '.92'; } lf.style.transition = 'opacity .55s ease .1s'; } else if (main) { main.style.transition = 'opacity .45s ease,translate .5s cubic-bezier(.5,0,.75,0)'; main.style.opacity = '0'; main.style.translate = '-40px 0'; } lf.style.pointerEvents = 'auto'; lf.style.opacity = '1'; if (!zoomy) document.getElementById('leaveBar').style.width = '100%'; setTimeout(function () { window.location.href = to; }, zoomy ? 650 : 700); });
+      a.addEventListener('click', function (e) { e.preventDefault(); var lh = null; try { lh = sessionStorage.getItem('lineHome'); } catch (er) {} var to = a.getAttribute('href'); if (lh) to = to.replace('/', lh); if (to.indexOf('#') < 0) to += '#welcome'; var zoomy = !lh || lh === '/' || lh === '/m'; var main = document.getElementById('csMain'); if (zoomy) { Array.from(lf.children).forEach(function (ch) { ch.style.display = 'none'; }); if (main) { main.style.transformOrigin = '50% 30%'; main.style.transition = 'opacity .5s ease,scale .6s cubic-bezier(.5,0,.75,0)'; main.style.opacity = '0'; main.style.scale = '.92'; } lf.style.transition = 'opacity .55s ease .1s'; } else if (main) { main.style.transition = 'opacity .45s ease,translate .5s cubic-bezier(.5,0,.75,0)'; main.style.opacity = '0'; main.style.translate = '-40px 0'; } lf.style.pointerEvents = 'auto'; lf.style.opacity = '1'; if (!zoomy) document.getElementById('leaveBar').style.width = '100%'; setTimeout(function () { window.location.href = to; }, zoomy ? 650 : 700); });
     });
     var m = document.getElementById('csMain');
     if (m) { var zin = false; try { zin = (sessionStorage.getItem('lineHome') || '') === '/' && /^[a-z]+:\/\/[^\/]+\/(index\.html)?$/.test(document.referrer); } catch (er) {} m.style.opacity = '0'; m.style.transformOrigin = '50% 20%'; if (zin) { m.style.scale = '1.08'; m.style.transition = 'opacity .7s ease,scale .9s cubic-bezier(.2,.8,.2,1)'; } else { m.style.translate = '0 16px'; m.style.transition = 'opacity .6s ease,translate .7s cubic-bezier(.2,.8,.2,1)'; } setTimeout(function () { m.style.opacity = '1'; m.style.translate = '0 0'; m.style.scale = '1'; }, 40); setTimeout(function () { m.style.transition = ''; m.style.translate = ''; m.style.scale = ''; m.style.transformOrigin = ''; m.style.opacity = ''; }, 1000); }

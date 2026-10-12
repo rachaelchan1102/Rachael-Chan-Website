@@ -12,6 +12,9 @@
 <body>
 <x-dc>
 <helmet>
+
+<title>Rachael Chan · Portfolio</title>
+
 <script>if (location.hash && location.hash.length > 1) document.documentElement.classList.add("arriving");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -763,6 +766,40 @@ class Component extends DCLogic {
     }
 
     var target = 0, disp = 0, t0 = performance.now(), lastHud = -1, cardO = cards.map(function () { return -1; });
+    var tw = null, tgtK = 0, lockUntil = 0, wheelLock = false, wheelAcc = 0, wheelQuiet = null, tStartY = null, tDir = 0;
+    function trackInfo() { var r = track.getBoundingClientRect(), top = r.top + window.scrollY, span = r.height - window.innerHeight; return { top: top, span: span, p: (window.scrollY - top) / span }; }
+    function curK() { var t = trackInfo(); return Math.round(Math.max(0, Math.min(1, t.p)) * (N - 1)); }
+    function inTrack() { var p = trackInfo().p; return p > -0.002 && p < 1.002; }
+    function goK(k) {
+      tgtK = k; var t = trackInfo(), y = t.top + t.span * k / (N - 1), y0 = window.scrollY, t0s = performance.now(), D = 1200;
+      if (tw) cancelAnimationFrame(tw);
+      (function step(now) { var q = Math.min(1, (now - t0s) / D), e = q * q * q * (q * (q * 6 - 15) + 10); window.scrollTo(0, y0 + (y - y0) * e); tw = q < 1 ? requestAnimationFrame(step) : null; })(t0s);
+      lockUntil = performance.now() + D;
+    }
+    function tryStep(dir) {
+      if (REV || TRN || !inTrack()) return false;
+      var k = (tw ? tgtK : curK()) + dir; if (k < 0 || k > N - 1) return false;
+      goK(k); return true;
+    }
+    window.addEventListener('wheel', function (e) {
+      if (REV || TRN || !inTrack()) return;
+      if (Math.abs(e.deltaY) < 1) return;
+      var dir = e.deltaY > 0 ? 1 : -1, k = (tw ? tgtK : curK()) + dir; if (k < 0 || k > N - 1) return;
+      e.preventDefault(); clearTimeout(wheelQuiet); wheelQuiet = setTimeout(function () { wheelLock = false; }, 160);
+      if (wheelLock && (performance.now() < lockUntil || wheelAcc === dir)) return;
+      wheelLock = true; wheelAcc = dir; goK(k);
+    }, { passive: false });
+    window.addEventListener('touchstart', function (e) { tStartY = e.touches[0].clientY; tDir = 0; }, { passive: true });
+    window.addEventListener('touchmove', function (e) {
+      if (tStartY == null || REV || TRN || !inTrack()) return;
+      var dy = tStartY - e.touches[0].clientY; if (!tDir && Math.abs(dy) > 4) tDir = dy > 0 ? 1 : -1;
+      var k = curK() + (tDir || 1); if (tDir && (k < 0 || k > N - 1)) return;
+      e.preventDefault();
+    }, { passive: false });
+    window.addEventListener('touchend', function (e) {
+      if (tStartY == null) return; var dy = tStartY - ((e.changedTouches[0] || {}).clientY || tStartY); tStartY = null;
+      if (Math.abs(dy) >= 6) tryStep(dy > 0 ? 1 : -1);
+    }, { passive: true });
     function readScroll() {
       var r = track.getBoundingClientRect(), span = r.height - window.innerHeight;
       target = Math.max(0, Math.min(1, -r.top / span)) * (N - 1);
