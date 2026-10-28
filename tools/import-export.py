@@ -14,6 +14,7 @@ top of the design, without touching the design itself:
   - adds the phone/laptop switch (device-route.js) and the favicon set
   - points the empty diagram slots at the SVGs in assets/diagrams/
   - speeds up the home pages' station-to-station scroll (STATION_MOVE_MS)
+  - applies copy updates made since the export (COPY_FIXES)
 
 Files the repo owns (device-route.js, favicons, assets/diagrams, vercel.json)
 are left alone.
@@ -31,6 +32,26 @@ DIAGRAMS = {'oum-diagram-pipeline': 'oum_pipeline_diagram.svg', 'oum-diagram-tok
             'convo-diagram-rag': 'rag_pipeline_diagram_convosparkai.svg', 'convo-diagram-speech': 'speech_segmentation_diagram.svg'}
 # Station-to-station scroll on the home pages, in ms (the export uses 1900).
 STATION_MOVE_MS = 1200
+# Copy updates made after the design export, as (old, new) text swaps per page.
+# Each must match once; the import warns if the export's wording has changed.
+COPY_FIXES = {
+    'rosterflow': [
+        ('77% → 96%', '23% → 4%'),
+        ('shows fully staffed after cancellations (simulated)', 'volunteer spots left unfilled, over 3 months'),
+        ('>8 → 3<', '>10 → 6<'),
+        ('musicians driving per show, on average', 'vehicles per site visit, across 10 shows'),
+        ('Adopting the backup policy raised the share of fully staffed shows from 77% to 96% in simulation, and carpool grouping cut the average number of musicians driving to each show from 8 to 3.',
+         'Scheduling backups for each show cut unfilled volunteer spots from 23% to 4% over 3 months, and grouping nearby musicians into shared rides cut the average number of vehicles per site visit from 10 to 6 across 10 shows.'),
+        ('Shows fully staffed after cancellations', 'Volunteer spots left unfilled'),
+        ('77% (no backups)', '23% (no backups)'),
+        ('96% (with backups)', '4% (with backups)'),
+        ('Musicians driving per show, on average', 'Vehicles per site visit, on average'),
+        ('border-top:1px solid #c9c5ba">8</td>', 'border-top:1px solid #c9c5ba">10</td>'),
+        ('3 (62% fewer vehicles)', '6 (40% fewer vehicles)'),
+        ('The fill-rate figures come from a Monte Carlo simulation of 5,000 runs with a fixed 1-in-8 chance that any musician cancels. They estimate the effect of the backup policy under that assumption and are not a measured season of real shows.',
+         'The number of backups per show comes from a Monte Carlo simulation of 5,000 runs with a 1-in-8 chance that any musician cancels. The unfilled-spot figures were measured over 3 months of real shows, and the vehicle figures across 10 shows.'),
+    ],
+}
 ICONS = ('<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n'
          '<link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png">\n'
          '<link rel="apple-touch-icon" href="/apple-touch-icon.png">')
@@ -103,8 +124,18 @@ def short_urls(s):
     return s.replace("'support.js'", "'/support.js'")
 
 
+def apply_copy_fixes(s, project, where):
+    for old, new in COPY_FIXES.get(project, []):
+        n = s.count(old)
+        if n != 1:
+            print(f'  copy fix not applied in {where} ({n} matches): {old[:60]}')
+            continue
+        s = s.replace(old, new)
+    return s
+
+
 def build_page(src, project):
-    s = open(src).read()
+    s = apply_copy_fixes(open(src).read(), project, os.path.basename(src))
     s = fill_links(s, project)
     s = s.replace('<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">', '')
     assert s.count(VIEWPORT) == 1, src
